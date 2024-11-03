@@ -231,6 +231,146 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luhaozhhhe.github.io/2024/11/03/2024H-NCTF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To Luhaozhhhe's Blog!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2024/11/03/2024H-NCTF/" itemprop="url">2024H&NCTF</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-11-03T19:39:15+08:00">
+                2024-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>更新一下，刚学crypto时打的比赛，做了两个crypto题</p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="BabyPQ"><a href="#BabyPQ" class="headerlink" title="BabyPQ"></a>BabyPQ</h2><p>进入端口，得到我们的$n$和$phi$</p>
+<p>我们已知<br>$$<br>n&#x3D;p\times q,phi&#x3D;(p-1)\times (q-1)<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">n= <span class="number">49591977487629594945496373438511006111775528534545574233225149697175329748553605568368963756920661135425024807876418929312382617151908592963419269275343863166615811689723484880951512308750038206562522283030655840533891416358727464163458870504250389804872146353448401968369599477838528162180039236966333218441</span> </span><br><span class="line">phi=<span class="number">49591977487629594945496373438511006111775528534545574233225149697175329748553605568368963756920661135425024807876418929312382617151908592963419269275343849077869099594315012439173163522525652948396478054170312697035143915818749650675143752409819847997605469066583155373813828741099849410231696320264247769492</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sympy <span class="keyword">import</span> *</span><br><span class="line">x,y= symbols(<span class="string">&#x27;x,y&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(solve([x*y-n,(x-<span class="number">1</span>)*(y-<span class="number">1</span>)-phi],[x,y]))</span><br></pre></td></tr></table></figure>
+
+<p>通过解方程，我们就可以得到我们的$p$和$q$</p>
+<p>然后输入我们的$p$就可以了，得到$flag$</p>
+<p>![屏幕截图 2024-05-12 094824](&#x2F;images&#x2F;2024H&amp;NCTF&#x2F;屏幕截图 2024-05-12 094824.png)</p>
+<p>$flag$的值为：<code>H&amp;NCTF&#123;af7051cd-2cd6-424e-8413-a65926c77e5c&#125;</code></p>
+<h2 id="MatrixRSA"><a href="#MatrixRSA" class="headerlink" title="MatrixRSA"></a>MatrixRSA</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">flag = <span class="string">b&quot;H&amp;NCTF&#123;??????????????&#125;&quot;</span> + os.urandom(<span class="number">73</span>)</span><br><span class="line"></span><br><span class="line">p = getPrime(<span class="number">56</span>)</span><br><span class="line">q = getPrime(<span class="number">56</span>)</span><br><span class="line">n = p * q</span><br><span class="line"></span><br><span class="line">part = [bytes_to_long(flag[<span class="number">13</span>*i:<span class="number">13</span>*(i+<span class="number">1</span>)]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">9</span>)]</span><br><span class="line"></span><br><span class="line">M = Matrix(Zmod(n),[</span><br><span class="line">    [part[<span class="number">3</span>*i+j] <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">C = M ** e</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;n = <span class="subst">&#123;n&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;C = <span class="subst">&#123;<span class="built_in">list</span>(C)&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">n = 3923490775575970082729688460890203</span></span><br><span class="line"><span class="string">C = [(1419745904325460721019899475870191, 2134514837568225691829001907289833, 3332081654357483038861367332497335), (3254631729141395759002362491926143, 3250208857960841513899196820302274, 1434051158630647158098636495711534), (2819200914668344580736577444355697, 2521674659019518795372093086263363, 2850623959410175705367927817534010)]</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>文献题，查阅关键词Matrix和RSA就可以找到对应的论文</p>
+<p>我们只需要将我们的欧拉函数进行替换就可以了</p>
+<p>exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line">p=<span class="number">56891773340056609</span></span><br><span class="line">q=<span class="number">68964114585148667</span></span><br><span class="line">n=p*q</span><br><span class="line">e=<span class="number">65537</span></span><br><span class="line">phi=(p**<span class="number">2</span>-<span class="number">1</span>)*(p**<span class="number">2</span>-p)*(q**<span class="number">2</span>-<span class="number">1</span>)*(q**<span class="number">2</span>-q)</span><br><span class="line">d=invert(e,phi)</span><br><span class="line">C = [(<span class="number">1419745904325460721019899475870191</span>, <span class="number">2134514837568225691829001907289833</span>, <span class="number">3332081654357483038861367332497335</span>), (<span class="number">3254631729141395759002362491926143</span>, <span class="number">3250208857960841513899196820302274</span>, <span class="number">1434051158630647158098636495711534</span>), (<span class="number">2819200914668344580736577444355697</span>, <span class="number">2521674659019518795372093086263363</span>, <span class="number">2850623959410175705367927817534010</span>)]</span><br><span class="line"><span class="comment">#C = Matrix(Zmod(n),[</span></span><br><span class="line"> <span class="comment">#   [(1419745904325460721019899475870191, 2134514837568225691829001907289833, 3332081654357483038861367332497335), (3254631729141395759002362491926143, 3250208857960841513899196820302274, 1434051158630647158098636495711534), (2819200914668344580736577444355697, 2521674659019518795372093086263363, 2850623959410175705367927817534010)]</span></span><br><span class="line"><span class="comment">#])</span></span><br><span class="line"><span class="comment">#print(numpy.linalg.matrix_power(C, d) )</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mod_matrix_multiply</span>(<span class="params">A, B, n</span>):</span><br><span class="line">    <span class="comment"># 在模 n 的有限域上计算矩阵乘法</span></span><br><span class="line">    C = np.dot(A, B) % n</span><br><span class="line">    <span class="keyword">return</span> C</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mod_matrix_power</span>(<span class="params">A, power, n</span>):</span><br><span class="line">    <span class="comment"># 计算矩阵 A 的幂</span></span><br><span class="line">    result = np.eye(<span class="built_in">len</span>(A), dtype=<span class="built_in">int</span>)  <span class="comment"># 创建单位矩阵</span></span><br><span class="line">    <span class="keyword">while</span> power &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> power % <span class="number">2</span> == <span class="number">1</span>:</span><br><span class="line">            result = mod_matrix_multiply(result, A, n)</span><br><span class="line">        A = mod_matrix_multiply(A, A, n)</span><br><span class="line">        power //= <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">C = [(<span class="number">1419745904325460721019899475870191</span>, <span class="number">2134514837568225691829001907289833</span>, <span class="number">3332081654357483038861367332497335</span>), (<span class="number">3254631729141395759002362491926143</span>, <span class="number">3250208857960841513899196820302274</span>, <span class="number">1434051158630647158098636495711534</span>), (<span class="number">2819200914668344580736577444355697</span>, <span class="number">2521674659019518795372093086263363</span>, <span class="number">2850623959410175705367927817534010</span>)]</span><br><span class="line">n=<span class="number">3923490775575970082729688460890203</span></span><br><span class="line">d=<span class="number">62943786360045783729872631416452305443726414552945421595258301764271056603535020810729178005843237877043494288357220800501261583450113</span></span><br><span class="line"><span class="built_in">print</span>(mod_matrix_power(C,d,n))</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就可以求出原来的矩阵了，然后我们进行字符转化就可以得到我们的flag了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H&amp;NCTF&#123;58bff5c1-4d5f-4010-a84c-8fbe0c0f50e8&#125;</span><br></pre></td></tr></table></figure>
+
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://luhaozhhhe.github.io/2024/11/02/2024%E7%BD%91%E9%BC%8E%E6%9D%AF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -424,7 +564,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
