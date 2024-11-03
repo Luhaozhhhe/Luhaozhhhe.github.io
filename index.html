@@ -231,6 +231,281 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luhaozhhhe.github.io/2024/11/03/2024%E5%BC%BA%E7%BD%91%E6%9D%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To Luhaozhhhe's Blog!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2024/11/03/2024%E5%BC%BA%E7%BD%91%E6%9D%AF/" itemprop="url">2024强网杯</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-11-03T20:56:52+08:00">
+                2024-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luhaozhhhe.github.io/2024/11/03/2024CISCN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To Luhaozhhhe's Blog!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2024/11/03/2024CISCN/" itemprop="url">2024CISCN</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-11-03T20:56:37+08:00">
+                2024-11-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>第一次打国赛，只会两个签到题，求放过</p>
+<h2 id="crypto">Crypto</h2>
+<h3 id="古典密码">古典密码</h3>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AnU7NnR4NassOGp3BDJgAGonMaJayTwrBqZ3ODMoMWxgMnFdNqtdMTM9</span><br></pre></td></tr></table></figure>
+<p>我们观察这一串字符，猜测使用了base64换表，进行解密，发现出问题了</p>
+<p>我们使用随波逐流脚本工具，对其进行一个一个的暴力猜测，最后发现使用Atbash解密，获得一串字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZmF7MmI4MzhhLTk3YWQtZTlmNzQzbGdiYjA3LWNlNDctNmUwMjgwNGN9</span><br></pre></td></tr></table></figure>
+<p>然后我们用base64进行解密，得到：<code>fa&#123;2b838a-97ad-e9f743lgbb07-ce47-6e02804c&#125;</code></p>
+<p>发现已经出现了fa和括号的形式，所以我们用栅栏解密进行破解，栅栏栏数为2</p>
+<p>得到最后的flag：<code>flag&#123;b2bb0873-8cae-4977-a6de-0e298f0744c3&#125;</code></p>
+<h3 id="ovo">OvO</h3>
+<p>首先我们观察题目，题目遮住了e的200个最低位，所以我们已知e的最高位，而我们题目中的kk是可以通过直接作除法得到的，我们利用n比p和q大得多的性质，直接近似计算出我们的<span
+class="math display">\[kk=e//n-2\]</span></p>
+<p>然后我们尝试去化简我们题目中给出的式子：</p>
+<p><span class="math display">\[
+e = 65537 + kk \times p + rr \times((p+1) \times (q+1)) + 1
+\]</span></p>
+<p><span class="math display">\[
+e = 65537 + kk \times p + (kk+2)\times((p+1) \times (q+1)) + 1
+\]</span></p>
+<p><span class="math display">\[
+e=65537+(kk+2)\times n+(2\times kk+2)p+(kk+2)q+kk+3
+\]</span></p>
+<p>然后我们对两边做乘以p的操作，就可以对其进行化简了</p>
+<p><span class="math display">\[
+ep=65537p+(kk+2)np+(2kk+2)p^2+(kk+2)\times n+(kk+3)\times p
+\]</span>
+这样我们就可以做近似处理了，我们发现整个式子，只有p是未知的，我们已知kk和n，然后e的高位，所以我们可以根据该方程求解出我们的p的高位，然后再使用p高位泄露破解我们的n就可以了</p>
+<p>sage脚本如下所示：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">n =  <span class="number">111922722351752356094117957341697336848130397712588425954225300832977768690114834703654895285440684751636198779555891692340301590396539921700125219784729325979197290342352480495970455903120265334661588516182848933843212275742914269686197484648288073599387074325226321407600351615258973610780463417788580083967</span></span><br><span class="line">e =  <span class="number">37059679294843322451875129178470872595128216054082068877693632035071251762179299783152435312052608685562859680569924924133175684413544051218945466380415013172416093939670064185752780945383069447693745538721548393982857225386614608359109463927663728739248286686902750649766277564516226052064304547032760477638585302695605907950461140971727150383104</span></span><br><span class="line">c =  <span class="number">14999622534973796113769052025256345914577762432817016713135991450161695032250733213228587506601968633155119211807176051329626895125610484405486794783282214597165875393081405999090879096563311452831794796859427268724737377560053552626220191435015101496941337770496898383092414492348672126813183368337602023823</span></span><br><span class="line">k = e // n - <span class="number">2</span> </span><br><span class="line">tmp = <span class="number">65537</span> + (k+<span class="number">2</span>)*n + (k+<span class="number">2</span>)+<span class="number">1</span> </span><br><span class="line">R.&lt;x&gt; = PolynomialRing(RealField(<span class="number">1024</span>)) </span><br><span class="line">f = e*x - (<span class="number">2</span>*(k+<span class="number">1</span>)*x^<span class="number">2</span> + (k+<span class="number">2</span>)*n + tmp*x) </span><br><span class="line">res = f.roots() </span><br><span class="line"> </span><br><span class="line"><span class="keyword">for</span> root <span class="keyword">in</span> res: </span><br><span class="line">    p_h = <span class="built_in">int</span>(root[<span class="number">0</span>]) </span><br><span class="line">    PR.&lt;x&gt; = PolynomialRing(Zmod(n)) </span><br><span class="line">    f1 = x + p_h </span><br><span class="line">    roots = f1.monic().small_roots(X=<span class="number">2</span>^<span class="number">200</span>,beta=<span class="number">0.4</span>) </span><br><span class="line">    <span class="keyword">if</span> roots: </span><br><span class="line">        p = <span class="built_in">int</span>(roots[<span class="number">0</span>]) + p_h </span><br><span class="line">        q = n // p </span><br><span class="line">        e = <span class="number">65537</span> + k * p + (k+<span class="number">2</span>) * ((p+<span class="number">1</span>) * (q+<span class="number">1</span>)) + <span class="number">1</span> </span><br><span class="line">        <span class="built_in">print</span>(p)</span><br><span class="line">        <span class="built_in">print</span>(q)</span><br><span class="line">        <span class="built_in">print</span>(e)</span><br></pre></td></tr></table></figure>
+<p>通过在线sagemath求解出了我们的p，q和e</p>
+<p>我们得到了：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">p=<span class="number">9915449532466780441980882114644132757469503045317741049786571327753160105973102603393585703801838713884852201325856459312958617061522496169870935934745091</span></span><br><span class="line">q=<span class="number">11287710353955888973017088237331029225772085726230749705174733853385754367993775916873684714795084329569719147149432367637098107466393989095020167706071637</span></span><br><span class="line">e=<span class="number">37059679294843322451875129178470872595128216054082068877693632035071251762179299783152435312052608685562859680569924924133175684413544051218945466380415013172416093939670064185752780945383069447693745538721548393982857225386614608359109463927663728739248286686902750649766277564516226053225696381145049303216018329937626866082580192534109310743249</span></span><br></pre></td></tr></table></figure>
+<p>然后就是简单的RSA解密</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">p=<span class="number">9915449532466780441980882114644132757469503045317741049786571327753160105973102603393585703801838713884852201325856459312958617061522496169870935934745091</span></span><br><span class="line">q=<span class="number">11287710353955888973017088237331029225772085726230749705174733853385754367993775916873684714795084329569719147149432367637098107466393989095020167706071637</span></span><br><span class="line">e=<span class="number">37059679294843322451875129178470872595128216054082068877693632035071251762179299783152435312052608685562859680569924924133175684413544051218945466380415013172416093939670064185752780945383069447693745538721548393982857225386614608359109463927663728739248286686902750649766277564516226053225696381145049303216018329937626866082580192534109310743249</span></span><br><span class="line">c=<span class="number">14999622534973796113769052025256345914577762432817016713135991450161695032250733213228587506601968633155119211807176051329626895125610484405486794783282214597165875393081405999090879096563311452831794796859427268724737377560053552626220191435015101496941337770496898383092414492348672126813183368337602023823</span></span><br><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> * </span><br><span class="line">n=p*q</span><br><span class="line">phi=(p-<span class="number">1</span>)*(q-<span class="number">1</span>)</span><br><span class="line">d=invert(e,phi)</span><br><span class="line">m=<span class="built_in">pow</span>(c,d,n)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))</span><br></pre></td></tr></table></figure>
+<p>最后我们得到了flag：<code>flag&#123;b5f771c6-18df-49a9-9d6d-ee7804f5416c&#125;</code></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://luhaozhhhe.github.io/2024/11/03/2024XYCTF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -903,7 +1178,7 @@ class="math inline">\(flag\)</span>的值为：<code>H&amp;NCTF&#123;af7051cd-2c
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
