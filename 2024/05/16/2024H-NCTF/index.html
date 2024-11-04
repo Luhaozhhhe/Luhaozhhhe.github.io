@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="WriteUp," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="更新一下，刚学crypto时打的比赛，做了两个crypto题 CryptoBabyPQ进入端口，得到我们的n和phi 我们已知  n &#x3D; p \times q,phi &#x3D; (p-1) \times (q-1)123456n&#x3D; 495919774876295949454963734385110061117755285345455742332251496971753297485536055683689">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024H&amp;NCTF">
+<meta property="og:url" content="https://luhaozhhhe.github.io/2024/05/16/2024H-NCTF/index.html">
+<meta property="og:site_name" content="Welcome To Luhaozhhhe&#39;s Blog!">
+<meta property="og:description" content="更新一下，刚学crypto时打的比赛，做了两个crypto题 CryptoBabyPQ进入端口，得到我们的n和phi 我们已知  n &#x3D; p \times q,phi &#x3D; (p-1) \times (q-1)123456n&#x3D; 495919774876295949454963734385110061117755285345455742332251496971753297485536055683689">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luhaozhhhe.github.io/images/2024H&amp;NCTF/111.png">
+<meta property="article:published_time" content="2024-05-16T11:39:15.000Z">
+<meta property="article:modified_time" content="2024-11-04T01:48:09.515Z">
+<meta property="article:author" content="Luhaozhhhe">
+<meta property="article:tag" content="WriteUp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luhaozhhhe.github.io/images/2024H&amp;NCTF/111.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+  <link rel="canonical" href="https://luhaozhhhe.github.io/2024/05/16/2024H-NCTF/"/>
+
+
+
+
+
+  <title>2024H&NCTF | Welcome To Luhaozhhhe's Blog!</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome To Luhaozhhhe's Blog!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luhaozhhhe.github.io/2024/05/16/2024H-NCTF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To Luhaozhhhe's Blog!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2024H&NCTF</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-05-16T19:39:15+08:00">
+                2024-05-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>更新一下，刚学crypto时打的比赛，做了两个crypto题</p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="BabyPQ"><a href="#BabyPQ" class="headerlink" title="BabyPQ"></a>BabyPQ</h2><p>进入端口，得到我们的n和phi</p>
+<p>我们已知</p>
+<script type="math/tex; mode=display">
+n = p \times q,phi = (p-1) \times (q-1)</script><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">n= <span class="number">49591977487629594945496373438511006111775528534545574233225149697175329748553605568368963756920661135425024807876418929312382617151908592963419269275343863166615811689723484880951512308750038206562522283030655840533891416358727464163458870504250389804872146353448401968369599477838528162180039236966333218441</span> </span><br><span class="line">phi=<span class="number">49591977487629594945496373438511006111775528534545574233225149697175329748553605568368963756920661135425024807876418929312382617151908592963419269275343849077869099594315012439173163522525652948396478054170312697035143915818749650675143752409819847997605469066583155373813828741099849410231696320264247769492</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sympy <span class="keyword">import</span> *</span><br><span class="line">x,y= symbols(<span class="string">'x,y'</span>)</span><br><span class="line"><span class="built_in">print</span>(solve([x*y-n,(x-<span class="number">1</span>)*(y-<span class="number">1</span>)-phi],[x,y]))</span><br></pre></td></tr></table></figure>
+<p>通过解方程，我们就可以得到我们的p和q</p>
+<p>然后输入我们的p就可以了，得到flag</p>
+<p><img src="/images/2024H&amp;NCTF/111.png" alt=""></p>
+<p>flag的值为：<code>H&amp;NCTF{af7051cd-2cd6-424e-8413-a65926c77e5c}</code></p>
+<h2 id="MatrixRSA"><a href="#MatrixRSA" class="headerlink" title="MatrixRSA"></a>MatrixRSA</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">flag = <span class="string">b"H&amp;NCTF{??????????????}"</span> + os.urandom(<span class="number">73</span>)</span><br><span class="line"></span><br><span class="line">p = getPrime(<span class="number">56</span>)</span><br><span class="line">q = getPrime(<span class="number">56</span>)</span><br><span class="line">n = p * q</span><br><span class="line"></span><br><span class="line">part = [bytes_to_long(flag[<span class="number">13</span>*i:<span class="number">13</span>*(i+<span class="number">1</span>)]) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">9</span>)]</span><br><span class="line"></span><br><span class="line">M = Matrix(Zmod(n),[</span><br><span class="line">    [part[<span class="number">3</span>*i+j] <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)] <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)</span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line">C = M ** e</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"n = <span class="subst">{n}</span>"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"C = <span class="subst">{<span class="built_in">list</span>(C)}</span>"</span>)</span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">n = 3923490775575970082729688460890203</span></span><br><span class="line"><span class="string">C = [(1419745904325460721019899475870191, 2134514837568225691829001907289833, 3332081654357483038861367332497335), (3254631729141395759002362491926143, 3250208857960841513899196820302274, 1434051158630647158098636495711534), (2819200914668344580736577444355697, 2521674659019518795372093086263363, 2850623959410175705367927817534010)]</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+<p>文献题，查阅关键词Matrix和RSA就可以找到对应的论文</p>
+<p>我们只需要将我们的欧拉函数进行替换就可以了</p>
+<p>exp：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line">p=<span class="number">56891773340056609</span></span><br><span class="line">q=<span class="number">68964114585148667</span></span><br><span class="line">n=p*q</span><br><span class="line">e=<span class="number">65537</span></span><br><span class="line">phi=(p**<span class="number">2</span>-<span class="number">1</span>)*(p**<span class="number">2</span>-p)*(q**<span class="number">2</span>-<span class="number">1</span>)*(q**<span class="number">2</span>-q)</span><br><span class="line">d=invert(e,phi)</span><br><span class="line">C = [(<span class="number">1419745904325460721019899475870191</span>, <span class="number">2134514837568225691829001907289833</span>, <span class="number">3332081654357483038861367332497335</span>), (<span class="number">3254631729141395759002362491926143</span>, <span class="number">3250208857960841513899196820302274</span>, <span class="number">1434051158630647158098636495711534</span>), (<span class="number">2819200914668344580736577444355697</span>, <span class="number">2521674659019518795372093086263363</span>, <span class="number">2850623959410175705367927817534010</span>)]</span><br><span class="line"><span class="comment">#C = Matrix(Zmod(n),[</span></span><br><span class="line"> <span class="comment">#   [(1419745904325460721019899475870191, 2134514837568225691829001907289833, 3332081654357483038861367332497335), (3254631729141395759002362491926143, 3250208857960841513899196820302274, 1434051158630647158098636495711534), (2819200914668344580736577444355697, 2521674659019518795372093086263363, 2850623959410175705367927817534010)]</span></span><br><span class="line"><span class="comment">#])</span></span><br><span class="line"><span class="comment">#print(numpy.linalg.matrix_power(C, d) )</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(d)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mod_matrix_multiply</span>(<span class="params">A, B, n</span>):</span><br><span class="line">    <span class="comment"># 在模 n 的有限域上计算矩阵乘法</span></span><br><span class="line">    C = np.dot(A, B) % n</span><br><span class="line">    <span class="keyword">return</span> C</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mod_matrix_power</span>(<span class="params">A, power, n</span>):</span><br><span class="line">    <span class="comment"># 计算矩阵 A 的幂</span></span><br><span class="line">    result = np.eye(<span class="built_in">len</span>(A), dtype=<span class="built_in">int</span>)  <span class="comment"># 创建单位矩阵</span></span><br><span class="line">    <span class="keyword">while</span> power &gt; <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> power % <span class="number">2</span> == <span class="number">1</span>:</span><br><span class="line">            result = mod_matrix_multiply(result, A, n)</span><br><span class="line">        A = mod_matrix_multiply(A, A, n)</span><br><span class="line">        power //= <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">C = [(<span class="number">1419745904325460721019899475870191</span>, <span class="number">2134514837568225691829001907289833</span>, <span class="number">3332081654357483038861367332497335</span>), (<span class="number">3254631729141395759002362491926143</span>, <span class="number">3250208857960841513899196820302274</span>, <span class="number">1434051158630647158098636495711534</span>), (<span class="number">2819200914668344580736577444355697</span>, <span class="number">2521674659019518795372093086263363</span>, <span class="number">2850623959410175705367927817534010</span>)]</span><br><span class="line">n=<span class="number">3923490775575970082729688460890203</span></span><br><span class="line">d=<span class="number">62943786360045783729872631416452305443726414552945421595258301764271056603535020810729178005843237877043494288357220800501261583450113</span></span><br><span class="line"><span class="built_in">print</span>(mod_matrix_power(C,d,n))</span><br></pre></td></tr></table></figure>
+<p>这样我们就可以求出原来的矩阵了，然后我们进行字符转化就可以得到我们的flag了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H&amp;NCTF{58bff5c1-4d5f-4010-a84c-8fbe0c0f50e8}</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WriteUp/" rel="tag"># WriteUp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2024/05/13/2024XYCTF/" rel="next" title="2024XYCTF">
+                <i class="fa fa-chevron-left"></i> 2024XYCTF
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2024/05/19/2024CISCN/" rel="prev" title="2024CISCN">
+                2024CISCN <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Crypto"><span class="nav-number">1.</span> <span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#BabyPQ"><span class="nav-number">1.1.</span> <span class="nav-text">BabyPQ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MatrixRSA"><span class="nav-number">1.2.</span> <span class="nav-text">MatrixRSA</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Luhaozhhhe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>

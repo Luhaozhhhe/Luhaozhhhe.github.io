@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="WriteUp," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="本人的第一篇blog，顺便记录一下前几天打的网鼎杯青龙组预赛，完成两道Crypto题和一道misc的解答。 战队获得2490分，排名150名左右。 CryptoCrypto1题目： 123456789101112131415161718192021222324from Crypto.Util.number import *from secret import flagp &#x3D; getPrime(51">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024网鼎杯">
+<meta property="og:url" content="https://luhaozhhhe.github.io/2024/10/30/2024%E7%BD%91%E9%BC%8E%E6%9D%AF/index.html">
+<meta property="og:site_name" content="Welcome To Luhaozhhhe&#39;s Blog!">
+<meta property="og:description" content="本人的第一篇blog，顺便记录一下前几天打的网鼎杯青龙组预赛，完成两道Crypto题和一道misc的解答。 战队获得2490分，排名150名左右。 CryptoCrypto1题目： 123456789101112131415161718192021222324from Crypto.Util.number import *from secret import flagp &#x3D; getPrime(51">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luhaozhhhe.github.io/images/2024%E7%BD%91%E9%BC%8E%E6%9D%AF/%E7%BD%91%E9%BC%8E%E6%9D%AFmisc4.png">
+<meta property="article:published_time" content="2024-10-29T16:35:15.000Z">
+<meta property="article:modified_time" content="2024-11-04T01:48:57.702Z">
+<meta property="article:author" content="Luhaozhhhe">
+<meta property="article:tag" content="WriteUp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luhaozhhhe.github.io/images/2024%E7%BD%91%E9%BC%8E%E6%9D%AF/%E7%BD%91%E9%BC%8E%E6%9D%AFmisc4.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+  <link rel="canonical" href="https://luhaozhhhe.github.io/2024/10/30/2024网鼎杯/"/>
+
+
+
+
+
+  <title>2024网鼎杯 | Welcome To Luhaozhhhe's Blog!</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 7.3.0"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome To Luhaozhhhe's Blog!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luhaozhhhe.github.io/2024/10/30/2024%E7%BD%91%E9%BC%8E%E6%9D%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To Luhaozhhhe's Blog!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">2024网鼎杯</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-10-30T00:35:15+08:00">
+                2024-10-30
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本人的第一篇blog，顺便记录一下前几天打的网鼎杯青龙组预赛，完成两道Crypto题和一道misc的解答。</p>
+<p>战队获得2490分，排名150名左右。</p>
+<h1 id="Crypto"><a href="#Crypto" class="headerlink" title="Crypto"></a>Crypto</h1><h2 id="Crypto1"><a href="#Crypto1" class="headerlink" title="Crypto1"></a>Crypto1</h2><p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag</span><br><span class="line"></span><br><span class="line">p = getPrime(<span class="number">512</span>)</span><br><span class="line">q = getPrime(<span class="number">512</span>)</span><br><span class="line">n = p * q</span><br><span class="line">d = getPrime(<span class="number">299</span>)</span><br><span class="line">e = inverse(d,(p-<span class="number">1</span>)*(q-<span class="number">1</span>))</span><br><span class="line">m = bytes_to_long(flag)</span><br><span class="line">c = <span class="built_in">pow</span>(m,e,n)</span><br><span class="line">hint1 = p &gt;&gt; (<span class="number">512</span>-<span class="number">70</span>)</span><br><span class="line">hint2 = q &gt;&gt; (<span class="number">512</span>-<span class="number">70</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"n = <span class="subst">{n}</span>"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"e = <span class="subst">{e}</span>"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"c = <span class="subst">{c}</span>"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"hint1 = <span class="subst">{hint1}</span>"</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f"hint2 = <span class="subst">{hint2}</span>"</span>)</span><br><span class="line"></span><br><span class="line">n = <span class="number">65318835751656706270462803918372182811096669561139853833192009681234356986381524661604904085035483519298788284835759796179173585004238691057332447589167439506386243352011548441011828732868691543989256629925692290088144403935880664585931943707422938295860559274669263630591393175387389387981929391774213395003</span></span><br><span class="line">e = <span class="number">40738963799387627677248718814260921636491770341278750841486515130562842134876396915106681433734276005332410415984785584884091334455816402584507178231273998519376915363193650533215442952274343814099450187672503465016280527554101223321817109358581483535333734940968961773897326303002987203525415266163296607215</span></span><br><span class="line">c = <span class="number">28858301095788879003830568949705095027466057921892765321643055383309726369907606901866332954652632036004551285284813812187678314978562231120323470819722044516158810710408496414616381570397632550468546302235826400628265458069027801013266037490695637948933487646553291637002155559023268928639502489285322508063</span></span><br><span class="line">hint1 = <span class="number">624859718207126357681</span></span><br><span class="line">hint2 = <span class="number">810475217500119132950</span></span><br></pre></td></tr></table></figure>
+<p>发现是论文题，利用coppersmith来进行约束求解</p>
+<p>参考了该论文<a target="_blank" rel="noopener" href="https://eprint.iacr.org/2023/367.pdf">https://eprint.iacr.org/2023/367.pdf</a></p>
+<p>在github中找到了类似的代码，加以修改得：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line">time.clock = time.time</span><br><span class="line"> </span><br><span class="line">debug = <span class="literal">True</span></span><br><span class="line"> </span><br><span class="line">strict = <span class="literal">False</span></span><br><span class="line"> </span><br><span class="line">helpful_only = <span class="literal">True</span></span><br><span class="line">dimension_min = <span class="number">7</span> </span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">helpful_vectors</span>(<span class="params">BB, modulus</span>):</span><br><span class="line">    nothelpful = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> ii <span class="keyword">in</span> <span class="built_in">range</span>(BB.dimensions()[<span class="number">0</span>]):</span><br><span class="line">        <span class="keyword">if</span> BB[ii,ii] &gt;= modulus:</span><br><span class="line">            nothelpful += <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">matrix_overview</span>(<span class="params">BB, bound</span>):</span><br><span class="line">    <span class="keyword">for</span> ii <span class="keyword">in</span> <span class="built_in">range</span>(BB.dimensions()[<span class="number">0</span>]):</span><br><span class="line">        a = (<span class="string">'%02d '</span> % ii)</span><br><span class="line">        <span class="keyword">for</span> jj <span class="keyword">in</span> <span class="built_in">range</span>(BB.dimensions()[<span class="number">1</span>]):</span><br><span class="line">            a += <span class="string">'0'</span> <span class="keyword">if</span> BB[ii,jj] == <span class="number">0</span> <span class="keyword">else</span> <span class="string">'X'</span></span><br><span class="line">            <span class="keyword">if</span> BB.dimensions()[<span class="number">0</span>] &lt; <span class="number">60</span>: </span><br><span class="line">                a += <span class="string">' '</span></span><br><span class="line">        <span class="keyword">if</span> BB[ii, ii] &gt;= bound:</span><br><span class="line">            a += <span class="string">'~'</span></span><br><span class="line">            </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">remove_unhelpful</span>(<span class="params">BB, monomials, bound, current</span>):</span><br><span class="line">    <span class="keyword">if</span> current == -<span class="number">1</span> <span class="keyword">or</span> BB.dimensions()[<span class="number">0</span>] &lt;= dimension_min:</span><br><span class="line">        <span class="keyword">return</span> BB</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> ii <span class="keyword">in</span> <span class="built_in">range</span>(current, -<span class="number">1</span>, -<span class="number">1</span>):</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> BB[ii, ii] &gt;= bound:</span><br><span class="line">            affected_vectors = <span class="number">0</span></span><br><span class="line">            affected_vector_index = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> jj <span class="keyword">in</span> <span class="built_in">range</span>(ii + <span class="number">1</span>, BB.dimensions()[<span class="number">0</span>]):</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> BB[jj, ii] != <span class="number">0</span>:</span><br><span class="line">                    affected_vectors += <span class="number">1</span></span><br><span class="line">                    affected_vector_index = jj</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> affected_vectors == <span class="number">0</span>:</span><br><span class="line">                <span class="comment">#print ("* removing unhelpful vector", ii)</span></span><br><span class="line">                BB = BB.delete_columns([ii])</span><br><span class="line">                BB = BB.delete_rows([ii])</span><br><span class="line">                monomials.pop(ii)</span><br><span class="line">                BB = remove_unhelpful(BB, monomials, bound, ii-<span class="number">1</span>)</span><br><span class="line">                <span class="keyword">return</span> BB</span><br><span class="line"></span><br><span class="line">            <span class="keyword">elif</span> affected_vectors == <span class="number">1</span>:</span><br><span class="line">                affected_deeper = <span class="literal">True</span></span><br><span class="line">                <span class="keyword">for</span> kk <span class="keyword">in</span> <span class="built_in">range</span>(affected_vector_index + <span class="number">1</span>, BB.dimensions()[<span class="number">0</span>]):</span><br><span class="line">                    <span class="keyword">if</span> BB[kk, affected_vector_index] != <span class="number">0</span>:</span><br><span class="line">                        affected_deeper = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> affected_deeper <span class="keyword">and</span> <span class="built_in">abs</span>(bound - BB[affected_vector_index, affected_vector_index]) &lt; <span class="built_in">abs</span>(bound - BB[ii, ii]):</span><br><span class="line">                    BB = BB.delete_columns([affected_vector_index, ii])</span><br><span class="line">                    BB = BB.delete_rows([affected_vector_index, ii])</span><br><span class="line">                    monomials.pop(affected_vector_index)</span><br><span class="line">                    monomials.pop(ii)</span><br><span class="line">                    BB = remove_unhelpful(BB, monomials, bound, ii-<span class="number">1</span>)</span><br><span class="line">                    <span class="keyword">return</span> BB</span><br><span class="line">    <span class="keyword">return</span> BB</span><br><span class="line"> </span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">boneh_durfee</span>(<span class="params">pol, modulus, mm, tt, XX, YY</span>):</span><br><span class="line"></span><br><span class="line">    PR.&lt;u, x, y&gt; = PolynomialRing(ZZ)   </span><br><span class="line">    Q = PR.quotient(x*y + <span class="number">1</span> - u)        </span><br><span class="line">    polZ = Q(pol).lift()</span><br><span class="line"> </span><br><span class="line">    UU = XX*YY + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    gg = []</span><br><span class="line">    <span class="keyword">for</span> kk <span class="keyword">in</span> <span class="built_in">range</span>(mm + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> ii <span class="keyword">in</span> <span class="built_in">range</span>(mm - kk + <span class="number">1</span>):</span><br><span class="line">            xshift = x^ii * modulus^(mm - kk) * polZ(u, x, y)^kk</span><br><span class="line">            gg.append(xshift)</span><br><span class="line">    gg.sort()</span><br><span class="line"></span><br><span class="line">    monomials = []</span><br><span class="line">    <span class="keyword">for</span> polynomial <span class="keyword">in</span> gg:</span><br><span class="line">        <span class="keyword">for</span> monomial <span class="keyword">in</span> polynomial.monomials(): </span><br><span class="line">            <span class="keyword">if</span> monomial <span class="keyword">not</span> <span class="keyword">in</span> monomials: </span><br><span class="line">                monomials.append(monomial)</span><br><span class="line">    monomials.sort()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> jj <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, tt + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> kk <span class="keyword">in</span> <span class="built_in">range</span>(floor(mm/tt) * jj, mm + <span class="number">1</span>):</span><br><span class="line">            yshift = y^jj * polZ(u, x, y)^kk * modulus^(mm - kk)</span><br><span class="line">            yshift = Q(yshift).lift()</span><br><span class="line">            gg.append(yshift) </span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> jj <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, tt + <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> kk <span class="keyword">in</span> <span class="built_in">range</span>(floor(mm/tt) * jj, mm + <span class="number">1</span>):</span><br><span class="line">            monomials.append(u^kk * y^jj)</span><br><span class="line"></span><br><span class="line">    nn = <span class="built_in">len</span>(monomials)</span><br><span class="line">    BB = Matrix(ZZ, nn)</span><br><span class="line">    <span class="keyword">for</span> ii <span class="keyword">in</span> <span class="built_in">range</span>(nn):</span><br><span class="line">        BB[ii, <span class="number">0</span>] = gg[ii](<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">for</span> jj <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, ii + <span class="number">1</span>):</span><br><span class="line">            <span class="keyword">if</span> monomials[jj] <span class="keyword">in</span> gg[ii].monomials():</span><br><span class="line">                BB[ii, jj] = gg[ii].monomial_coefficient(monomials[jj]) * monomials[jj](UU,XX,YY)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> helpful_only:</span><br><span class="line">        BB = remove_unhelpful(BB, monomials, modulus^mm, nn-<span class="number">1</span>)</span><br><span class="line">        nn = BB.dimensions()[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">if</span> nn == <span class="number">0</span>:</span><br><span class="line">            <span class="built_in">print</span> (<span class="string">"failure"</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>,<span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> debug:</span><br><span class="line">        helpful_vectors(BB, modulus^mm)</span><br><span class="line"></span><br><span class="line">    det = BB.det()</span><br><span class="line">    bound = modulus^(mm*nn)</span><br><span class="line">    <span class="keyword">if</span> det &gt;= bound:</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">"We do not have det &lt; bound. Solutions might not be found."</span>)</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">"Try with highers m and t."</span>)</span><br><span class="line">        <span class="keyword">if</span> debug:</span><br><span class="line">            diff = (log(det) - log(bound)) / log(<span class="number">2</span>)</span><br><span class="line">            <span class="built_in">print</span> (<span class="string">"size det(L) - size e^(m*n) = "</span>, floor(diff))</span><br><span class="line">        <span class="keyword">if</span> strict:</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>, -<span class="number">1</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">"det(L) &lt; e^(m*n) (good! If a solution exists &lt; N^delta, it will be found)"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> debug:</span><br><span class="line">        matrix_overview(BB, modulus^mm)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> debug:</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">"optimizing basis of the lattice via LLL, this can take a long time"</span>)</span><br><span class="line"></span><br><span class="line">    BB = BB.LLL()</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> debug:</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">"LLL is done!"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> debug:</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">"在格中寻找线性无关向量"</span>)</span><br><span class="line">    found_polynomials = <span class="literal">False</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">for</span> pol1_idx <span class="keyword">in</span> <span class="built_in">range</span>(nn - <span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> pol2_idx <span class="keyword">in</span> <span class="built_in">range</span>(pol1_idx + <span class="number">1</span>, nn):</span><br><span class="line">            PR.&lt;w,z&gt; = PolynomialRing(ZZ)</span><br><span class="line">            pol1 = pol2 = <span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> jj <span class="keyword">in</span> <span class="built_in">range</span>(nn):</span><br><span class="line">                pol1 += monomials[jj](w*z+<span class="number">1</span>,w,z) * BB[pol1_idx, jj] / monomials[jj](UU,XX,YY)</span><br><span class="line">                pol2 += monomials[jj](w*z+<span class="number">1</span>,w,z) * BB[pol2_idx, jj] / monomials[jj](UU,XX,YY)</span><br><span class="line">            PR.&lt;q&gt; = PolynomialRing(ZZ)</span><br><span class="line">            rr = pol1.resultant(pol2)</span><br><span class="line">            <span class="keyword">if</span> rr.is_zero() <span class="keyword">or</span> rr.monomials() == [<span class="number">1</span>]:</span><br><span class="line">                <span class="keyword">continue</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="built_in">print</span> (<span class="string">"found them, using vectors"</span>, pol1_idx, <span class="string">"and"</span>, pol2_idx)</span><br><span class="line">                found_polynomials = <span class="literal">True</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">if</span> found_polynomials:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> found_polynomials:</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">"no independant vectors could be found. This should very rarely happen..."</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>, <span class="number">0</span></span><br><span class="line"> </span><br><span class="line">    rr = rr(q, q)</span><br><span class="line">    soly = rr.roots()</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(soly) == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span> (<span class="string">"Your prediction (delta) is too small"</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>, <span class="number">0</span></span><br><span class="line"> </span><br><span class="line">    soly = soly[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">    ss = pol1(q, soly)</span><br><span class="line">    solx = ss.roots()[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">return</span> solx, soly</span><br><span class="line"> </span><br><span class="line"><span class="keyword">def</span> <span class="title function_">example</span>():</span><br><span class="line">    start =time.clock()</span><br><span class="line">    size=<span class="number">512</span></span><br><span class="line">    length_N = <span class="number">2</span>*size;</span><br><span class="line">    ss=<span class="number">0</span></span><br><span class="line">    s=<span class="number">70</span>;</span><br><span class="line">    M=<span class="number">1</span>   </span><br><span class="line">    delta = <span class="number">299</span>/<span class="number">1024</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(M):</span><br><span class="line">        N = <span class="number">65318835751656706270462803918372182811096669561139853833192009681234356986381524661604904085035483519298788284835759796179173585004238691057332447589167439506386243352011548441011828732868691543989256629925692290088144403935880664585931943707422938295860559274669263630591393175387389387981929391774213395003</span></span><br><span class="line">        e = <span class="number">40738963799387627677248718814260921636491770341278750841486515130562842134876396915106681433734276005332410415984785584884091334455816402584507178231273998519376915363193650533215442952274343814099450187672503465016280527554101223321817109358581483535333734940968961773897326303002987203525415266163296607215</span></span><br><span class="line">        c = <span class="number">28858301095788879003830568949705095027466057921892765321643055383309726369907606901866332954652632036004551285284813812187678314978562231120323470819722044516158810710408496414616381570397632550468546302235826400628265458069027801013266037490695637948933487646553291637002155559023268928639502489285322508063</span></span><br><span class="line">        hint1 =   <span class="number">624859718207126357681</span></span><br><span class="line">        hint2 =   <span class="number">810475217500119132950</span></span><br><span class="line"></span><br><span class="line">        m = <span class="number">7</span>  </span><br><span class="line">        t = <span class="built_in">round</span>(((<span class="number">1</span>-<span class="number">2</span>*delta) * m))  </span><br><span class="line">        X = floor(N^delta)  </span><br><span class="line">        Y = floor(N^(<span class="number">1</span>/<span class="number">2</span>)/<span class="number">2</span>^s)    </span><br><span class="line">        <span class="keyword">for</span> l <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">int</span>(hint1),<span class="built_in">int</span>(hint1)+<span class="number">1</span>):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">'\n\n\n l='</span>,l)</span><br><span class="line">            pM=l;</span><br><span class="line">            p0=pM*<span class="number">2</span>^(size-s)+<span class="number">2</span>^(size-s)-<span class="number">1</span>;</span><br><span class="line">            q0=N/p0;</span><br><span class="line">            qM=<span class="built_in">int</span>(q0/<span class="number">2</span>^(size-s))</span><br><span class="line">            A = N + <span class="number">1</span>-pM*<span class="number">2</span>^(size-s)-qM*<span class="number">2</span>^(size-s);</span><br><span class="line">            P.&lt;x,y&gt; = PolynomialRing(ZZ)</span><br><span class="line">            pol = <span class="number">1</span> + x * (A + y)</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> debug:</span><br><span class="line">                start_time = time.time()</span><br><span class="line">            solx, soly = boneh_durfee(pol, e, m, t, X, Y)</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">            <span class="keyword">if</span> solx &gt; <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">if</span> <span class="literal">False</span>:</span><br><span class="line">                    <span class="built_in">print</span> (<span class="string">"x:"</span>, solx)</span><br><span class="line">                    <span class="built_in">print</span> (<span class="string">"y:"</span>, soly)</span><br><span class="line"> </span><br><span class="line">                d_sol = <span class="built_in">int</span>(pol(solx, soly) / e)</span><br><span class="line">                ss=ss+<span class="number">1</span></span><br><span class="line"></span><br><span class="line">                <span class="built_in">print</span> (<span class="string">"=== solution found ==="</span>)</span><br><span class="line">                <span class="built_in">print</span> (<span class="string">"p的高比特为："</span>,l)</span><br><span class="line">                <span class="built_in">print</span> (<span class="string">"q的高比特为："</span>,qM)</span><br><span class="line">                <span class="built_in">print</span> (<span class="string">"d="</span>,d_sol) </span><br><span class="line"> </span><br><span class="line">            <span class="keyword">if</span> debug:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">"=== %s seconds ==="</span> % (time.time() - start_time))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">"ss="</span>,ss)</span><br><span class="line">        end=time.clock()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">'Running time: %s Seconds'</span>%(end-start))</span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    example()  </span><br></pre></td></tr></table></figure>
+<p>解得：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d=514966421261428616864174659198108787824325455855002618826560538514908088230254475149863519</span><br></pre></td></tr></table></figure>
+<p>然后用正常的rsa解密即可</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">d=<span class="number">514966421261428616864174659198108787824325455855002618826560538514908088230254475149863519</span></span><br><span class="line">e=<span class="number">40738963799387627677248718814260921636491770341278750841486515130562842134876396915106681433734276005332410415984785584884091334455816402584507178231273998519376915363193650533215442952274343814099450187672503465016280527554101223321817109358581483535333734940968961773897326303002987203525415266163296607215</span></span><br><span class="line">n=<span class="number">65318835751656706270462803918372182811096669561139853833192009681234356986381524661604904085035483519298788284835759796179173585004238691057332447589167439506386243352011548441011828732868691543989256629925692290088144403935880664585931943707422938295860559274669263630591393175387389387981929391774213395003</span></span><br><span class="line">c=<span class="number">28858301095788879003830568949705095027466057921892765321643055383309726369907606901866332954652632036004551285284813812187678314978562231120323470819722044516158810710408496414616381570397632550468546302235826400628265458069027801013266037490695637948933487646553291637002155559023268928639502489285322508063</span></span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line">m=<span class="built_in">pow</span>(c,d,n)</span><br><span class="line"><span class="built_in">print</span>(long_to_bytes(m))</span><br><span class="line"><span class="comment">#wdflag{097e0b16-3991-488a-b512-c3dbfb86db4a}</span></span><br></pre></td></tr></table></figure>
+<h2 id="Crypto2"><a href="#Crypto2" class="headerlink" title="Crypto2"></a>Crypto2</h2><p>题目：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding: utf-8</span></span><br><span class="line"><span class="comment">#!/usr/bin/env python2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha256</span><br><span class="line"><span class="keyword">from</span> sympy <span class="keyword">import</span> nextprime</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.Padding <span class="keyword">import</span> pad</span><br><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> long_to_bytes</span><br><span class="line"><span class="keyword">from</span> FLAG <span class="keyword">import</span> flag</span><br><span class="line"><span class="comment">#flag = 'wdflag{123}'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">victory_encrypt</span>(<span class="params">plaintext, key</span>):</span><br><span class="line">    key = key.upper()</span><br><span class="line">    key_length = <span class="built_in">len</span>(key)</span><br><span class="line">    plaintext = plaintext.upper()</span><br><span class="line">    ciphertext = <span class="string">''</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i, char <span class="keyword">in</span> <span class="built_in">enumerate</span>(plaintext):</span><br><span class="line">        <span class="keyword">if</span> char.isalpha():</span><br><span class="line">            shift = <span class="built_in">ord</span>(key[i % key_length]) - <span class="built_in">ord</span>(<span class="string">'A'</span>)</span><br><span class="line">            encrypted_char = <span class="built_in">chr</span>((<span class="built_in">ord</span>(char) - <span class="built_in">ord</span>(<span class="string">'A'</span>) + shift) % <span class="number">26</span> + <span class="built_in">ord</span>(<span class="string">'A'</span>))</span><br><span class="line">            ciphertext += encrypted_char</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            ciphertext += char</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ciphertext</span><br><span class="line"></span><br><span class="line">victory_key = <span class="string">"WANGDINGCUP"</span></span><br><span class="line">victory_encrypted_flag = victory_encrypt(flag, victory_key)</span><br><span class="line"></span><br><span class="line">p = <span class="number">0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f</span></span><br><span class="line">a = <span class="number">0</span></span><br><span class="line">b = <span class="number">7</span></span><br><span class="line">xG = <span class="number">0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798</span></span><br><span class="line">yG = <span class="number">0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8</span></span><br><span class="line">G = (xG, yG)</span><br><span class="line">n = <span class="number">0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141</span></span><br><span class="line">h = <span class="number">1</span></span><br><span class="line">zero = (<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">dA = nextprime(random.randint(<span class="number">0</span>, n))</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> dA &gt; n:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"warning!!"</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">addition</span>(<span class="params">t1, t2</span>):</span><br><span class="line">    <span class="keyword">if</span> t1 == zero:</span><br><span class="line">        <span class="keyword">return</span> t2</span><br><span class="line">    <span class="keyword">if</span> t2 == zero:</span><br><span class="line">        <span class="keyword">return</span> t2</span><br><span class="line">    (m1, n1) = t1</span><br><span class="line">    (m2, n2) = t2</span><br><span class="line">    <span class="keyword">if</span> m1 == m2:</span><br><span class="line">        <span class="keyword">if</span> n1 == <span class="number">0</span> <span class="keyword">or</span> n1 != n2:</span><br><span class="line">            <span class="keyword">return</span> zero</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            k = (<span class="number">3</span> * m1 * m1 + a) % p * gmpy2.invert(<span class="number">2</span> * n1 , p) % p</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        k = (n2 - n1 + p) % p * gmpy2.invert((m2 - m1 + p) % p, p) % p</span><br><span class="line">    m3 = (k * k % p - m1 - m2 + p * <span class="number">2</span>) % p</span><br><span class="line">    n3 = (k * (m1 - m3) % p - n1 + p) % p</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">int</span>(m3),<span class="built_in">int</span>(n3))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">multiplication</span>(<span class="params">x, k</span>):</span><br><span class="line">    ans = zero</span><br><span class="line">    t = <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span>(t &lt;= k):</span><br><span class="line">        <span class="keyword">if</span> (k &amp;t )&gt;<span class="number">0</span>:</span><br><span class="line">            ans = addition(ans, x)</span><br><span class="line">        x = addition(x, x)</span><br><span class="line">        t &lt;&lt;= <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">getrs</span>(<span class="params">z, k</span>):</span><br><span class="line">    (xp, yp) = P</span><br><span class="line">    r = xp</span><br><span class="line">    s = (z + r * dA % n) % n * gmpy2.invert(k, n) % n</span><br><span class="line">    <span class="keyword">return</span> r,s</span><br><span class="line"></span><br><span class="line">z1 = random.randint(<span class="number">0</span>, p)</span><br><span class="line">z2 = random.randint(<span class="number">0</span>, p)</span><br><span class="line">k = random.randint(<span class="number">0</span>, n)</span><br><span class="line">P = multiplication(G, k)</span><br><span class="line">hA = multiplication(G, dA)</span><br><span class="line">r1, s1 = getrs(z1, k)</span><br><span class="line">r2, s2 = getrs(z2, k)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"r1 = {}"</span>.<span class="built_in">format</span>(r1))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"r2 = {}"</span>.<span class="built_in">format</span>(r2))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"s1 = {}"</span>.<span class="built_in">format</span>(s1))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"s2 = {}"</span>.<span class="built_in">format</span>(s2))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"z1 = {}"</span>.<span class="built_in">format</span>(z1))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"z2 = {}"</span>.<span class="built_in">format</span>(z2))</span><br><span class="line"></span><br><span class="line">key = sha256(long_to_bytes(dA)).digest()</span><br><span class="line">cipher = AES.new(key, AES.MODE_CBC)</span><br><span class="line">iv = cipher.iv</span><br><span class="line">encrypted_flag = cipher.encrypt(pad(victory_encrypted_flag.encode(), AES.block_size))</span><br><span class="line">encrypted_flag_hex = binascii.hexlify(iv + encrypted_flag).decode(<span class="string">'utf-8'</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Encrypted flag (AES in CBC mode, hex):"</span>, encrypted_flag_hex)</span><br><span class="line"></span><br><span class="line"><span class="comment"># output</span></span><br><span class="line"><span class="comment"># r1 = 76712729228617953759327460769502934288442352683563219334681162937413283736816</span></span><br><span class="line"><span class="comment"># r2 = 76712729228617953759327460769502934288442352683563219334681162937413283736816</span></span><br><span class="line"><span class="comment"># s1 = 61142716522536931000933884258275974451672976799526648226417247076297644105637</span></span><br><span class="line"><span class="comment"># s2 = 110325312844668993695487572180262093359430311098679377435432296948029997765038</span></span><br><span class="line"><span class="comment"># z1 = 98842149708744845426265508894541731680137086618921535447693509433269270288237</span></span><br><span class="line"><span class="comment"># z2 = 78136168258634736524120345789104208327951990634981072456222624757958532742853</span></span><br><span class="line"><span class="comment"># ('Encrypted flag (AES in CBC mode, hex):', u'12d5174f2548c179287c7a2ce98a60b20a2dea24611a10d05a8dda9e7bda5f00e260e0c75e62ef6cb1e3341361ddb36b665b471be124ae3a9271da69a21ce8d6')</span></span><br></pre></td></tr></table></figure>
+<p>解答：</p>
+<p>一步一步分析即可，首先逆向解出k和dA，这个直接做运算即可</p>
+<p>然后把三轮的r和s放进去</p>
+<p>将s分为两部分  取前十六位作为初始化的向量 后面是正常的加密的部分</p>
+<p>然后计算私钥<code>dA</code>对应的 SHA-256 哈希值作为密钥<code>key_temp</code>。使用CBC 模式，以<code>key_temp</code>为密钥，<code>flag_1</code>为初始化向量，对<code>enflag</code>进行解密，得到<code>decrypted_flag</code>。</p>
+<p>最后用题目提供的解密函数进行解密即可，得到flag</p>
+<p>py：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> gmpy2 <span class="keyword">import</span> *</span><br><span class="line">p = <span class="number">0xfffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f</span></span><br><span class="line">a = <span class="number">0</span></span><br><span class="line">b = <span class="number">7</span></span><br><span class="line">xG = <span class="number">0x79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798</span></span><br><span class="line">yG = <span class="number">0x483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8</span></span><br><span class="line">G = (xG, yG)</span><br><span class="line">n = <span class="number">0xfffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141</span></span><br><span class="line">h = <span class="number">1</span></span><br><span class="line">zero = (<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">r1=<span class="number">76712729228617953759327460769502934288442352683563219334681162937413283736816</span></span><br><span class="line"></span><br><span class="line">s1 = <span class="number">61142716522536931000933884258275974451672976799526648226417247076297644105637</span></span><br><span class="line">s2 = <span class="number">110325312844668993695487572180262093359430311098679377435432296948029997765038</span></span><br><span class="line">z1 = <span class="number">98842149708744845426265508894541731680137086618921535447693509433269270288237</span></span><br><span class="line">z2 = <span class="number">78136168258634736524120345789104208327951990634981072456222624757958532742853</span></span><br><span class="line"></span><br><span class="line">k=(gmpy2.invert(s1-s2,n)*(z1-z2)+n)%n</span><br><span class="line">dA=gmpy2.invert(r1,n)*(k*s1-z1)%n</span><br><span class="line"></span><br><span class="line">s=<span class="string">u'12d5174f2548c179287c7a2ce98a60b20a2dea24611a10d05a8dda9e7bda5f00e260e0c75e62ef6cb1e3341361ddb36b665b471be124ae3a9271da69a21ce8d6'</span></span><br><span class="line">ans=binascii.unhexlify(s)</span><br><span class="line">flag_1=ans[:<span class="number">16</span>]</span><br><span class="line">enflag=ans[<span class="number">16</span>:]</span><br><span class="line">key_temp = sha256(long_to_bytes(dA)).digest()</span><br><span class="line">cipher = AES.new(key_temp, AES.MODE_CBC,flag_1)</span><br><span class="line">decrypted_flag = unpad(cipher.decrypt(enflag), AES.block_size)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">victory_decrypt</span>(<span class="params">ciphertext, key</span>):</span><br><span class="line">    key = key.upper()</span><br><span class="line">    key_length = <span class="built_in">len</span>(key)</span><br><span class="line">    plaintext = <span class="string">''</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i, char <span class="keyword">in</span> <span class="built_in">enumerate</span>(ciphertext):</span><br><span class="line">        <span class="keyword">if</span> char.isalpha():</span><br><span class="line">            shift = <span class="built_in">ord</span>(key[i % key_length]) - <span class="built_in">ord</span>(<span class="string">'A'</span>)</span><br><span class="line">            decrypted_char = <span class="built_in">chr</span>((<span class="built_in">ord</span>(char) - <span class="built_in">ord</span>(<span class="string">'A'</span>) - shift) % <span class="number">26</span> + <span class="built_in">ord</span>(<span class="string">'A'</span>))</span><br><span class="line">            plaintext += decrypted_char</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            plaintext += char</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> plaintext</span><br><span class="line"></span><br><span class="line">victory_encrypted_flag = decrypted_flag.decode()</span><br><span class="line">victory_key = <span class="string">"WANGDINGCUP"</span></span><br><span class="line">flag = victory_decrypt(victory_encrypted_flag, victory_key)</span><br><span class="line"><span class="built_in">print</span>(flag.lower())</span><br><span class="line"><span class="comment">#wdflag{d4d98e3c6224cb3f641483f31d33ce58}</span></span><br></pre></td></tr></table></figure>
+<h1 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h1><h2 id="Misc4"><a href="#Misc4" class="headerlink" title="Misc4"></a>Misc4</h2><p>是一种皮亚诺曲线的加密</p>
+<p>解密脚本如下：参考了<a target="_blank" rel="noopener" href="https://almostgph.github.io/2024/01/08/IrisCTF2024/">https://almostgph.github.io/2024/01/08/IrisCTF2024/</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">peano</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> [[<span class="number">0</span>,<span class="number">0</span>]]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        in_lst = peano(n - <span class="number">1</span>)</span><br><span class="line">        lst = in_lst.copy()</span><br><span class="line">        px,py = lst[-<span class="number">1</span>]</span><br><span class="line">        lst.extend([px - i[<span class="number">0</span>], py + <span class="number">1</span> + i[<span class="number">1</span>]] <span class="keyword">for</span> i <span class="keyword">in</span> in_lst)</span><br><span class="line">        px,py = lst[-<span class="number">1</span>]</span><br><span class="line">        lst.extend([px + i[<span class="number">0</span>], py + <span class="number">1</span> + i[<span class="number">1</span>]] <span class="keyword">for</span> i <span class="keyword">in</span> in_lst)</span><br><span class="line">        px,py = lst[-<span class="number">1</span>]</span><br><span class="line">        lst.extend([px + <span class="number">1</span> + i[<span class="number">0</span>], py - i[<span class="number">1</span>]] <span class="keyword">for</span> i <span class="keyword">in</span> in_lst)</span><br><span class="line">        px,py = lst[-<span class="number">1</span>]</span><br><span class="line">        lst.extend([px - i[<span class="number">0</span>], py - <span class="number">1</span> - i[<span class="number">1</span>]] <span class="keyword">for</span> i <span class="keyword">in</span> in_lst)</span><br><span class="line">        px,py = lst[-<span class="number">1</span>]</span><br><span class="line">        lst.extend([px + i[<span class="number">0</span>], py - <span class="number">1</span> - i[<span class="number">1</span>]] <span class="keyword">for</span> i <span class="keyword">in</span> in_lst)</span><br><span class="line">        px,py = lst[-<span class="number">1</span>]</span><br><span class="line">        lst.extend([px + <span class="number">1</span> + i[<span class="number">0</span>], py + i[<span class="number">1</span>]] <span class="keyword">for</span> i <span class="keyword">in</span> in_lst)</span><br><span class="line">        px,py = lst[-<span class="number">1</span>]</span><br><span class="line">        lst.extend([px - i[<span class="number">0</span>], py + <span class="number">1</span> + i[<span class="number">1</span>]] <span class="keyword">for</span> i <span class="keyword">in</span> in_lst)</span><br><span class="line">        px,py = lst[-<span class="number">1</span>]</span><br><span class="line">        lst.extend([px + i[<span class="number">0</span>], py + <span class="number">1</span> + i[<span class="number">1</span>]] <span class="keyword">for</span> i <span class="keyword">in</span> in_lst)</span><br><span class="line">        <span class="keyword">return</span> lst</span><br><span class="line"></span><br><span class="line">order = peano(<span class="number">6</span>)</span><br><span class="line"></span><br><span class="line">img = Image.<span class="built_in">open</span>(<span class="string">r"C:\Users\Lenovo\Desktop\1.png"</span>)</span><br><span class="line"></span><br><span class="line">width, height = img.size</span><br><span class="line"></span><br><span class="line">block_width = width <span class="comment"># // 3</span></span><br><span class="line">block_height = height <span class="comment"># // 3</span></span><br><span class="line"></span><br><span class="line">new_image = Image.new(<span class="string">"RGB"</span>, (width, height))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i, (x, y) <span class="keyword">in</span> tqdm(<span class="built_in">enumerate</span>(order)):</span><br><span class="line">    <span class="comment"># 根据列表顺序获取新的坐标</span></span><br><span class="line">    new_x, new_y = i % width, i // width</span><br><span class="line">    <span class="comment"># 获取原图像素</span></span><br><span class="line">    pixel = img.getpixel((x, height - <span class="number">1</span> - y))</span><br><span class="line">    <span class="comment"># 在新图像中放置像素</span></span><br><span class="line">    new_image.putpixel((new_x, new_y), pixel)</span><br><span class="line"></span><br><span class="line">new_image.save(<span class="string">"rearranged_image.jpg"</span>) </span><br></pre></td></tr></table></figure>
+<p>跑出来的结果存在了anaconda目录下 打开得到二维码</p>
+<p><img src="/images/2024网鼎杯/网鼎杯misc4.png" alt=""></p>
+<p>扫描二维码得到flag</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wdflag{b9367dd6-2d7e-4ef7-ba5c-270a6c6220cd}</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/WriteUp/" rel="tag"># WriteUp</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2024/05/19/2024CISCN/" rel="next" title="2024CISCN">
+                <i class="fa fa-chevron-left"></i> 2024CISCN
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2024/11/04/2024%E5%BC%BA%E7%BD%91%E6%9D%AF/" rel="prev" title="2024强网杯">
+                2024强网杯 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Crypto"><span class="nav-number">1.</span> <span class="nav-text">Crypto</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto1"><span class="nav-number">1.1.</span> <span class="nav-text">Crypto1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Crypto2"><span class="nav-number">1.2.</span> <span class="nav-text">Crypto2</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Misc"><span class="nav-number">2.</span> <span class="nav-text">Misc</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Misc4"><span class="nav-number">2.1.</span> <span class="nav-text">Misc4</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Luhaozhhhe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
