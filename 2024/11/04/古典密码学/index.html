@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="算是CTF密码学的入门部分了，各大赛事有时候会出一个当签到题，基本也都能用随波逐流工具一把梭，所以一些算法的脚本也就基本用不上了，但是还是记录一下。 凯撒密码凯撒密码（Caesar）加密时会将明文中的 每个字母 都按照其在字母表中的顺序向后（或向前）移动固定数目（循环移动）作为密文  举个例子，如果偏移量为3的话，那就是将明文的每个字母都往后移动3位，如果超出z了就往前重复，相当于一个模26的域">
+<meta name="description" content="算是CTF密码学的入门部分了，各大赛事有时候会出一个当签到题，基本也都能用随波逐流工具一把梭，所以一些算法的脚本也就基本用不上了，但是还是记录一下。 凯撒密码 凯撒密码（Caesar）加密时会将明文中的 每个字母 都按照其在字母表中的顺序向后（或向前）移动固定数目（循环移动）作为密文  举个例子，如果偏移量为3的话，那就是将明文的每个字母都往后移动3位，如果超出z了就往前重复，相当于一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="古典密码学">
 <meta property="og:url" content="https://luhaozhhhe.github.io/2024/11/04/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A0%81%E5%AD%A6/index.html">
 <meta property="og:site_name" content="Welcome To Luhaozhhhe&#39;s Blog!">
-<meta property="og:description" content="算是CTF密码学的入门部分了，各大赛事有时候会出一个当签到题，基本也都能用随波逐流工具一把梭，所以一些算法的脚本也就基本用不上了，但是还是记录一下。 凯撒密码凯撒密码（Caesar）加密时会将明文中的 每个字母 都按照其在字母表中的顺序向后（或向前）移动固定数目（循环移动）作为密文  举个例子，如果偏移量为3的话，那就是将明文的每个字母都往后移动3位，如果超出z了就往前重复，相当于一个模26的域">
+<meta property="og:description" content="算是CTF密码学的入门部分了，各大赛事有时候会出一个当签到题，基本也都能用随波逐流工具一把梭，所以一些算法的脚本也就基本用不上了，但是还是记录一下。 凯撒密码 凯撒密码（Caesar）加密时会将明文中的 每个字母 都按照其在字母表中的顺序向后（或向前）移动固定数目（循环移动）作为密文  举个例子，如果偏移量为3的话，那就是将明文的每个字母都往后移动3位，如果超出z了就往前重复，相当于一个">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-11-04T02:14:20.000Z">
 <meta property="article:modified_time" content="2024-11-04T08:46:05.426Z">
@@ -360,7 +360,9 @@
 
       
         <p>算是CTF密码学的入门部分了，各大赛事有时候会出一个当签到题，基本也都能用<strong>随波逐流工具一把梭</strong>，所以一些算法的脚本也就基本用不上了，但是还是记录一下。</p>
-<h2 id="凯撒密码"><a href="#凯撒密码" class="headerlink" title="凯撒密码"></a>凯撒密码</h2><p>凯撒密码（Caesar）加密时会将明文中的 <strong>每个字母</strong> 都按照其在字母表中的顺序向后（或向前）移动固定数目（<strong>循环移动</strong>）作为密文</p>
+<h2 id="凯撒密码">凯撒密码</h2>
+<p>凯撒密码（Caesar）加密时会将明文中的 <strong>每个字母</strong>
+都按照其在字母表中的顺序向后（或向前）移动固定数目（<strong>循环移动</strong>）作为密文</p>
 <blockquote>
 <p>举个例子，如果偏移量为3的话，那就是将明文的每个字母都往后移动3位，如果超出z了就往前重复，相当于一个模26的域</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">明文：ABCDEFGHIJKLMNOPQRSTUVWXYZ</span><br><span class="line">密文：DEFGHIJKLMNOPQRSTUVWXYZABC</span><br></pre></td></tr></table></figure>
@@ -377,38 +379,53 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">encrypt_caesar_cipher</span>(<span class="params">plaintext</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">shift</span>(<span class="params">text, n</span>):</span><br><span class="line">        result = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> text:</span><br><span class="line">            <span class="keyword">if</span> char.isalpha():</span><br><span class="line">                shift = <span class="built_in">ord</span>(char) + n</span><br><span class="line">                <span class="keyword">if</span> char.islower():</span><br><span class="line">                    <span class="keyword">if</span> shift &gt; <span class="built_in">ord</span>(<span class="string">&quot;z&quot;</span>):</span><br><span class="line">                        shift -= <span class="number">26</span></span><br><span class="line">                    <span class="keyword">elif</span> shift &lt; <span class="built_in">ord</span>(<span class="string">&quot;a&quot;</span>):</span><br><span class="line">                        shift += <span class="number">26</span></span><br><span class="line">                <span class="keyword">elif</span> char.isupper():</span><br><span class="line">                    <span class="keyword">if</span> shift &gt; <span class="built_in">ord</span>(<span class="string">&quot;Z&quot;</span>):</span><br><span class="line">                        shift -= <span class="number">26</span></span><br><span class="line">                    <span class="keyword">elif</span> shift &lt; <span class="built_in">ord</span>(<span class="string">&quot;A&quot;</span>):</span><br><span class="line">                        shift += <span class="number">26</span></span><br><span class="line">                result += <span class="built_in">chr</span>(shift)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                result += char</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;尝试所有可能的位移：&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">26</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;位移 <span class="subst">&#123;i&#125;</span>: <span class="subst">&#123;shift(plaintext, +i)&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    plaintext = <span class="built_in">input</span>(<span class="string">&quot;请输入凯撒密码的明文：&quot;</span>)</span><br><span class="line">    encrypt_caesar_cipher(plaintext)</span><br></pre></td></tr></table></figure>
 <p><strong>解密脚本:</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">decrypt_caesar_cipher</span>(<span class="params">ciphertext</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">shift</span>(<span class="params">text, n</span>):</span><br><span class="line">        result = <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="keyword">for</span> char <span class="keyword">in</span> text:</span><br><span class="line">            <span class="keyword">if</span> char.isalpha():</span><br><span class="line">                shift = <span class="built_in">ord</span>(char) + n</span><br><span class="line">                <span class="keyword">if</span> char.islower():</span><br><span class="line">                    <span class="keyword">if</span> shift &gt; <span class="built_in">ord</span>(<span class="string">&quot;z&quot;</span>):</span><br><span class="line">                        shift -= <span class="number">26</span></span><br><span class="line">                    <span class="keyword">elif</span> shift &lt; <span class="built_in">ord</span>(<span class="string">&quot;a&quot;</span>):</span><br><span class="line">                        shift += <span class="number">26</span></span><br><span class="line">                <span class="keyword">elif</span> char.isupper():</span><br><span class="line">                    <span class="keyword">if</span> shift &gt; <span class="built_in">ord</span>(<span class="string">&quot;Z&quot;</span>):</span><br><span class="line">                        shift -= <span class="number">26</span></span><br><span class="line">                    <span class="keyword">elif</span> shift &lt; <span class="built_in">ord</span>(<span class="string">&quot;A&quot;</span>):</span><br><span class="line">                        shift += <span class="number">26</span></span><br><span class="line">                result += <span class="built_in">chr</span>(shift)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                result += char</span><br><span class="line">        <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;尝试所有可能的位移：&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">26</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&quot;位移 <span class="subst">&#123;i&#125;</span>: <span class="subst">&#123;shift(ciphertext, -i)&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    ciphertext = <span class="built_in">input</span>(<span class="string">&quot;请输入凯撒密码的密文：&quot;</span>)</span><br><span class="line">    decrypt_caesar_cipher(ciphertext)</span><br></pre></td></tr></table></figure>
-<h2 id="Atbash-Cipher"><a href="#Atbash-Cipher" class="headerlink" title="Atbash Cipher"></a>Atbash Cipher</h2><p>埃特巴什码(Atbash Cipher)，它使用字母表中的<strong>最后一个字母代表第一个字母，倒数第二个字母代表第二个字母</strong>。</p>
+<h2 id="atbash-cipher">Atbash Cipher</h2>
+<p>埃特巴什码(Atbash
+Cipher)，它使用字母表中的<strong>最后一个字母代表第一个字母，倒数第二个字母代表第二个字母</strong>。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">明文：A B C D E F G H I J K L M N O P Q R S T U V W X Y Z</span><br><span class="line">密文：Z Y X W V U T S R Q P O N M L K J I H G F E D C B A</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>加密例子：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">明文：the quick brown fox jumps over the lazy dog</span><br><span class="line">密文：gsv jfrxp yildm ulc qfnkh levi gsv ozab wlt</span><br></pre></td></tr></table></figure>
 </blockquote>
 <p>直接随波逐流一把梭就行，2024的国赛就考了这个加密</p>
-<h2 id="简单替换密码"><a href="#简单替换密码" class="headerlink" title="简单替换密码"></a>简单替换密码</h2><p><strong>加密时，每个明文都有自己对应的密文，而且不是简单的移位，是混乱的。</strong></p>
+<h2 id="简单替换密码">简单替换密码</h2>
+<p><strong>加密时，每个明文都有自己对应的密文，而且不是简单的移位，是混乱的。</strong></p>
 <blockquote>
 <p>举个例子：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">明文: abcdefghijklmnopqrstuvwxyz</span><br><span class="line">密钥: phqgiumeaylnofdxjkrcvstzwb</span><br><span class="line"></span><br><span class="line">a对应p,b对应h</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>一般用词频分析破解：<a target="_blank" rel="noopener" href="http://quipqiup.com/">http://quipqiup.com/</a></p>
+<p>一般用词频分析破解：http://quipqiup.com/</p>
 <p>或者还是随波逐流一把梭</p>
-<h2 id="仿射密码"><a href="#仿射密码" class="headerlink" title="仿射密码"></a>仿射密码</h2><p>加密函数：</p>
-<script type="math/tex; mode=display">
-E(x)=(ax+b)\;mod \; m</script><p>其中，$x$是我们的原文，$E(x)$是我们的密文。$a$和$m$必须满足：</p>
-<script type="math/tex; mode=display">
-gcd(a,m)=1</script><p>$m$是我们整个仿射体系中的编码个数，为什么要互素呢？根据数论的知识不难得知，如果不互素的话，就找不到逆元了</p>
-<p>那么，我们的解密函数也就很明显了：</p>
-<script type="math/tex; mode=display">
-D(x)=a^{-1}(x-b)\;mod \; m</script><p>其中，$a^{-1}$是$a$的逆元</p>
-<h2 id="Playfair密码"><a href="#Playfair密码" class="headerlink" title="Playfair密码"></a>Playfair密码</h2><p>原理：</p>
-<ol>
-<li>选取一串英文字母，除去重复出现的字母，将剩下的字母逐个逐个加入 5 × 5 的矩阵内，剩下的空间由未加入的英文字母依 a-z 的顺序加入。注意，将 q 去除，或将 i 和 j 视作同一字。</li>
-<li>将要加密的明文分成两个一组。若组内的字母相同，将 X（或 Q）加到该组的第一个字母后，重新分组。若剩下一个字，也加入 X 。</li>
-<li>在每组中，找出两个字母在矩阵中的地方<ul>
+<h2 id="仿射密码">仿射密码</h2>
+<p>加密函数： <span class="math display">\[
+E(x)=(ax+b)\;mod \; m
+\]</span> 其中，<span
+class="math inline">\(x\)</span>是我们的原文，<span
+class="math inline">\(E(x)\)</span>是我们的密文。<span
+class="math inline">\(a\)</span>和<span
+class="math inline">\(m\)</span>必须满足： <span class="math display">\[
+gcd(a,m)=1
+\]</span></p>
+<p><span
+class="math inline">\(m\)</span>是我们整个仿射体系中的编码个数，为什么要互素呢？根据数论的知识不难得知，如果不互素的话，就找不到逆元了</p>
+<p>那么，我们的解密函数也就很明显了： <span class="math display">\[
+D(x)=a^{-1}(x-b)\;mod \; m
+\]</span> 其中，<span class="math inline">\(a^{-1}\)</span>是<span
+class="math inline">\(a\)</span>的逆元</p>
+<h2 id="playfair密码">Playfair密码</h2>
+<p>原理：</p>
+<ol type="1">
+<li>选取一串英文字母，除去重复出现的字母，将剩下的字母逐个逐个加入 5 × 5
+的矩阵内，剩下的空间由未加入的英文字母依 a-z 的顺序加入。注意，将 q
+去除，或将 i 和 j 视作同一字。</li>
+<li>将要加密的明文分成两个一组。若组内的字母相同，将 X（或
+Q）加到该组的第一个字母后，重新分组。若剩下一个字，也加入 X 。</li>
+<li>在每组中，找出两个字母在矩阵中的地方
+<ul>
 <li>若两个字母不同行也不同列，在矩阵中找出另外两个字母（第一个字母对应行优先），使这四个字母成为一个长方形的四个角。</li>
 <li>若两个字母同行，取这两个字母右方的字母（若字母在最右方则取最左方的字母）</li>
 <li>若两个字母同列，取这两个字母下方的字母（若字母在最下方则取最上方的字母）</li>
-</ul>
-</li>
+</ul></li>
 </ol>
 <p>新找到的两个字母就是原本的两个字母加密的结果。</p>
 <blockquote>
@@ -420,8 +437,39 @@ D(x)=a^{-1}(x-b)\;mod \; m</script><p>其中，$a^{-1}$是$a$的逆元</p>
 <p>加密后密文：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BM OD ZB XD NA BE KU DM UI XM MO UV IF</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p><strong>加解密网站：</strong><a target="_blank" rel="noopener" href="http://www.metools.info/code/playfair_186.html">http://www.metools.info/code/playfair_186.html</a></p>
-<h2 id="Polybius"><a href="#Polybius" class="headerlink" title="Polybius"></a>Polybius</h2><h2 id="ADFGX密码"><a href="#ADFGX密码" class="headerlink" title="ADFGX密码"></a>ADFGX密码</h2><h2 id="Vigenere"><a href="#Vigenere" class="headerlink" title="Vigenere"></a>Vigenere</h2><h2 id="Nihilist"><a href="#Nihilist" class="headerlink" title="Nihilist"></a>Nihilist</h2><h2 id="Hill"><a href="#Hill" class="headerlink" title="Hill"></a>Hill</h2><h2 id="Autokey-Cipher"><a href="#Autokey-Cipher" class="headerlink" title="Autokey Cipher"></a>Autokey Cipher</h2><h2 id="培根密码"><a href="#培根密码" class="headerlink" title="培根密码"></a>培根密码</h2><h2 id="栅栏密码"><a href="#栅栏密码" class="headerlink" title="栅栏密码"></a>栅栏密码</h2><h2 id="曲路密码"><a href="#曲路密码" class="headerlink" title="曲路密码"></a>曲路密码</h2><h2 id="列位移密码"><a href="#列位移密码" class="headerlink" title="列位移密码"></a>列位移密码</h2><h2 id="01248密码"><a href="#01248密码" class="headerlink" title="01248密码"></a>01248密码</h2><h2 id="JSFuck"><a href="#JSFuck" class="headerlink" title="JSFuck"></a>JSFuck</h2><h2 id="BrainFuck"><a href="#BrainFuck" class="headerlink" title="BrainFuck"></a>BrainFuck</h2><h2 id="Ook"><a href="#Ook" class="headerlink" title="Ook"></a>Ook</h2><h2 id="猪圈密码"><a href="#猪圈密码" class="headerlink" title="猪圈密码"></a>猪圈密码</h2><h2 id="舞动的小人密码"><a href="#舞动的小人密码" class="headerlink" title="舞动的小人密码"></a>舞动的小人密码</h2><h2 id="键盘密码"><a href="#键盘密码" class="headerlink" title="键盘密码"></a>键盘密码</h2><h2 id="古埃及象形文字"><a href="#古埃及象形文字" class="headerlink" title="古埃及象形文字"></a>古埃及象形文字</h2><h2 id="宝可梦图腾"><a href="#宝可梦图腾" class="headerlink" title="宝可梦图腾"></a>宝可梦图腾</h2><h2 id="精灵语"><a href="#精灵语" class="headerlink" title="精灵语"></a>精灵语</h2><h2 id="古精灵语"><a href="#古精灵语" class="headerlink" title="古精灵语"></a>古精灵语</h2><h2 id="夏多密码"><a href="#夏多密码" class="headerlink" title="夏多密码"></a>夏多密码</h2><h2 id="圣堂武士密码"><a href="#圣堂武士密码" class="headerlink" title="圣堂武士密码"></a>圣堂武士密码</h2><h2 id="盲文"><a href="#盲文" class="headerlink" title="盲文"></a>盲文</h2><h2 id="外星人密码"><a href="#外星人密码" class="headerlink" title="外星人密码"></a>外星人密码</h2><h2 id="音乐密码"><a href="#音乐密码" class="headerlink" title="音乐密码"></a>音乐密码</h2><h2 id="标准银河密码"><a href="#标准银河密码" class="headerlink" title="标准银河密码"></a>标准银河密码</h2><h2 id="天干地支表"><a href="#天干地支表" class="headerlink" title="天干地支表"></a>天干地支表</h2><h2 id="摩斯密码"><a href="#摩斯密码" class="headerlink" title="摩斯密码"></a>摩斯密码</h2><h2 id="玛雅数字"><a href="#玛雅数字" class="headerlink" title="玛雅数字"></a>玛雅数字</h2><h2 id="原神密码"><a href="#原神密码" class="headerlink" title="原神密码"></a>原神密码</h2>
+<p><strong>加解密网站：</strong>http://www.metools.info/code/playfair_186.html</p>
+<h2 id="polybius">Polybius</h2>
+<h2 id="adfgx密码">ADFGX密码</h2>
+<h2 id="vigenere">Vigenere</h2>
+<h2 id="nihilist">Nihilist</h2>
+<h2 id="hill">Hill</h2>
+<h2 id="autokey-cipher">Autokey Cipher</h2>
+<h2 id="培根密码">培根密码</h2>
+<h2 id="栅栏密码">栅栏密码</h2>
+<h2 id="曲路密码">曲路密码</h2>
+<h2 id="列位移密码">列位移密码</h2>
+<h2 id="密码">01248密码</h2>
+<h2 id="jsfuck">JSFuck</h2>
+<h2 id="brainfuck">BrainFuck</h2>
+<h2 id="ook">Ook</h2>
+<h2 id="猪圈密码">猪圈密码</h2>
+<h2 id="舞动的小人密码">舞动的小人密码</h2>
+<h2 id="键盘密码">键盘密码</h2>
+<h2 id="古埃及象形文字">古埃及象形文字</h2>
+<h2 id="宝可梦图腾">宝可梦图腾</h2>
+<h2 id="精灵语">精灵语</h2>
+<h2 id="古精灵语">古精灵语</h2>
+<h2 id="夏多密码">夏多密码</h2>
+<h2 id="圣堂武士密码">圣堂武士密码</h2>
+<h2 id="盲文">盲文</h2>
+<h2 id="外星人密码">外星人密码</h2>
+<h2 id="音乐密码">音乐密码</h2>
+<h2 id="标准银河密码">标准银河密码</h2>
+<h2 id="天干地支表">天干地支表</h2>
+<h2 id="摩斯密码">摩斯密码</h2>
+<h2 id="玛雅数字">玛雅数字</h2>
+<h2 id="原神密码">原神密码</h2>
+
       
     </div>
     
@@ -534,7 +582,7 @@ D(x)=a^{-1}(x-b)\;mod \; m</script><p>其中，$a^{-1}$是$a$的逆元</p>
               
                 <a href="/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -545,7 +593,7 @@ D(x)=a^{-1}(x-b)\;mod \; m</script><p>其中，$a^{-1}$是$a$的逆元</p>
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -580,7 +628,7 @@ D(x)=a^{-1}(x-b)\;mod \; m</script><p>其中，$a^{-1}$是$a$的逆元</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">凯撒密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Atbash-Cipher"><span class="nav-number">2.</span> <span class="nav-text">Atbash Cipher</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%9B%BF%E6%8D%A2%E5%AF%86%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">简单替换密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BF%E5%B0%84%E5%AF%86%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">仿射密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Playfair%E5%AF%86%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">Playfair密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Polybius"><span class="nav-number">6.</span> <span class="nav-text">Polybius</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ADFGX%E5%AF%86%E7%A0%81"><span class="nav-number">7.</span> <span class="nav-text">ADFGX密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vigenere"><span class="nav-number">8.</span> <span class="nav-text">Vigenere</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nihilist"><span class="nav-number">9.</span> <span class="nav-text">Nihilist</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hill"><span class="nav-number">10.</span> <span class="nav-text">Hill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Autokey-Cipher"><span class="nav-number">11.</span> <span class="nav-text">Autokey Cipher</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%B9%E6%A0%B9%E5%AF%86%E7%A0%81"><span class="nav-number">12.</span> <span class="nav-text">培根密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%85%E6%A0%8F%E5%AF%86%E7%A0%81"><span class="nav-number">13.</span> <span class="nav-text">栅栏密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B2%E8%B7%AF%E5%AF%86%E7%A0%81"><span class="nav-number">14.</span> <span class="nav-text">曲路密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E4%BD%8D%E7%A7%BB%E5%AF%86%E7%A0%81"><span class="nav-number">15.</span> <span class="nav-text">列位移密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#01248%E5%AF%86%E7%A0%81"><span class="nav-number">16.</span> <span class="nav-text">01248密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSFuck"><span class="nav-number">17.</span> <span class="nav-text">JSFuck</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BrainFuck"><span class="nav-number">18.</span> <span class="nav-text">BrainFuck</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ook"><span class="nav-number">19.</span> <span class="nav-text">Ook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8C%AA%E5%9C%88%E5%AF%86%E7%A0%81"><span class="nav-number">20.</span> <span class="nav-text">猪圈密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%88%9E%E5%8A%A8%E7%9A%84%E5%B0%8F%E4%BA%BA%E5%AF%86%E7%A0%81"><span class="nav-number">21.</span> <span class="nav-text">舞动的小人密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%AE%E7%9B%98%E5%AF%86%E7%A0%81"><span class="nav-number">22.</span> <span class="nav-text">键盘密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%A4%E5%9F%83%E5%8F%8A%E8%B1%A1%E5%BD%A2%E6%96%87%E5%AD%97"><span class="nav-number">23.</span> <span class="nav-text">古埃及象形文字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9D%E5%8F%AF%E6%A2%A6%E5%9B%BE%E8%85%BE"><span class="nav-number">24.</span> <span class="nav-text">宝可梦图腾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%BE%E7%81%B5%E8%AF%AD"><span class="nav-number">25.</span> <span class="nav-text">精灵语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%A4%E7%B2%BE%E7%81%B5%E8%AF%AD"><span class="nav-number">26.</span> <span class="nav-text">古精灵语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8F%E5%A4%9A%E5%AF%86%E7%A0%81"><span class="nav-number">27.</span> <span class="nav-text">夏多密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A3%E5%A0%82%E6%AD%A6%E5%A3%AB%E5%AF%86%E7%A0%81"><span class="nav-number">28.</span> <span class="nav-text">圣堂武士密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B2%E6%96%87"><span class="nav-number">29.</span> <span class="nav-text">盲文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E6%98%9F%E4%BA%BA%E5%AF%86%E7%A0%81"><span class="nav-number">30.</span> <span class="nav-text">外星人密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9F%B3%E4%B9%90%E5%AF%86%E7%A0%81"><span class="nav-number">31.</span> <span class="nav-text">音乐密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E9%93%B6%E6%B2%B3%E5%AF%86%E7%A0%81"><span class="nav-number">32.</span> <span class="nav-text">标准银河密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A9%E5%B9%B2%E5%9C%B0%E6%94%AF%E8%A1%A8"><span class="nav-number">33.</span> <span class="nav-text">天干地支表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%A9%E6%96%AF%E5%AF%86%E7%A0%81"><span class="nav-number">34.</span> <span class="nav-text">摩斯密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%9B%E9%9B%85%E6%95%B0%E5%AD%97"><span class="nav-number">35.</span> <span class="nav-text">玛雅数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%A5%9E%E5%AF%86%E7%A0%81"><span class="nav-number">36.</span> <span class="nav-text">原神密码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">凯撒密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#atbash-cipher"><span class="nav-number">2.</span> <span class="nav-text">Atbash Cipher</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%9B%BF%E6%8D%A2%E5%AF%86%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">简单替换密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%BF%E5%B0%84%E5%AF%86%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">仿射密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#playfair%E5%AF%86%E7%A0%81"><span class="nav-number">5.</span> <span class="nav-text">Playfair密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#polybius"><span class="nav-number">6.</span> <span class="nav-text">Polybius</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#adfgx%E5%AF%86%E7%A0%81"><span class="nav-number">7.</span> <span class="nav-text">ADFGX密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vigenere"><span class="nav-number">8.</span> <span class="nav-text">Vigenere</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nihilist"><span class="nav-number">9.</span> <span class="nav-text">Nihilist</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hill"><span class="nav-number">10.</span> <span class="nav-text">Hill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#autokey-cipher"><span class="nav-number">11.</span> <span class="nav-text">Autokey Cipher</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%B9%E6%A0%B9%E5%AF%86%E7%A0%81"><span class="nav-number">12.</span> <span class="nav-text">培根密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%85%E6%A0%8F%E5%AF%86%E7%A0%81"><span class="nav-number">13.</span> <span class="nav-text">栅栏密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B2%E8%B7%AF%E5%AF%86%E7%A0%81"><span class="nav-number">14.</span> <span class="nav-text">曲路密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%97%E4%BD%8D%E7%A7%BB%E5%AF%86%E7%A0%81"><span class="nav-number">15.</span> <span class="nav-text">列位移密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%86%E7%A0%81"><span class="nav-number">16.</span> <span class="nav-text">01248密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsfuck"><span class="nav-number">17.</span> <span class="nav-text">JSFuck</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#brainfuck"><span class="nav-number">18.</span> <span class="nav-text">BrainFuck</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ook"><span class="nav-number">19.</span> <span class="nav-text">Ook</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8C%AA%E5%9C%88%E5%AF%86%E7%A0%81"><span class="nav-number">20.</span> <span class="nav-text">猪圈密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%88%9E%E5%8A%A8%E7%9A%84%E5%B0%8F%E4%BA%BA%E5%AF%86%E7%A0%81"><span class="nav-number">21.</span> <span class="nav-text">舞动的小人密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%AE%E7%9B%98%E5%AF%86%E7%A0%81"><span class="nav-number">22.</span> <span class="nav-text">键盘密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%A4%E5%9F%83%E5%8F%8A%E8%B1%A1%E5%BD%A2%E6%96%87%E5%AD%97"><span class="nav-number">23.</span> <span class="nav-text">古埃及象形文字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9D%E5%8F%AF%E6%A2%A6%E5%9B%BE%E8%85%BE"><span class="nav-number">24.</span> <span class="nav-text">宝可梦图腾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%BE%E7%81%B5%E8%AF%AD"><span class="nav-number">25.</span> <span class="nav-text">精灵语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%A4%E7%B2%BE%E7%81%B5%E8%AF%AD"><span class="nav-number">26.</span> <span class="nav-text">古精灵语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8F%E5%A4%9A%E5%AF%86%E7%A0%81"><span class="nav-number">27.</span> <span class="nav-text">夏多密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A3%E5%A0%82%E6%AD%A6%E5%A3%AB%E5%AF%86%E7%A0%81"><span class="nav-number">28.</span> <span class="nav-text">圣堂武士密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B2%E6%96%87"><span class="nav-number">29.</span> <span class="nav-text">盲文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%96%E6%98%9F%E4%BA%BA%E5%AF%86%E7%A0%81"><span class="nav-number">30.</span> <span class="nav-text">外星人密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9F%B3%E4%B9%90%E5%AF%86%E7%A0%81"><span class="nav-number">31.</span> <span class="nav-text">音乐密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E9%93%B6%E6%B2%B3%E5%AF%86%E7%A0%81"><span class="nav-number">32.</span> <span class="nav-text">标准银河密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%A9%E5%B9%B2%E5%9C%B0%E6%94%AF%E8%A1%A8"><span class="nav-number">33.</span> <span class="nav-text">天干地支表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%A9%E6%96%AF%E5%AF%86%E7%A0%81"><span class="nav-number">34.</span> <span class="nav-text">摩斯密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%9B%E9%9B%85%E6%95%B0%E5%AD%97"><span class="nav-number">35.</span> <span class="nav-text">玛雅数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E7%A5%9E%E5%AF%86%E7%A0%81"><span class="nav-number">36.</span> <span class="nav-text">原神密码</span></a></li></ol></div>
             
 
           </div>
