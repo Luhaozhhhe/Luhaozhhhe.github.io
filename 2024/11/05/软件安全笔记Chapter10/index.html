@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="第十章 WEB安全基础WEB基础HTTP协议：超文本传输协议 统一资源标示符：URL HTTP协议采用了请求&#x2F;响应模型。 HTML：超文本标记语言  Head：头 关于网页的信息 body：主体 关于网页的具体内容  标记一般都是成对的出现的，\为我们的开头，然后\就是我们的结尾 （部分标记除外例如：\） 1&lt;head&gt;&lt;&#x2F;head&gt; 这2个标记符分别表示头部信息的开始和结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件安全笔记Chapter10">
+<meta property="og:url" content="https://luhaozhhhe.github.io/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter10/index.html">
+<meta property="og:site_name" content="Welcome To Luhaozhhhe&#39;s Blog!">
+<meta property="og:description" content="第十章 WEB安全基础WEB基础HTTP协议：超文本传输协议 统一资源标示符：URL HTTP协议采用了请求&#x2F;响应模型。 HTML：超文本标记语言  Head：头 关于网页的信息 body：主体 关于网页的具体内容  标记一般都是成对的出现的，\为我们的开头，然后\就是我们的结尾 （部分标记除外例如：\） 1&lt;head&gt;&lt;&#x2F;head&gt; 这2个标记符分别表示头部信息的开始和结">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://luhaozhhhe.github.io/images/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/image-20240528163300208-1718849461066-1.png">
+<meta property="article:published_time" content="2024-11-05T03:07:23.000Z">
+<meta property="article:modified_time" content="2024-11-05T14:38:56.278Z">
+<meta property="article:author" content="Luhaozhhhe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://luhaozhhhe.github.io/images/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/image-20240528163300208-1718849461066-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideDownBigOut"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+
+
+
+  <link rel="canonical" href="https://luhaozhhhe.github.io/2024/11/05/软件安全笔记Chapter10/"/>
+
+
+
+
+
+  <title>软件安全笔记Chapter10 | Welcome To Luhaozhhhe's Blog!</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Welcome To Luhaozhhhe's Blog!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">NKUSEer小菜鸡一枚，记录学习笔记、CTF竞赛、学习心得等内容~</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luhaozhhhe.github.io/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To Luhaozhhhe's Blog!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件安全笔记Chapter10</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-11-05T11:07:23+08:00">
+                2024-11-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">课程笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">软件安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="第十章-WEB安全基础"><a href="#第十章-WEB安全基础" class="headerlink" title="第十章 WEB安全基础"></a>第十章 WEB安全基础</h1><h2 id="WEB基础"><a href="#WEB基础" class="headerlink" title="WEB基础"></a>WEB基础</h2><p>HTTP协议：超文本传输协议</p>
+<p>统一资源标示符：URL</p>
+<p>HTTP协议采用了<strong>请求/响应</strong>模型。</p>
+<p>HTML：超文本标记语言</p>
+<ul>
+<li>Head：头 关于网页的信息</li>
+<li>body：主体 关于网页的具体内容</li>
+</ul>
+<p><strong>标记一般都是成对的出现的，\<html>为我们的开头，然后\</html>就是我们的结尾</strong></p>
+<p>（部分标记除外例如：\<br/>）</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>这2个标记符分别表示头部信息的开始和结尾。<strong>头部中包含的标记是页面的标题、序言、说明等内容，它本身不作为内容来显示，但影响网页显示的效果</strong>。头部中最常用的标记符是标题标记符和meta标记符，其中<strong>标题标记符用于定义网页的标题，它的内容显示在网页窗口的标题栏中</strong>，网页标题可被浏览器用作书签和收藏清单。</p>
+<p>JavaScript：是一种嵌入在我们的html语言中的脚本语言，可以提供动态功能</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </span><br><span class="line">         <span class="tag">&lt;<span class="name">head</span>&gt;</span>  </span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span>Javascript简单示例<span class="tag">&lt;/<span class="name">title</span>&gt;</span>  </span><br><span class="line">         <span class="tag">&lt;/<span class="name">head</span>&gt;</span>  </span><br><span class="line">         <span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">                <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;javascript&quot;</span>&gt;</span><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript">                     <span class="title function_">alert</span>(<span class="string">&quot;第一个javascript&quot;</span>); </span></span><br><span class="line"><span class="language-javascript">               </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>   </span><br><span class="line">         <span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>有它自身的<strong>基本数据类型，表达式和算术运算符及程序的基本程序框架</strong></p>
+<h2 id="WEB编程环境"><a href="#WEB编程环境" class="headerlink" title="WEB编程环境"></a>WEB编程环境</h2><p>WEB静态语言和WEB动态语言</p>
+<ul>
+<li>WEB静态语言就是通常所见到的超文本标记语言（标准通用标记语言下的一个应用）</li>
+<li>WEB动态语言主要是ASP、PHP、JAVASCRIPT、JAVA、CGI等计算机脚本语言编写出来的执行灵活的互联网网页程序。</li>
+</ul>
+<h2 id="PHP语言"><a href="#PHP语言" class="headerlink" title="PHP语言"></a>PHP语言</h2><p>PHP:</p>
+<ul>
+<li>是一种<strong>解释性语言</strong>。PHP的语法和C/C++，Java，Perl，ASP，JSP有相通之处并且加上了自己的语法。</li>
+<li>由于PHP是一种<strong>面向HTML的解析语言</strong>，所以，PHP语句被包含在PHP标记里面，PHP标记外的语句都被直接输出。包括在PHP标记中的语句被解析，在其外的语句原样输出并且接受PHP语句的控制</li>
+</ul>
+<p><img src="/images/软件安全/image-20240528163300208-1718849461066-1.png" alt=""></p>
+<p>变量解析当遇到符号（$）时产生，<strong>解析器会尽可能多地取得后面的字符以组成一个合法的变量名，然后将变量值替换他们</strong>，如果$后面没有有效的变量名，则输出”$”<strong>。如果想明确的变量名可以用花括号把变量名括起来</strong>。</p>
+<h2 id="HTTP会话管理"><a href="#HTTP会话管理" class="headerlink" title="HTTP会话管理"></a>HTTP会话管理</h2><p>HTTP协议属于<strong>无状态的通信协议</strong></p>
+<p>当浏览器发送请求给服务器的时候，服务器响应，但是当同一个浏览器再发送请求给服务器的时候，他不知道你就是刚才那个浏览器。简单地说，就是服务器不会去记得你</p>
+<p><strong>HTTP是短连接的</strong></p>
+<p>为了识别不同的请求是否来自同一客户，需要引用HTTP会话机制：</p>
+<p><strong>多次HTTP连接间维护用户与同一用户发出的不同请求之间关联的情况称为维护一个会话（session）。</strong></p>
+<p><strong>Cookie与session</strong>是与HTTP会话相关的两个内容，其中<strong>Cookie存在在浏览器，session存储在服务器中</strong></p>
+<p><strong>Cookies是服务器在本地机器上存储的小段文本并随每一个请求发送至同一个服务器</strong></p>
+<ul>
+<li>正统的cookie分发是通过扩展HTTP协议来实现的，服务器通过在HTTP的响应头中加上一行特殊的指示以提示浏览器按照指示生成相应的cookie。</li>
+<li>浏览器检查所有存储的cookie，如果某个cookie所声明的作用范围大于等于将要请求的资源所在的位置，则把该cookie附在请求资源的HTTP请求头上发送给服务器。</li>
+</ul>
+<p>cookies的内容：<strong>名字，值，过期时间，路径和域</strong></p>
+<p>若不设置过期时间，则表示<strong>这个cookie的生命期为浏览器会话期间</strong>，关闭浏览器窗口，cookie就消失。这种生命期为浏览器会话期的cookie被称为<strong>会话cookie</strong>。</p>
+<p>会话cookie一般不存储在硬盘上而是保存在内存里</p>
+<ul>
+<li>若设置了过期时间，浏览器就会把cookie保存到硬盘上</li>
+<li>存储在硬盘上的cookie可以在不同的浏览器进程间共享，比如两个IE窗口</li>
+</ul>
+<p><strong>session id的值应该是一个既不会重复，又不容易被找到规律以仿造的字符串</strong></p>
+<h2 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h2><p>method属性指定了与服务器进行信息交互的方法为POST。</p>
+<p>交互的四种方法：</p>
+<ul>
+<li>GET：GET一般用于获取/查询资源信息</li>
+<li>POST：而POST一般用于更新资源信息</li>
+<li>DELETE</li>
+<li>PUT</li>
+</ul>
+<p>以?分割URL和传输数据，参数之间以&amp;相连，如：<code>login.action?name=sean&amp;password=123</code></p>
+<ul>
+<li>GET请求的数据会附在URL之后</li>
+<li>POST把提交的数据则放置在是HTTP包的包体中</li>
+</ul>
+<p><strong>POST的安全性要比GET的安全性高：</strong></p>
+<ul>
+<li>GET模式下，通过URL就可以作数据修改</li>
+<li>GET模式下，用户名和密码将明文出现在URL上，因为登录页面有可能被浏览器缓存、其他人查看浏览器的历史纪录，那么别人就可以拿到你的账号和密码了</li>
+<li>GET模式下，提交数据还可能会造成跨站请求伪造攻击 </li>
+</ul>
+<h2 id="PHP连接数据库"><a href="#PHP连接数据库" class="headerlink" title="PHP连接数据库"></a>PHP连接数据库</h2><p>表userinfo：有两个字段</p>
+<ul>
+<li>username</li>
+<li>pwd</li>
+</ul>
+<p>数据库应用开发三步骤：</p>
+<ul>
+<li><p>连接数据库</p>
+<ul>
+<li>```sql<br>$conn=mysql_connect(“localhost”, “root”, “123456”);<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 执行SQL操作</span><br><span class="line"></span><br><span class="line">  - ```sql</span><br><span class="line">    $result=mysql_db_query(&quot;MyDB&quot;, $SQLStr, $conn);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>关闭连接</p>
+<ul>
+<li><pre><code class="lang-sql">mysql_free_result($result); mysql_close($conn);
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Cookie实战"><a href="#Cookie实战" class="headerlink" title="Cookie实战"></a>Cookie实战</h2><p>cookie和session的关系：</p>
+<ul>
+<li>共性：都可以暂时保存在多个页面中使用的变量。</li>
+<li>区别：cookie存放在客户端浏览器，session保存在服务器。它们之间的联系是session ID一般保存在cookie中，来实现HTTP会话管理</li>
+</ul>
+<p>工作原理：</p>
+<ul>
+<li>生成Cookie：当客户访问某网站时，PHP可以使用setcookie函数告诉浏览器生成一个cookie，并把这个cookie保存在c:\Documents and Settings\用户名\Cookies目录下。</li>
+<li>使用Cookie：Cookie是HTTP标头的一部分，当客户再次访问该网站时，浏览器会自动把与该站点对应的cookie发送到服务器，服务器则把从客户端传来的cookie将自动地转化成一个PHP变量。</li>
+</ul>
+<p><strong>setcookie格式</strong></p>
+<ul>
+<li>setcookie(name, value, expire, path, domain, secure)</li>
+<li>name 必需。规定 cookie 的名称。</li>
+<li>value 必需。规定 cookie 的值。</li>
+<li>expire 可选。规定 cookie 的有效期。</li>
+</ul>
+<h2 id="十大WEB安全威胁"><a href="#十大WEB安全威胁" class="headerlink" title="十大WEB安全威胁"></a>十大WEB安全威胁</h2><ul>
+<li>注入</li>
+<li>跨站脚本</li>
+<li>遭破坏的身份认证和会话管理<ul>
+<li>攻击者窃听了用户访问HTTP时的用户名和密码，或者是用户的会话，从而得到sessionID或用户身份信息，进而冒充用户进行HTTP访问的过程</li>
+<li>检测是否使用HTTPS的最简单方法就是使用网络嗅探工具</li>
+<li><strong>会话劫持就是一种窃取用户SessionID后，使用该SessionID登录进入目标账户的攻击方法，此时攻击者实际上是利用了目标账户的有效Session。如果SessionID是被保存在Cookie中，则这种攻击被称为Cookie劫持。</strong> </li>
+<li>如果攻击者窃取了用户的Session，并一直保持一个有效的Session，攻击者就能通过此有效Session一直使用用户的账户，即成为一个永久的“后门”，<strong>这就是会话保持攻击</strong></li>
+</ul>
+</li>
+<li>不安全的直接对象引用<ul>
+<li><strong>直接对象引用：是指WEB应用程序的开发人员将一些不应公开的对象引用直接暴露给用户，使得用户可以通过更改URL等操作直接引用对象。</strong></li>
+<li><strong>不安全的直接对象引用：是指一个用户通过更改URL等操作可以成功访问到未被授权的内容。比如一个网站上的用户通过更改URL可以访问到其他用户的私密信息和数据等。</strong></li>
+</ul>
+</li>
+<li>伪造跨站请求</li>
+<li>安全配置错误<ul>
+<li><strong>默认的用户名密码没有及时修改</strong></li>
+</ul>
+</li>
+<li>不安全的加密存储<ul>
+<li>Web应用系统<strong>没有对敏感性资料进行加密</strong></li>
+</ul>
+</li>
+<li>没有限制的URL访问</li>
+<li>传输层保护不足和未验证的重定向和转发<ul>
+<li><strong>中间人攻击</strong>(Man-in-the-middle attack)，即MITM。HTTP连接的目标是Web服务器，如果传输层保护不足，攻击者可以担任中间人的角色，在<strong>用户和Web服务器之间截获数据并在两者之间进行转发</strong>，使用户和服务器之间的整个通信过程暴露在攻击者面前。</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter11/" rel="next" title="软件安全笔记Chapte11">
+                <i class="fa fa-chevron-left"></i> 软件安全笔记Chapte11
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter1/" rel="prev" title="软件安全笔记Chapter1">
+                软件安全笔记Chapter1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/">
+              
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-WEB%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">第十章 WEB安全基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB%E5%9F%BA%E7%A1%80"><span class="nav-number">1.1.</span> <span class="nav-text">WEB基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83"><span class="nav-number">1.2.</span> <span class="nav-text">WEB编程环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP%E8%AF%AD%E8%A8%80"><span class="nav-number">1.3.</span> <span class="nav-text">PHP语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">HTTP会话管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82"><span class="nav-number">1.5.</span> <span class="nav-text">HTTP请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.6.</span> <span class="nav-text">PHP连接数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie%E5%AE%9E%E6%88%98"><span class="nav-number">1.7.</span> <span class="nav-text">Cookie实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E5%A4%A7WEB%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81"><span class="nav-number">1.8.</span> <span class="nav-text">十大WEB安全威胁</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Luhaozhhhe</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+
+
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
