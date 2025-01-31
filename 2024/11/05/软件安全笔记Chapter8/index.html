@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="第八章 漏洞挖掘技术程序切片技术概述程序切片旨在从程序中提取满足一定约束条件的代码片段  对指定变量施加影响的代码指令 或者指定变量所影响的代码片段  定义：给定一个切片准则 C&#x3D;(N, V)，其中N表示程序P中的指令，V表示变量集，程序P关于C的映射即为程序切片。换句话说，一个程序切片是由程序中的一些语句和判定表达式组成的集合。 分类：  前向切片，计算方向与程序相同 后向切片  C&#x3D;(4, z">
+<meta name="description" content="第八章 漏洞挖掘技术 程序切片技术 概述 程序切片旨在从程序中提取满足一定约束条件的代码片段  对指定变量施加影响的代码指令 或者指定变量所影响的代码片段  定义：给定一个切片准则 C&#x3D;(N, V)，其中N表示程序P中的指令，V表示变量集，程序P关于C的映射即为程序切片。换句话说，一个程序切片是由程序中的一些语句和判定表达式组成的集合。 分类：  前向切片，计算方向与程序相">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软件安全笔记Chapter8">
 <meta property="og:url" content="https://luhaozhhhe.github.io/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter8/index.html">
 <meta property="og:site_name" content="Welcome To Luhaozhhhe&#39;s Blog!">
-<meta property="og:description" content="第八章 漏洞挖掘技术程序切片技术概述程序切片旨在从程序中提取满足一定约束条件的代码片段  对指定变量施加影响的代码指令 或者指定变量所影响的代码片段  定义：给定一个切片准则 C&#x3D;(N, V)，其中N表示程序P中的指令，V表示变量集，程序P关于C的映射即为程序切片。换句话说，一个程序切片是由程序中的一些语句和判定表达式组成的集合。 分类：  前向切片，计算方向与程序相同 后向切片  C&#x3D;(4, z">
+<meta property="og:description" content="第八章 漏洞挖掘技术 程序切片技术 概述 程序切片旨在从程序中提取满足一定约束条件的代码片段  对指定变量施加影响的代码指令 或者指定变量所影响的代码片段  定义：给定一个切片准则 C&#x3D;(N, V)，其中N表示程序P中的指令，V表示变量集，程序P关于C的映射即为程序切片。换句话说，一个程序切片是由程序中的一些语句和判定表达式组成的集合。 分类：  前向切片，计算方向与程序相">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://luhaozhhhe.github.io/images/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/image-20240509082142263.png">
 <meta property="og:image" content="https://luhaozhhhe.github.io/images/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/image-20240509082502758.png">
@@ -375,40 +375,55 @@
       
 
       
-        <h1 id="第八章-漏洞挖掘技术"><a href="#第八章-漏洞挖掘技术" class="headerlink" title="第八章 漏洞挖掘技术"></a>第八章 漏洞挖掘技术</h1><h2 id="程序切片技术"><a href="#程序切片技术" class="headerlink" title="程序切片技术"></a>程序切片技术</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>程序切片旨在从程序中提取满足<strong>一定约束条件</strong>的代码片段</p>
+        <h1 id="第八章-漏洞挖掘技术">第八章 漏洞挖掘技术</h1>
+<h2 id="程序切片技术">程序切片技术</h2>
+<h3 id="概述">概述</h3>
+<p>程序切片旨在从程序中提取满足<strong>一定约束条件</strong>的代码片段</p>
 <ul>
 <li>对指定变量施加影响的代码指令</li>
 <li>或者指定变量所影响的代码片段</li>
 </ul>
-<p>定义：给定一个切片准则 C=(N, V)，其中<strong>N表示程序P中的指令</strong>，<strong>V表示变量集</strong>，程序P关于C的映射即为程序切片。换句话说，一个程序切片是由程序中的<strong>一些语句和判定表达式组成的集合</strong>。</p>
+<p>定义：给定一个切片准则 C=(N,
+V)，其中<strong>N表示程序P中的指令</strong>，<strong>V表示变量集</strong>，程序P关于C的映射即为程序切片。换句话说，一个程序切片是由程序中的<strong>一些语句和判定表达式组成的集合</strong>。</p>
 <p>分类：</p>
 <ul>
 <li>前向切片，计算方向与程序相同</li>
 <li>后向切片</li>
 </ul>
-<p><strong>C=(4, z)</strong>指的就是，从C代码的第四行开始，做前向切片，只关注我们的z变量</p>
-<h3 id="控制依赖图-CFG"><a href="#控制依赖图-CFG" class="headerlink" title="控制依赖图(CFG)"></a>控制依赖图(CFG)</h3><p>是一个过程或程序的抽象表现，代表了一个程序执行过程中会遍历到的所有路径</p>
-<p>一个程序的控制流图CFG可以表示为一个四元组，形如G = (V, E, s, e)，其中<strong>V表示变量的集合，E表示表示边的集合，s表示控制流图的入口，e表示控制流图的出口</strong></p>
+<p><strong>C=(4,
+z)</strong>指的就是，从C代码的第四行开始，做前向切片，只关注我们的z变量</p>
+<h3 id="控制依赖图cfg">控制依赖图(CFG)</h3>
+<p>是一个过程或程序的抽象表现，代表了一个程序执行过程中会遍历到的所有路径</p>
+<p>一个程序的控制流图CFG可以表示为一个四元组，形如G = (V, E, s,
+e)，其中<strong>V表示变量的集合，E表示表示边的集合，s表示控制流图的入口，e表示控制流图的出口</strong></p>
 <p>程序中的每一条指令都映射为CFG上的一个结点，具有<strong>控制依赖</strong>关系的结点之间用一条边连接</p>
-<p><img src="/images/软件安全/image-20240509082142263.png" alt=""></p>
+<p><img src="/images/软件安全/image-20240509082142263.png" /></p>
 <p>比如说我们的356语句受到1的影响，那么我们就将其标在1的后面</p>
 <p>控制依赖的来源：<strong>程序上下文；控制指令</strong></p>
-<h3 id="程序依赖图-PDG"><a href="#程序依赖图-PDG" class="headerlink" title="程序依赖图(PDG)"></a>程序依赖图(PDG)</h3><p>程序依赖图（Program Dependence Graph，PDG）可以表示为一个五元组，形如<strong>G = (V, DDE, CDE, s, e)</strong>，其中V表示变量的集合，DDE表示数据依赖边的集合，CDE表示控制依赖边的集合，每条边连接了图中的两个结点，程序中的每一条指令都映射为PDG上的一个结点。s表示程序依赖图的入口结点，e表示程序依赖图的出口结点</p>
+<h3 id="程序依赖图pdg">程序依赖图(PDG)</h3>
+<p>程序依赖图（Program Dependence
+Graph，PDG）可以表示为一个五元组，形如<strong>G = (V, DDE, CDE, s,
+e)</strong>，其中V表示变量的集合，DDE表示数据依赖边的集合，CDE表示控制依赖边的集合，每条边连接了图中的两个结点，程序中的每一条指令都映射为PDG上的一个结点。s表示程序依赖图的入口结点，e表示程序依赖图的出口结点</p>
 <ul>
 <li>控制依赖：表示两个基本块在程序流程上存在的依赖关系。</li>
 <li>数据依赖：表示程序中引用某变量的基本块（或者语句）对定义该变量的基本块的依赖，即是一种“定义-引用”依赖关系</li>
 </ul>
-<p><img src="/images/软件安全/image-20240509082502758.png" alt=""></p>
+<p><img src="/images/软件安全/image-20240509082502758.png" /></p>
 <p>我们将控制依赖用粗的箭头表示，将数据依赖用细的箭头表示</p>
 <p>举个例子：S4语句，sum的值必定受到S1的影响，所以是数据依赖；还收到S5中的i的数据依赖影响；还收到自己的控制依赖影响，因此是三个箭头</p>
-<h3 id="系统依赖图-SDG"><a href="#系统依赖图-SDG" class="headerlink" title="系统依赖图(SDG)"></a>系统依赖图(SDG)</h3><p>系统依赖图（System Dependence Graph，SDG）：可以表示为一个七元组，形如G = (V,DDE, CDE, CE, TDE, s, e)，其中V变量的集合，DDE表示数据依赖边的集合，CDE表示控制依赖边的集合，CE表示函数调用边，TDE表示参数传递造成的传递依赖边的集合，结点s表示系统依赖图的入口结点，结点e表示系统依赖图的出口结点。</p>
+<h3 id="系统依赖图sdg">系统依赖图(SDG)</h3>
+<p>系统依赖图（System Dependence
+Graph，SDG）：可以表示为一个七元组，形如G = (V,DDE, CDE, CE, TDE, s,
+e)，其中V变量的集合，DDE表示数据依赖边的集合，CDE表示控制依赖边的集合，CE表示函数调用边，TDE表示参数传递造成的传递依赖边的集合，结点s表示系统依赖图的入口结点，结点e表示系统依赖图的出口结点。</p>
 <p>SDG在PDG的基础上进行了扩充，系统依赖图中加入了对函数调用的处理</p>
-<h2 id="程序切片方法"><a href="#程序切片方法" class="headerlink" title="程序切片方法"></a>程序切片方法</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>包含两个要素，即</p>
+<h2 id="程序切片方法">程序切片方法</h2>
+<h3 id="定义">定义</h3>
+<p>包含两个要素，即</p>
 <ul>
 <li>切片目标变量（如变量z）</li>
 <li>开始切片的代码位置（如z所在的代码位置：第12行）</li>
 </ul>
-<p>程序P的切片准则是<strong>二元组<n,V></strong></p>
+<p>程序P的切片准则是<strong>二元组&lt;n,V&gt;</strong></p>
 <ul>
 <li>n是程序中一条语句的编号</li>
 <li>V是切片所关注的变量集合</li>
@@ -420,33 +435,44 @@
 <li>切片规则制定主要是依据具体的程序分析需求设计切片准则。</li>
 <li>切片生成则主要是依据前述的切片准则选择相应的程序切片方法，然后对第一步中提取的依赖关系进行分析处理，从而生成程序切片。</li>
 </ul>
-<p><img src="/images/软件安全/image-20240509083915934.png" alt=""></p>
-<h3 id="图可达算法"><a href="#图可达算法" class="headerlink" title="图可达算法"></a>图可达算法</h3><p>切片过程</p>
+<p><img src="/images/软件安全/image-20240509083915934.png" /></p>
+<h3 id="图可达算法">图可达算法</h3>
+<p>切片过程</p>
 <ul>
-<li>输入：结点Node </li>
-<li>输出：结点集VisitedNodes </li>
+<li>输入：结点Node</li>
+<li>输出：结点集VisitedNodes</li>
 </ul>
 <p>步骤</p>
 <ul>
-<li>步骤1：判断Node是否在结点集VisitedNodes，结果为是，则return；结果为否，则进入步骤2； </li>
+<li>步骤1：判断Node是否在结点集VisitedNodes，结果为是，则return；结果为否，则进入步骤2；</li>
 <li>步骤2：将Node添加到VisitedNodes中；</li>
-<li>步骤3：在程序依赖图中遍历Node依赖的结点，得到结点集Pred； </li>
+<li>步骤3：在程序依赖图中遍历Node依赖的结点，得到结点集Pred；</li>
 <li>步骤4：对于每一个pred∈Pred，迭代调用PDGSlice(pred)</li>
 </ul>
-<h3 id="动态程序切片"><a href="#动态程序切片" class="headerlink" title="动态程序切片"></a>动态程序切片</h3><p>动态切片需要考虑程序的特定输入，切片准则是一个三元组(N, V, I)，其中 N 是指令集合，V 是变量集合，I 是输入集合</p>
-<p>我们输入C1=(13, a, x=1, y=1，z=0)，这样就是说明了z的值，这样我们就可以将一些没有用的代码给剪掉</p>
+<h3 id="动态程序切片">动态程序切片</h3>
+<p>动态切片需要考虑程序的特定输入，切片准则是一个三元组(N, V, I)，其中 N
+是指令集合，V 是变量集合，I 是输入集合</p>
+<p>我们输入C1=(13, a, x=1,
+y=1，z=0)，这样就是说明了z的值，这样我们就可以将一些没有用的代码给剪掉</p>
 <p><strong>动态切片就是跟我们的未知数的取值有关，是静态切片的子集</strong></p>
-<h3 id="条件切片"><a href="#条件切片" class="headerlink" title="条件切片"></a>条件切片</h3><p><strong>条件切片</strong>的切片准则也是一个三元组，形为C = (N, V, FV)，其中 N 和 V 的含义同静态准则相同，FV是 V 中变量的逻辑约束</p>
+<h3 id="条件切片">条件切片</h3>
+<p><strong>条件切片</strong>的切片准则也是一个三元组，形为C = (N, V,
+FV)，其中 N 和 V 的含义同静态准则相同，FV是 V 中变量的逻辑约束</p>
 <p><strong>静态切片和动态切片可以看做条件切片的两个特例</strong>：当FV中的约束条件为空时，得到的切片是静态切片；当FV中的约束<strong>固定为某一特定条件时，得到的切片是动态切片</strong></p>
-<h2 id="程序插桩技术"><a href="#程序插桩技术" class="headerlink" title="程序插桩技术"></a>程序插桩技术</h2><p><strong>插桩就是在代码中插入一段我们自定义的代码</strong>，它的目的在于通过我们插入程序中的自定义的代码，得到期望得到的信息，比如程序的控制流和数据流信息，以此来实现测试或者其他目的</p>
+<h2 id="程序插桩技术">程序插桩技术</h2>
+<p><strong>插桩就是在代码中插入一段我们自定义的代码</strong>，它的目的在于通过我们插入程序中的自定义的代码，得到期望得到的信息，比如程序的控制流和数据流信息，以此来实现测试或者其他目的</p>
 <p>分类：</p>
 <ul>
 <li>源代码插桩</li>
 <li>静态二进制插桩</li>
 <li>动态二进制插桩</li>
 </ul>
-<div class="table-container">
 <table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 40%" />
+<col style="width: 26%" />
+</colgroup>
 <thead>
 <tr>
 <th><strong>插桩粒度</strong></th>
@@ -477,13 +503,13 @@
 </tr>
 </tbody>
 </table>
-</div>
 <blockquote>
 <p>具体见<strong>实验8</strong></p>
 </blockquote>
-<h2 id="消息Hook技术"><a href="#消息Hook技术" class="headerlink" title="消息Hook技术"></a>消息Hook技术</h2><p>消息Hook就是一个Windows消息的拦截机制，可以拦截单个进程的消息（线程钩子），也可以拦截所有进程的消息（系统钩子），也可以对拦截的消息进行自定义的处理： </p>
+<h2 id="消息hook技术">消息Hook技术</h2>
+<p>消息Hook就是一个Windows消息的拦截机制，可以拦截单个进程的消息（线程钩子），也可以拦截所有进程的消息（系统钩子），也可以对拦截的消息进行自定义的处理：</p>
 <ul>
-<li>如果对于同一事件（如鼠标消息）既安装了线程钩子又安装了系统钩子，那么系统会<strong>自动先调用线程钩子，然后调用系统钩子</strong>。 </li>
+<li>如果对于同一事件（如鼠标消息）既安装了线程钩子又安装了系统钩子，那么系统会<strong>自动先调用线程钩子，然后调用系统钩子</strong>。</li>
 <li>对同一事件消息可安装多个钩子处理过程，这些钩子处理过程形成了钩子链，<strong>后加入的有优先控制权</strong></li>
 </ul>
 <p>官方函数SetWindowsHookEx用于设置消息Hook</p>
@@ -499,19 +525,24 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">BOOL WINAPI <span class="title">DllMain</span><span class="params">(HINSTANCE hinstDLL, DWORD dwReason, LPVOID lpvReserved)</span></span>&#123;</span><br><span class="line">	<span class="keyword">switch</span>( dwReason )</span><br><span class="line">	&#123;</span><br><span class="line">        <span class="keyword">case</span> DLL_PROCESS_ATTACH:<span class="comment">//动态链接库加载</span></span><br><span class="line">			g_hInstance = hinstDLL;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> DLL_PROCESS_DETACH:<span class="comment">//动态链接库卸载</span></span><br><span class="line">			<span class="keyword">break</span>;	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> TRUE;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>导出函数</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line"><span class="keyword">extern</span> <span class="string">&quot;C&quot;</span> &#123;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line">	__declspec(dllexport) <span class="function"><span class="type">void</span> <span class="title">HookStart</span><span class="params">()</span><span class="comment">//hook开始执行</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		g_hHook = <span class="built_in">SetWindowsHookEx</span>(WH_KEYBOARD, KeyboardProc, g_hInstance, <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	__declspec(dllexport) <span class="function"><span class="type">void</span> <span class="title">HookStop</span><span class="params">()</span><span class="comment">//hook停止</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>( g_hHook )</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="built_in">UnhookWindowsHookEx</span>(g_hHook);</span><br><span class="line">			g_hHook = <span class="literal">NULL</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __cplusplus</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<h2 id="API-Hook技术"><a href="#API-Hook技术" class="headerlink" title="API Hook技术"></a>API Hook技术</h2><p>API HOOK的基本方法就是通过hook“接触”到需要修改的API函数入口点，改变它的地址指向新的自定义的函数</p>
+<h2 id="api-hook技术">API Hook技术</h2>
+<p>API
+HOOK的基本方法就是通过hook“接触”到需要修改的API函数入口点，改变它的地址指向新的自定义的函数</p>
 <p>分类：</p>
 <ul>
 <li>IAT Hook：将输入函数地址表IAT内部的API地址更改为Hook函数地址</li>
 <li>代码Hook：系统库（*.dll）映射到进程内存时，从中查找API的实际地址，并直接修改代码</li>
-<li>EAT Hook </li>
+<li>EAT Hook</li>
 </ul>
-<h2 id="符号执行基本原理"><a href="#符号执行基本原理" class="headerlink" title="符号执行基本原理"></a>符号执行基本原理</h2><h3 id="程序执行状态"><a href="#程序执行状态" class="headerlink" title="程序执行状态"></a>程序执行状态</h3><p>符号执行具体执行时，程序状态中通常包括：程序变量的具体值、程序指令计数和路径约束条件pc（path constraint）</p>
+<h2 id="符号执行基本原理">符号执行基本原理</h2>
+<h3 id="程序执行状态">程序执行状态</h3>
+<p>符号执行具体执行时，程序状态中通常包括：程序变量的具体值、程序指令计数和路径约束条件pc（path
+constraint）</p>
 <p><strong>pc</strong>是符号执行过程中对路径上条件分支走向的选择情况，根据状态中的pc变量就可以确定一次<strong>符号执行的完整路径</strong>。pc初始值为true</p>
 <p>遇到条件分支就是左右分叉，运算语句就是代入未知数</p>
-<h3 id="符号传播"><a href="#符号传播" class="headerlink" title="符号传播"></a>符号传播</h3><p>建立符号变量传播的关系，并且更新映射的关系——将对应<strong>内存地址的数据</strong>进行变化</p>
+<h3 id="符号传播">符号传播</h3>
+<p>建立符号变量传播的关系，并且更新映射的关系——将对应<strong>内存地址的数据</strong>进行变化</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x;</span><br><span class="line"><span class="type">int</span> y, z;  </span><br><span class="line">y=x*<span class="number">3</span>;</span><br><span class="line">z=y<span class="number">+5</span>;</span><br></pre></td></tr></table></figure>
-<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -530,26 +561,29 @@
 </tr>
 <tr>
 <td><strong>add_z</strong></td>
-<td>X*3  + 5</td>
+<td>X*3 + 5</td>
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="符号执行树"><a href="#符号执行树" class="headerlink" title="符号执行树"></a>符号执行树</h3><p>程序的所有执行路径可以表示为树，叫做执行树。符号执行过程也是对执行树进行遍历的过程</p>
+<h3 id="符号执行树">符号执行树</h3>
+<p>程序的所有执行路径可以表示为树，叫做执行树。符号执行过程也是对执行树进行遍历的过程</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span> <span class="function"><span class="type">void</span> <span class="title">foobar</span><span class="params">(<span class="type">int</span> a,<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line"><span class="number">2</span>  <span class="type">int</span> x=<span class="number">1</span>,y=<span class="number">0</span>;</span><br><span class="line"><span class="number">3</span>  <span class="keyword">if</span>(a != <span class="number">0</span>)&#123;</span><br><span class="line"><span class="number">4</span>    y = <span class="number">3</span>+x; </span><br><span class="line"><span class="number">5</span>    <span class="keyword">if</span> (b ==<span class="number">0</span>)</span><br><span class="line"><span class="number">6</span>         x = <span class="number">2</span>*(a+b);</span><br><span class="line"><span class="number">7</span>   &#125;</span><br><span class="line"><span class="number">8</span>  <span class="built_in">assert</span>(x-y ！=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/images/软件安全/image-20240516082050749.png" alt=""></p>
+<p><img src="/images/软件安全/image-20240516082050749.png" /></p>
 <p>结合<code>assert</code>的约束<code>x-y!=0</code>就可以进行求解出触发约束的输入</p>
-<h3 id="约束求解"><a href="#约束求解" class="headerlink" title="约束求解"></a>约束求解</h3><p>类似于解方程，利用我们的符号执行中得到的式子来进行计算</p>
+<h3 id="约束求解">约束求解</h3>
+<p>类似于解方程，利用我们的符号执行中得到的式子来进行计算</p>
 <ul>
 <li>SAT问题（The Satisfiability Problem，可满足性问题）</li>
 <li>SMT（Satisfiability Module Theories，可满足性模理论）</li>
 </ul>
-<h3 id="符号执行方法分类"><a href="#符号执行方法分类" class="headerlink" title="符号执行方法分类"></a>符号执行方法分类</h3><ul>
+<h3 id="符号执行方法分类">符号执行方法分类</h3>
+<ul>
 <li>静态符号执行本身不会实际执行程序，通过解析程序和符号值模拟执行，有代价小、效率高的优点，但是存在路径爆炸、误报高的情况</li>
 <li>动态符号执行也称为混合符号执行，它的基本思想是：以具体的数值作为输入执行程序代码，在程序实际执行路径的基础上，用符号执行技术对路径进行分析，提取路径的约束表达式，根据路径搜索策略（深度、广度）对约束表达式进行变形，求解变形后的表达式并生成新的测试用例，不断迭代上面的过程，直到完全遍历程序的所有执行路径。</li>
 <li>选择性符号执行可以对程序员感兴趣的部分进行符号执行，其它的部分使用真实值执行，在特定任务环境下可以进一步提升执行效率</li>
 </ul>
-<h2 id="Z3约束求解器"><a href="#Z3约束求解器" class="headerlink" title="Z3约束求解器"></a>Z3约束求解器</h2><p>——SMT问题的开源约束求解器，就是自动解方程组</p>
+<h2 id="z3约束求解器">Z3约束求解器</h2>
+<p>——SMT问题的开源约束求解器，就是自动解方程组</p>
 <p>一般使用的方法：</p>
 <ul>
 <li>Solver()：创建一个通用求解器，创建后可以添加约束条件，进行下一步的求解。</li>
@@ -557,11 +591,13 @@
 <li>check()：通常用来判断在添加完约束条件后，来检测解的情况，有解的时候会回显sat，无解的时候会回显unsat。</li>
 <li>model()：在存在解的时候，该函数会将每个限制条件所对应的解集取交集，进而得出正解</li>
 </ul>
-<h2 id="Angr应用示例"><a href="#Angr应用示例" class="headerlink" title="Angr应用示例"></a>Angr应用示例</h2><blockquote>
+<h2 id="angr应用示例">Angr应用示例</h2>
+<blockquote>
 <p>见实验</p>
 </blockquote>
 <p>变量符号化——动态符号执行——获取路径约束条件——约束求解</p>
-<h2 id="污点分析基本原理"><a href="#污点分析基本原理" class="headerlink" title="污点分析基本原理"></a>污点分析基本原理</h2><ul>
+<h2 id="污点分析基本原理">污点分析基本原理</h2>
+<ul>
 <li>污点分析标记程序中的数据（外部输入数据或者内部数据）为污点，通过对带污点数据的传播分析来达到保护数据完整性和保密性的目的</li>
 <li>如果信息从被标记的污点数据传播给未标记的数据,那么需要将未标记的标记为污点数据；如果被标记的污点数据传递到重要数据区域或者信息泄露点，那就意味着信息流策略被违反</li>
 </ul>
@@ -593,9 +629,12 @@
 <li>常数赋值是最直观的无害处理的方式；</li>
 <li>加密处理、程序验证等在一定程度上，可以认为是无害处理。</li>
 </ul>
-<h2 id="污点分析方法"><a href="#污点分析方法" class="headerlink" title="污点分析方法"></a>污点分析方法</h2><h3 id="显式流分析"><a href="#显式流分析" class="headerlink" title="显式流分析"></a>显式流分析</h3><p><strong>静态分析</strong>：在不运行且不修改代码的前提下，通过分析程序变量间的<strong>数据依赖</strong>关系来检测数据能否从污点源传播到污点汇聚点</p>
+<h2 id="污点分析方法">污点分析方法</h2>
+<h3 id="显式流分析">显式流分析</h3>
+<p><strong>静态分析</strong>：在不运行且不修改代码的前提下，通过分析程序变量间的<strong>数据依赖</strong>关系来检测数据能否从污点源传播到污点汇聚点</p>
 <p><strong>动态分析</strong>：在程序运行过程中，通过实时监控程序的污点数据在系统程序中的传播来检测数据能否从污点源传播到污点汇聚点。</p>
-<h3 id="隐式流分析"><a href="#隐式流分析" class="headerlink" title="隐式流分析"></a>隐式流分析</h3><p><strong>静态隐式流分析</strong>：<strong>需要分析每一个分支控制条件是否需要传播污点标记</strong>。路径敏感的数据流分析往往会产生路径爆炸问题，导致开销难以接受</p>
+<h3 id="隐式流分析">隐式流分析</h3>
+<p><strong>静态隐式流分析</strong>：<strong>需要分析每一个分支控制条件是否需要传播污点标记</strong>。路径敏感的数据流分析往往会产生路径爆炸问题，导致开销难以接受</p>
 <p><strong>动态隐式流分析</strong>：</p>
 <ul>
 <li>如何确定污点控制条件下需要标记的语句的范围？动态执行轨迹并不能反映出被执行的指令之间的控制依赖关系</li>
@@ -626,8 +665,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter7/" rel="next" title="软件安全笔记Chapter7">
-                <i class="fa fa-chevron-left"></i> 软件安全笔记Chapter7
+              <a href="/2024/11/05/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E5%AF%BC%E8%AE%BA%E7%AC%94%E8%AE%B0Chapter1/" rel="next" title="人工智能导论笔记Chapter1">
+                <i class="fa fa-chevron-left"></i> 人工智能导论笔记Chapter1
               </a>
             
           </div>
@@ -636,8 +675,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter3/" rel="prev" title="软件安全笔记Chapter3">
-                软件安全笔记Chapter3 <i class="fa fa-chevron-right"></i>
+              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter7/" rel="prev" title="软件安全笔记Chapter7">
+                软件安全笔记Chapter7 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -761,7 +800,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E6%8A%80%E6%9C%AF"><span class="nav-number">1.</span> <span class="nav-text">第八章 漏洞挖掘技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E5%88%87%E7%89%87%E6%8A%80%E6%9C%AF"><span class="nav-number">1.1.</span> <span class="nav-text">程序切片技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E4%BE%9D%E8%B5%96%E5%9B%BE-CFG"><span class="nav-number">1.1.2.</span> <span class="nav-text">控制依赖图(CFG)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E4%BE%9D%E8%B5%96%E5%9B%BE-PDG"><span class="nav-number">1.1.3.</span> <span class="nav-text">程序依赖图(PDG)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E5%9B%BE-SDG"><span class="nav-number">1.1.4.</span> <span class="nav-text">系统依赖图(SDG)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E5%88%87%E7%89%87%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">程序切片方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E5%8F%AF%E8%BE%BE%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">图可达算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E7%A8%8B%E5%BA%8F%E5%88%87%E7%89%87"><span class="nav-number">1.2.3.</span> <span class="nav-text">动态程序切片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E5%88%87%E7%89%87"><span class="nav-number">1.2.4.</span> <span class="nav-text">条件切片</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E6%8F%92%E6%A1%A9%E6%8A%80%E6%9C%AF"><span class="nav-number">1.3.</span> <span class="nav-text">程序插桩技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AFHook%E6%8A%80%E6%9C%AF"><span class="nav-number">1.4.</span> <span class="nav-text">消息Hook技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-Hook%E6%8A%80%E6%9C%AF"><span class="nav-number">1.5.</span> <span class="nav-text">API Hook技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">1.6.</span> <span class="nav-text">符号执行基本原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="nav-number">1.6.1.</span> <span class="nav-text">程序执行状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E4%BC%A0%E6%92%AD"><span class="nav-number">1.6.2.</span> <span class="nav-text">符号传播</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E6%A0%91"><span class="nav-number">1.6.3.</span> <span class="nav-text">符号执行树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A6%E6%9D%9F%E6%B1%82%E8%A7%A3"><span class="nav-number">1.6.4.</span> <span class="nav-text">约束求解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E6%96%B9%E6%B3%95%E5%88%86%E7%B1%BB"><span class="nav-number">1.6.5.</span> <span class="nav-text">符号执行方法分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Z3%E7%BA%A6%E6%9D%9F%E6%B1%82%E8%A7%A3%E5%99%A8"><span class="nav-number">1.7.</span> <span class="nav-text">Z3约束求解器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Angr%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.8.</span> <span class="nav-text">Angr应用示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%A1%E7%82%B9%E5%88%86%E6%9E%90%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">1.9.</span> <span class="nav-text">污点分析基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%A1%E7%82%B9%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="nav-number">1.10.</span> <span class="nav-text">污点分析方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E5%BC%8F%E6%B5%81%E5%88%86%E6%9E%90"><span class="nav-number">1.10.1.</span> <span class="nav-text">显式流分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%90%E5%BC%8F%E6%B5%81%E5%88%86%E6%9E%90"><span class="nav-number">1.10.2.</span> <span class="nav-text">隐式流分析</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E6%8A%80%E6%9C%AF"><span class="nav-number">1.</span> <span class="nav-text">第八章 漏洞挖掘技术</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E5%88%87%E7%89%87%E6%8A%80%E6%9C%AF"><span class="nav-number">1.1.</span> <span class="nav-text">程序切片技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E4%BE%9D%E8%B5%96%E5%9B%BEcfg"><span class="nav-number">1.1.2.</span> <span class="nav-text">控制依赖图(CFG)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E4%BE%9D%E8%B5%96%E5%9B%BEpdg"><span class="nav-number">1.1.3.</span> <span class="nav-text">程序依赖图(PDG)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E4%BE%9D%E8%B5%96%E5%9B%BEsdg"><span class="nav-number">1.1.4.</span> <span class="nav-text">系统依赖图(SDG)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E5%88%87%E7%89%87%E6%96%B9%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">程序切片方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">1.2.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BE%E5%8F%AF%E8%BE%BE%E7%AE%97%E6%B3%95"><span class="nav-number">1.2.2.</span> <span class="nav-text">图可达算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E7%A8%8B%E5%BA%8F%E5%88%87%E7%89%87"><span class="nav-number">1.2.3.</span> <span class="nav-text">动态程序切片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E5%88%87%E7%89%87"><span class="nav-number">1.2.4.</span> <span class="nav-text">条件切片</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E6%8F%92%E6%A1%A9%E6%8A%80%E6%9C%AF"><span class="nav-number">1.3.</span> <span class="nav-text">程序插桩技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AFhook%E6%8A%80%E6%9C%AF"><span class="nav-number">1.4.</span> <span class="nav-text">消息Hook技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#api-hook%E6%8A%80%E6%9C%AF"><span class="nav-number">1.5.</span> <span class="nav-text">API Hook技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">1.6.</span> <span class="nav-text">符号执行基本原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E7%8A%B6%E6%80%81"><span class="nav-number">1.6.1.</span> <span class="nav-text">程序执行状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E4%BC%A0%E6%92%AD"><span class="nav-number">1.6.2.</span> <span class="nav-text">符号传播</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E6%A0%91"><span class="nav-number">1.6.3.</span> <span class="nav-text">符号执行树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BA%A6%E6%9D%9F%E6%B1%82%E8%A7%A3"><span class="nav-number">1.6.4.</span> <span class="nav-text">约束求解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AC%A6%E5%8F%B7%E6%89%A7%E8%A1%8C%E6%96%B9%E6%B3%95%E5%88%86%E7%B1%BB"><span class="nav-number">1.6.5.</span> <span class="nav-text">符号执行方法分类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#z3%E7%BA%A6%E6%9D%9F%E6%B1%82%E8%A7%A3%E5%99%A8"><span class="nav-number">1.7.</span> <span class="nav-text">Z3约束求解器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#angr%E5%BA%94%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.8.</span> <span class="nav-text">Angr应用示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%A1%E7%82%B9%E5%88%86%E6%9E%90%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-number">1.9.</span> <span class="nav-text">污点分析基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%A1%E7%82%B9%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="nav-number">1.10.</span> <span class="nav-text">污点分析方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E5%BC%8F%E6%B5%81%E5%88%86%E6%9E%90"><span class="nav-number">1.10.1.</span> <span class="nav-text">显式流分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%90%E5%BC%8F%E6%B5%81%E5%88%86%E6%9E%90"><span class="nav-number">1.10.2.</span> <span class="nav-text">隐式流分析</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -781,7 +820,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="第十一章 WEB渗透实战文件上传漏洞指网络攻击者上传了一个可执行的文件到服务器并执行。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等 WebShell就是以asp、php、jsp或者cgi等网页文件形式存在的一种命令执行环境，也可以将其称之为一种网页后门  攻击者在入侵了一个网站后，通常会将这些asp或php后门文件与网站服务器web目录下正常的网页文件混在一起，然后使用浏览器来访">
+<meta name="description" content="第十一章 WEB渗透实战 文件上传漏洞 指网络攻击者上传了一个可执行的文件到服务器并执行。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等 WebShell就是以asp、php、jsp或者cgi等网页文件形式存在的一种命令执行环境，也可以将其称之为一种网页后门  攻击者在入侵了一个网站后，通常会将这些asp或php后门文件与网站服务器web目录下正常的网页文件混在一起，然后">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软件安全笔记Chapte11">
 <meta property="og:url" content="https://luhaozhhhe.github.io/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter11/index.html">
 <meta property="og:site_name" content="Welcome To Luhaozhhhe&#39;s Blog!">
-<meta property="og:description" content="第十一章 WEB渗透实战文件上传漏洞指网络攻击者上传了一个可执行的文件到服务器并执行。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等 WebShell就是以asp、php、jsp或者cgi等网页文件形式存在的一种命令执行环境，也可以将其称之为一种网页后门  攻击者在入侵了一个网站后，通常会将这些asp或php后门文件与网站服务器web目录下正常的网页文件混在一起，然后使用浏览器来访">
+<meta property="og:description" content="第十一章 WEB渗透实战 文件上传漏洞 指网络攻击者上传了一个可执行的文件到服务器并执行。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等 WebShell就是以asp、php、jsp或者cgi等网页文件形式存在的一种命令执行环境，也可以将其称之为一种网页后门  攻击者在入侵了一个网站后，通常会将这些asp或php后门文件与网站服务器web目录下正常的网页文件混在一起，然后">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-11-05T03:07:23.000Z">
 <meta property="article:modified_time" content="2024-11-05T14:39:14.746Z">
@@ -370,7 +370,9 @@
       
 
       
-        <h1 id="第十一章-WEB渗透实战"><a href="#第十一章-WEB渗透实战" class="headerlink" title="第十一章 WEB渗透实战"></a>第十一章 WEB渗透实战</h1><h2 id="文件上传漏洞"><a href="#文件上传漏洞" class="headerlink" title="文件上传漏洞"></a>文件上传漏洞</h2><p>指网络攻击者上传了一个可执行的文件到服务器并执行。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等</p>
+        <h1 id="第十一章-web渗透实战">第十一章 WEB渗透实战</h1>
+<h2 id="文件上传漏洞">文件上传漏洞</h2>
+<p>指网络攻击者上传了一个可执行的文件到服务器并执行。这里上传的文件可以是木马，病毒，恶意脚本或者WebShell等</p>
 <p><strong>WebShell就是以asp、php、jsp或者cgi等网页文件形式存在的一种命令执行环境，也可以将其称之为一种网页后门</strong></p>
 <ul>
 <li>攻击者在入侵了一个网站后，通常会将这些asp或php后门文件与网站服务器web目录下正常的网页文件混在一起，然后使用浏览器来访问这些后门，<strong>得到一个命令执行环境，以达到控制网站服务器的目的</strong>（可以上传下载或者修改文件，操作数据库，执行任意命令等）。</li>
@@ -382,7 +384,8 @@
 <li>一些文件上传功能实现代码没有严格限制用户上传的文件后缀以及文件类型，导致允许攻击者向某个可通过Web访问的目录上传任意PHP文件，并能够将这些文件传递给PHP解释器，就可以在远程服务器上执行任意PHP脚本。</li>
 <li>当系统存在文件上传漏洞时攻击者可以将病毒，木马，WebShell，其他恶意脚本或者是包含了脚本的图片上传到服务器，这些文件将对攻击者后续攻击提供便利。根据具体漏洞的差异，此处上传的脚本可以是正常后缀的PHP，ASP以及JSP脚本，也可以是篡改后缀后的这几类脚本。</li>
 </ul>
-<h2 id="跨站脚本攻击"><a href="#跨站脚本攻击" class="headerlink" title="跨站脚本攻击"></a>跨站脚本攻击</h2><p>跨站脚本攻击与SQL注入攻击区别在于：<strong>XSS主要影响的是Web应用程序的用户，而SQL注入则主要影响Web应用程序自身。</strong></p>
+<h2 id="跨站脚本攻击">跨站脚本攻击</h2>
+<p>跨站脚本攻击与SQL注入攻击区别在于：<strong>XSS主要影响的是Web应用程序的用户，而SQL注入则主要影响Web应用程序自身。</strong></p>
 <p>启用并使用脚本并不是XSS漏洞存在的原因。只有当Web应用程序开发人员犯错误时才会变得危险</p>
 <p>分为两类攻击方式：</p>
 <ul>
@@ -396,7 +399,8 @@
 </ul>
 <p><strong>一般来说，存储式XSS的风险会高于反射式XSS。因为存储式XSS会保存在服务器上，有可能会跨页面存在。</strong></p>
 <p><strong>从攻击过程来说，反射式XSS一般要求攻击者诱使用户点击一个包含XSS代码的URL链接；而存储式XSS则只需让用户查看一个正常的URL链接</strong></p>
-<h2 id="SQL注入漏洞"><a href="#SQL注入漏洞" class="headerlink" title="SQL注入漏洞"></a>SQL注入漏洞</h2><p>常用的特殊字符：</p>
+<h2 id="sql注入漏洞">SQL注入漏洞</h2>
+<p>常用的特殊字符：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">’ ’   字符串指示器(‘string’)</span><br><span class="line">;          语句终结符</span><br><span class="line">||         对于Oracle、PostgreSQL而言为连接（合并）</span><br><span class="line">--        注释（单行）</span><br><span class="line">#         注释（单行）</span><br><span class="line">/**/     注释（多行）</span><br></pre></td></tr></table></figure>
 <p>SQL注入是一种<strong>将SQL代码插入或添加到应用（用户）的输入参数中的攻击</strong>，之后再将这些参数传递给后台SQL服务器加以解析并执行</p>
 <p>联系过程：</p>
@@ -414,33 +418,33 @@
 <li><p>单引号法：但是一般都会把单引号过滤掉</p>
 <ul>
 <li><p>输入</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/test.php?id=1’</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://localhost/test.php?id=1’</span><br></pre></td></tr></table></figure></li>
 <li><p>输出</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> category <span class="keyword">where</span> id<span class="operator">=</span><span class="number">1</span>‘</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> category <span class="keyword">where</span> id<span class="operator">=</span><span class="number">1</span>‘</span><br></pre></td></tr></table></figure></li>
+</ul></li>
 <li><p>永真永假法：</p>
 <ul>
 <li><strong>当与上一个永真式使逻辑不受影响时，页面应当与原页面相同。</strong></li>
 <li><strong>而与上一个永假式时，则会影响原逻辑，页面可能出错或跳转（这与设计者的设计有关）。</strong></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="SQLMAP"><a href="#SQLMAP" class="headerlink" title="SQLMAP"></a>SQLMAP</h2><p>就是由python开发的一款SQL注入的工具</p>
+<h2 id="sqlmap">SQLMAP</h2>
+<p>就是由python开发的一款SQL注入的工具</p>
 <p>常见语句：</p>
 <ul>
 <li>Sqlmap -u url 找到注入点</li>
-<li>sqlmap -u url —dbs 列出数据库</li>
-<li>或者 sqlmap -u url —current-db  显示当前数据库</li>
+<li>sqlmap -u url --dbs 列出数据库</li>
+<li>或者 sqlmap -u url --current-db 显示当前数据库</li>
 <li>sqlmap -u url –users 列出数据库用户</li>
-<li>或者sqlmap -u url —current-user 当前数据库用户</li>
-<li>sqlmap -u url  —tables -D   “testdb” 列出testdb数据库的表</li>
-<li>sqlmap -u url  —columns -T “user” -D “testdb” 列出testdb数据库user表的列</li>
-<li>sqlmap -u url  —dump -C “id,username,password” -T “user” -D “testdb”  列出testdb数据 库user表的id,username,password这几列的数据</li>
+<li>或者sqlmap -u url --current-user 当前数据库用户</li>
+<li>sqlmap -u url --tables -D “testdb” 列出testdb数据库的表</li>
+<li>sqlmap -u url --columns -T "user" -D "testdb"
+列出testdb数据库user表的列</li>
+<li>sqlmap -u url --dump -C “id,username,password” -T “user” -D “testdb”
+列出testdb数据 库user表的id,username,password这几列的数据</li>
 </ul>
-<h2 id="SQL盲注"><a href="#SQL盲注" class="headerlink" title="SQL盲注"></a>SQL盲注</h2><p><strong>SQL盲注是不能通过直接显示的途径来获取数据库数据的方法。</strong>在盲注中，攻击者根据其返回页面的不同来判断信息（可能是页面内容的不同，也可以是响应时间不同）。</p>
+<h2 id="sql盲注">SQL盲注</h2>
+<p><strong>SQL盲注是不能通过直接显示的途径来获取数据库数据的方法。</strong>在盲注中，攻击者根据其返回页面的不同来判断信息（可能是页面内容的不同，也可以是响应时间不同）。</p>
 <p>一般情况下，盲注可分为三类：</p>
 <ul>
 <li>基于布尔SQL盲注</li>
@@ -449,37 +453,44 @@
 </ul>
 <p>常用的函数：</p>
 <ul>
-<li>Substr函数的用法：取得字符串中指定起始位置和长度的字符串，默认是从起始位置到结束的子串。<ul>
-<li>语法为：substr( string, start_position, [ length ] )，比如substr(‘目标字符串’,开始位置,长度)，再如substr(‘This is a test’, 6, 2) 将返回 ‘is’。</li>
-</ul>
-</li>
-<li>If函数的用法：如果满足一个条件可以赋一个需要的值。<ul>
+<li>Substr函数的用法：取得字符串中指定起始位置和长度的字符串，默认是从起始位置到结束的子串。
+<ul>
+<li>语法为：substr( string, start_position, [ length ]
+)，比如substr('目标字符串',开始位置,长度)，再如substr('This is a test',
+6, 2) 将返回 'is'。</li>
+</ul></li>
+<li>If函数的用法：如果满足一个条件可以赋一个需要的值。
+<ul>
 <li>语法：IF(expr1,expr2,expr3)，其中，expr1是判断条件，expr2和expr3是符合expr1的自定义的返回结果，expr1为真则返回expr2，否则返回expr3。</li>
-</ul>
-</li>
+</ul></li>
 <li>Sleep函数的用法：sleep(n)让语句停留n秒时间，然后返回0，如果执行被打断，返回1。</li>
 <li>Ascii函数的用法：返回字符的ASCII码值。</li>
 </ul>
-<h3 id="基于布尔SQL盲注"><a href="#基于布尔SQL盲注" class="headerlink" title="基于布尔SQL盲注"></a>基于布尔SQL盲注</h3><p><strong>可以利用输出的bool值来进行判断</strong></p>
+<h3 id="基于布尔sql盲注">基于布尔SQL盲注</h3>
+<p><strong>可以利用输出的bool值来进行判断</strong></p>
 <p>二分法可以节省我们的猜测次数</p>
-<h3 id="基于时间的SQL盲注"><a href="#基于时间的SQL盲注" class="headerlink" title="基于时间的SQL盲注"></a>基于时间的SQL盲注</h3><p>就是看输入的数字运行时有没有明显的时间延迟，如果有的话说明是正确的语句，因为花费时间去查询了</p>
-<h3 id="基于报错的SQL盲注"><a href="#基于报错的SQL盲注" class="headerlink" title="基于报错的SQL盲注"></a>基于报错的SQL盲注</h3><p>就是通过引起报错去猜测我们的数据</p>
-<h2 id="SQL注入的防御措施"><a href="#SQL注入的防御措施" class="headerlink" title="SQL注入的防御措施"></a>SQL注入的防御措施</h2><ul>
-<li>在服务端正式处理之前对提交数据的合法性进行检查<ul>
+<h3 id="基于时间的sql盲注">基于时间的SQL盲注</h3>
+<p>就是看输入的数字运行时有没有明显的时间延迟，如果有的话说明是正确的语句，因为花费时间去查询了</p>
+<h3 id="基于报错的sql盲注">基于报错的SQL盲注</h3>
+<p>就是通过引起报错去猜测我们的数据</p>
+<h2 id="sql注入的防御措施">SQL注入的防御措施</h2>
+<ul>
+<li>在服务端正式处理之前对提交数据的合法性进行检查
+<ul>
 <li><strong>在确认客户端的输入合法之前，服务端拒绝进行关键性的处理操作</strong></li>
-</ul>
-</li>
+</ul></li>
 <li>封装客户端提交信息</li>
-<li>替换或删除敏感字符/字符串<ul>
+<li>替换或删除敏感字符/字符串
+<ul>
 <li>不一定能成功，攻击者可以输入构造的多次出现的字符串来引发攻击</li>
-</ul>
-</li>
-<li>屏蔽出错信息<ul>
+</ul></li>
+<li>屏蔽出错信息
+<ul>
 <li>就是不告诉攻击者盲注的结果，这样就不好攻击了</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h2><p>在开发web应用时，开发人员通常会将一些重复使用的代码写到单个文件中，<strong>再通过文件包含，将这些单个文件中的代码插入到其它需要用到它们的页面中</strong>。</p>
+<h2 id="文件包含漏洞">文件包含漏洞</h2>
+<p>在开发web应用时，开发人员通常会将一些重复使用的代码写到单个文件中，<strong>再通过文件包含，将这些单个文件中的代码插入到其它需要用到它们的页面中</strong>。</p>
 <ul>
 <li><strong>配置文件。</strong>用于整个web应用的配置信息，如数据库的用户名及密码，使用的数据库名，系统默认的文字编码，是否开启Debug模式等信息。右侧就是wordpress博客系统配置文件的部分内容。</li>
 <li><strong>重复使用的函数。</strong>如连接数据库，过滤用户的输入中的危险字符等。这些函数使用的频率很高，在所有需要与数据库进行交互的地方都要用到相似的连接数据库的代码；在几乎所有涉及到获取用户输入的地方都需要对其进行过滤，以避免出现像sql注入、xss这样的安全问题。</li>
@@ -488,44 +499,46 @@
 </ul>
 <p>分类：</p>
 <ul>
-<li>本地文件包含漏洞<ul>
-<li>如果被包含文件的文件名是从用户处获得的，且没有经过恰当的检测，从而包含了预想之外的文件，导致了文件泄露甚至是恶意代码注入，这就是<strong>文件包含漏洞</strong>。如果被包含的文件储存在服务器上，那么对于应用来说，被包含的文件就在本地，就称之为<strong>本地文件包含漏洞</strong>。 <ul>
+<li>本地文件包含漏洞
+<ul>
+<li>如果被包含文件的文件名是从用户处获得的，且没有经过恰当的检测，从而包含了预想之外的文件，导致了文件泄露甚至是恶意代码注入，这就是<strong>文件包含漏洞</strong>。如果被包含的文件储存在服务器上，那么对于应用来说，被包含的文件就在本地，就称之为<strong>本地文件包含漏洞</strong>。
+<ul>
 <li><strong>包含上传的合法文件</strong></li>
-<li><strong>包含日志文件</strong><ul>
+<li><strong>包含日志文件</strong>
+<ul>
 <li>先构造一条包含恶意代码的请求，这一条请求会被web服务器写入日志文件中</li>
 <li>再利用本地文件包含漏洞，将日志文件引入，使得植入的恶意代码得到执行</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>远程文件包含漏洞<ul>
-<li>如果存在文件包含漏洞，且允许被包含的文件可以通过url获取，则称为远程文件包含漏洞。<ul>
-<li><strong>包含攻击者服务器上的恶意文件</strong></li>
-<li><strong>通过PHP伪协议进行包含</strong><ul>
-<li>php://input可以访问请求的原始数据的只读流，也就是通过POST方式发送的内容。借助PHP伪协议，攻击者直接将想要在服务器上执行的恶意代码通过POST的方式发送给服务器就能完成攻击。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>PHP带有很多内置URL风格的封装协议，可用于类似fopen()、copy()、 file_exists() 和 filesize() 的文件系统函数，可在include命令中使用。除了这些封装协议，还能注册自定义的封装协议。常见的协议有：</p>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>远程文件包含漏洞
 <ul>
-<li>file:// — 访问本地文件系统</li>
-<li>http:// — 访问 HTTP(s) 网址</li>
-<li>ftp:// — 访问 FTP(s) URLs</li>
-<li>php:// — 访问各个输入/输出流（I/O streams）</li>
-<li>zlib:// — 压缩流</li>
-<li><p>phar:// — PHP 归档</p>
-</li>
-<li><p><strong>php://filter</strong> 是一种元封装器，设计用于数据流打开时的筛选过滤应用。</p>
-</li>
-<li><strong>phar://与zip://</strong>可以获取压缩文件内的内容，如在hack.zip的压缩包中，有一个shell.php的文件，则可以通过phar://hack.zip/shell.php的方式访问压缩包内的文件，zip://也是类似。这两个协议不受文件后缀名的影响</li>
+<li>如果存在文件包含漏洞，且允许被包含的文件可以通过url获取，则称为远程文件包含漏洞。
+<ul>
+<li><strong>包含攻击者服务器上的恶意文件</strong></li>
+<li><strong>通过PHP伪协议进行包含</strong>
+<ul>
+<li>php://input可以访问请求的原始数据的只读流，也就是通过POST方式发送的内容。借助PHP伪协议，攻击者直接将想要在服务器上执行的恶意代码通过POST的方式发送给服务器就能完成攻击。</li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ul>
-<h2 id="反序列化漏洞"><a href="#反序列化漏洞" class="headerlink" title="反序列化漏洞"></a>反序列化漏洞</h2><p><strong>序列化是指将对象、数组等数据结构转化为可以储存的格式的过程</strong></p>
+<p>PHP带有很多内置URL风格的封装协议，可用于类似fopen()、copy()、
+file_exists() 和 filesize()
+的文件系统函数，可在include命令中使用。除了这些封装协议，还能注册自定义的封装协议。常见的协议有：</p>
+<ul>
+<li><p>file:// — 访问本地文件系统</p></li>
+<li><p>http:// — 访问 HTTP(s) 网址</p></li>
+<li><p>ftp:// — 访问 FTP(s) URLs</p></li>
+<li><p>php:// — 访问各个输入/输出流（I/O streams）</p></li>
+<li><p>zlib:// — 压缩流</p></li>
+<li><p>phar:// — PHP 归档</p></li>
+<li><p><strong>php://filter</strong>
+是一种元封装器，设计用于数据流打开时的筛选过滤应用。</p></li>
+<li><p><strong>phar://与zip://</strong>可以获取压缩文件内的内容，如在hack.zip的压缩包中，有一个shell.php的文件，则可以通过phar://hack.zip/shell.php的方式访问压缩包内的文件，zip://也是类似。这两个协议不受文件后缀名的影响</p></li>
+</ul>
+<h2 id="反序列化漏洞">反序列化漏洞</h2>
+<p><strong>序列化是指将对象、数组等数据结构转化为可以储存的格式的过程</strong></p>
 <p><strong>要想要将内存中的变量写入磁盘中或是通过网络传输，就需要对其进行序列化操作，序列化能将一个对象转换成一个字符串。</strong></p>
 <p>PHP魔术方法：PHP有一类特殊的方法，它们以__(两个下划线)开头，在特定的条件下会被调用</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">__construct()，类的构造函数，创建新的对象时会被调用</span><br><span class="line">__destruct()，类的析构函数，当对象被销毁时会被调用</span><br><span class="line">__call()，在对象中调用一个不可访问方法时会被调用</span><br><span class="line">__callStatic()，用静态方式中调用一个不可访问方法时调用</span><br><span class="line">__get()，读取一个不可访问属性的值时会被调用</span><br><span class="line">__set()，给不可访问的属性赋值时会被调用</span><br><span class="line">__isset()，当对不可访问属性调用isset()或empty()时调用</span><br><span class="line">__unset()，当对不可访问属性调用unset()时被调用。</span><br><span class="line">__sleep()，执行serialize()时，先会调用这个函数</span><br><span class="line">__wakeup()，执行unserialize()时，先会调用这个函数</span><br><span class="line">__toString()，类被当成字符串时的回应方法</span><br><span class="line">__invoke()，调用函数的方式调用一个对象时的回应方法</span><br><span class="line">__set_state()，调用var_export()导出类时，此静态方法会被调用。</span><br><span class="line">__clone()，当对象复制完成时调用</span><br><span class="line">__autoload()，尝试加载未定义的类</span><br><span class="line">__debugInfo()，打印所需调试信息</span><br></pre></td></tr></table></figure>
@@ -555,8 +568,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter2/" rel="next" title="软件安全笔记Chapter2">
-                <i class="fa fa-chevron-left"></i> 软件安全笔记Chapter2
+              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter7/" rel="next" title="软件安全笔记Chapter7">
+                <i class="fa fa-chevron-left"></i> 软件安全笔记Chapter7
               </a>
             
           </div>
@@ -565,8 +578,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter10/" rel="prev" title="软件安全笔记Chapter10">
-                软件安全笔记Chapter10 <i class="fa fa-chevron-right"></i>
+              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter5/" rel="prev" title="软件安全笔记Chapter5">
+                软件安全笔记Chapter5 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -690,7 +703,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-WEB%E6%B8%97%E9%80%8F%E5%AE%9E%E6%88%98"><span class="nav-number">1.</span> <span class="nav-text">第十一章 WEB渗透实战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.1.</span> <span class="nav-text">文件上传漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB"><span class="nav-number">1.2.</span> <span class="nav-text">跨站脚本攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.3.</span> <span class="nav-text">SQL注入漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLMAP"><span class="nav-number">1.4.</span> <span class="nav-text">SQLMAP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E7%9B%B2%E6%B3%A8"><span class="nav-number">1.5.</span> <span class="nav-text">SQL盲注</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%B8%83%E5%B0%94SQL%E7%9B%B2%E6%B3%A8"><span class="nav-number">1.5.1.</span> <span class="nav-text">基于布尔SQL盲注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84SQL%E7%9B%B2%E6%B3%A8"><span class="nav-number">1.5.2.</span> <span class="nav-text">基于时间的SQL盲注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%8A%A5%E9%94%99%E7%9A%84SQL%E7%9B%B2%E6%B3%A8"><span class="nav-number">1.5.3.</span> <span class="nav-text">基于报错的SQL盲注</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E6%B3%A8%E5%85%A5%E7%9A%84%E9%98%B2%E5%BE%A1%E6%8E%AA%E6%96%BD"><span class="nav-number">1.6.</span> <span class="nav-text">SQL注入的防御措施</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.7.</span> <span class="nav-text">文件包含漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.8.</span> <span class="nav-text">反序列化漏洞</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-web%E6%B8%97%E9%80%8F%E5%AE%9E%E6%88%98"><span class="nav-number">1.</span> <span class="nav-text">第十一章 WEB渗透实战</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.1.</span> <span class="nav-text">文件上传漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB"><span class="nav-number">1.2.</span> <span class="nav-text">跨站脚本攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql%E6%B3%A8%E5%85%A5%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.3.</span> <span class="nav-text">SQL注入漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sqlmap"><span class="nav-number">1.4.</span> <span class="nav-text">SQLMAP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql%E7%9B%B2%E6%B3%A8"><span class="nav-number">1.5.</span> <span class="nav-text">SQL盲注</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%B8%83%E5%B0%94sql%E7%9B%B2%E6%B3%A8"><span class="nav-number">1.5.1.</span> <span class="nav-text">基于布尔SQL盲注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84sql%E7%9B%B2%E6%B3%A8"><span class="nav-number">1.5.2.</span> <span class="nav-text">基于时间的SQL盲注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E6%8A%A5%E9%94%99%E7%9A%84sql%E7%9B%B2%E6%B3%A8"><span class="nav-number">1.5.3.</span> <span class="nav-text">基于报错的SQL盲注</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sql%E6%B3%A8%E5%85%A5%E7%9A%84%E9%98%B2%E5%BE%A1%E6%8E%AA%E6%96%BD"><span class="nav-number">1.6.</span> <span class="nav-text">SQL注入的防御措施</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.7.</span> <span class="nav-text">文件包含漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E"><span class="nav-number">1.8.</span> <span class="nav-text">反序列化漏洞</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -710,7 +723,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2024</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
