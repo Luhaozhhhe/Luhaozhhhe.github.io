@@ -374,6 +374,313 @@ mjx-container[display="true"] + br {
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://luhaozhhhe.github.io/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Welcome To Luhaozhhhe's Blog!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter7/" itemprop="url">软件安全笔记Chapter7</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-11-05T11:07:23+08:00">
+                2024-11-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">课程笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AF%BE%E7%A8%8B%E7%AC%94%E8%AE%B0/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">软件安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="第七章-漏洞挖掘基础">第七章 漏洞挖掘基础</h1>
+<h2 id="方法概述">方法概述</h2>
+<h3 id="漏洞挖掘方法分类">漏洞挖掘方法分类</h3>
+<p>​
+漏洞挖掘主要分为两种方法，一种是静态分析技术，一种是动态分析技术。</p>
+<h3 id="符号执行">符号执行</h3>
+<p>​
+符号执行：<strong>使用符号值替代具体值，模拟程序的执行</strong>。</p>
+<p>​
+三个关键点：<strong>变量符号化、程序执行模拟</strong>和<strong>约束求解</strong></p>
+<p>​
+<strong>变量符号化</strong>是指用一个符号值表示程序中的变量，所有<strong>与被符号化的变量相关的变量取值都会用符号值或符号值的表达式</strong>表示。</p>
+<p>​
+<strong>程序执行模拟</strong>最重要的是运算语句和分支语句的模拟：</p>
+<blockquote>
+<ul>
+<li><strong>对于运算语句</strong>，由于符号执行使用符号值替代具体值，所以无法直接计算得到一个明确的结果，需要<strong>使用符号表达式的方式表示变量的值</strong>。</li>
+<li><strong>对于分支语句</strong>，每当遇到分支语句，原先的一条路径就会分裂成多条路径，符号执行会记录每条分支路径的约束条件。最终，通过采用合适的路径遍历方法，符号执行可以<strong>收集到所有执行路径的约束条件表达式</strong>。</li>
+</ul>
+</blockquote>
+<p>​
+<strong>约束求解</strong>主要负责<strong>路径可达性进行判定及测试输入生成</strong>的工作。对一条路径的约束表达式，可以采用<strong>约束求解器</strong>进行求解：</p>
+<ul>
+<li>如有解，该路径是<strong>可达</strong>的，可以得到到达该路径的输入；</li>
+<li>如无解，该路径是<strong>不可达</strong>的，也无法生成到达该路径的输入。</li>
+</ul>
+<p>​
+<strong>符号执行的优缺点：</strong>优点是代价小，效率高；但是我们的可能的路径会随着程序规模的增长而呈指数级增长，所以可能有时候会难以分析</p>
+<p>​
+<strong>符号执行的用处</strong>：广泛用于软件测试和漏洞挖掘中，通过创建高覆盖率的测试用例，通过约束求解的方法来求解是否存在满足漏洞分析的规则的值</p>
+<p>举一个例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a[<span class="number">10</span>];</span><br><span class="line"><span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;i);</span><br><span class="line"><span class="keyword">if</span> (i &gt; <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="keyword">if</span> (i &gt; <span class="number">10</span>)</span><br><span class="line">		i = i % <span class="number">10</span>;</span><br><span class="line">	a[i] = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>​
+这一段，我们就可以通过符号执行的方式去挖掘漏洞，我们可以发现两个条件判定语句中，存在着对10这个元素的漏判，所以我们输入10就可以成功引发漏洞了</p>
+<h3 id="污点分析">污点分析</h3>
+<p>​
+通过标记程序中的数据（外部输入数据或者内部数据）为污点，<strong>跟踪</strong>程序处理污点数据的内部流程，进而帮助人们进行<strong>深入的程序分析和理解</strong></p>
+<p>​
+我们首先需要<strong>确定污点源</strong>，然后需要<strong>标记和分析污点</strong>。</p>
+<p><img src="/images/软件安全/image-20240504183004311.png" /></p>
+<p>​ 这样我们就可以发现程序的内在逻辑与漏洞了</p>
+<blockquote>
+<p>污点分析<strong>核心三要素</strong>：</p>
+<ul>
+<li>污点源：是污点分析的目标来源（Source点），通常表示来自程序外部的不可信数据，包括硬盘文件内容、网络数据包等。</li>
+<li>传播规则：是污点分析的计算依据，通常包括污点扩散规则和清除规则，其中普通赋值语句、计算语句可使用扩散规则，而常值赋值语句则需要利用清除规则进行计算。</li>
+<li>污点检测：是污点分析的功能体现，其通常在程序执行过程中的敏感位置（Sink点）进行污点判定，而敏感位置主要包括程序跳转以及系统函数调用等。</li>
+</ul>
+</blockquote>
+<p>优缺点：</p>
+<p>​
+<strong>适用于由输入参数引发漏洞的检测</strong>，比如SQL注入漏洞等。</p>
+<p>​
+污点分析技术具有<strong>较高的分析准确率</strong>，然而针对大规模代码的分析，由于<strong>路径数量较多</strong>，因此其<strong>分析的性能会受到较大的影响</strong>。</p>
+<h2 id="词法分析">词法分析</h2>
+<p>​
+通过对代码进行基于文本或字符标识的<strong>匹配分析对比</strong>，以查找符合特定特征和词法规则的<strong>危险函数、API或简单语句组合</strong>。就是说，将代码文本和归纳好的缺陷模式进行匹配，然后去发现漏洞。</p>
+<p>​
+<strong>优缺点：</strong>优点是算法较简单，性能高；缺点是只能进行表面的词法检测，在深度的检测中会出现大量漏报和误报，对于高危漏洞无法进行很好的检测</p>
+<blockquote>
+<p><strong>具体内容见PPT，有两个实验，需要看一下</strong></p>
+</blockquote>
+<h2 id="数据流分析">数据流分析</h2>
+<p>​
+是一种用来获取<strong>相关数据沿着程序执行路径流动</strong>的信息分析技术，分析对象是程序执行路径上的<strong>数据流动或可能的取值</strong>，分为<strong>过程内分析</strong>和<strong>过程间分析</strong></p>
+<p><strong>过程内分析只针对程序中函数内的代码进行分析，</strong>又分为<strong>：</strong></p>
+<ol type="1">
+<li>流不敏感分析（flow insensitive）：按代码行号从上而下进行分析；</li>
+<li>流敏感分析（flow sensitive）：首先产生程序控制流图（Control Flow
+Graph，CFG），再按照CFG的拓扑排序正向或逆向分析；</li>
+<li>路径敏感分析（path
+sensitive）：不仅考虑到语句先后顺序，还会考虑语句可达性，即会沿实际可执行到路径进行分析。</li>
+</ol>
+<p><strong>过程间分析则考虑函数之间的数据流，即需要跟踪分析目标数据在函数之间的传递过程。</strong></p>
+<ol type="1">
+<li>上下文不敏感分析：忽略调用位置和函数参数取值等函数调用的相关信息。</li>
+<li>上下文敏感分析：对不同调用位置调用的同一函数加以区分。</li>
+</ol>
+<p>程序代码模型：数据流分析使用的，主要包括程序代码中间的表示，以及一些关键的数据结构。我们引入抽象语法树，其描述了程序的过程内代码的控制流结构。</p>
+<p><img src="/images/软件安全/image-20240504184616795.png" /></p>
+<p>三地址码。三地址码（Three address
+code，TAC）是一种中间语言，由一组类似于汇编语言的指令组成，每个指令具有<strong>不多于三个的运算分量</strong>。每个运算分量都像是一个寄存器。</p>
+<p>常见的三地址码：</p>
+<ul>
+<li>x = y op z ：表示 y 和 z 经过 op 指示的计算将结果存入 x</li>
+<li>x = op y ：表示 y 经过操作 op 的计算将结果存入 x</li>
+<li>x = y ：表示赋值操作</li>
+<li>goto L ：表示无条件跳转</li>
+<li>if x goto L ：表示条件跳转</li>
+<li>x = y[i] ：表示数组赋值操作</li>
+<li>x = &amp;y 、 x = *y ：表示对地址的操作</li>
+<li>param x1, param x2, call p：表示过程调用 p(x1, x2)</li>
+</ul>
+<p>​
+还有控制流图，<strong>通常是指用于描述程序过程内的控制流的有向图</strong>。控制流由节点和有向边组成。节点可以是单条语句或程序代码段。有向边表示节点之间存在潜在的控制流路径。</p>
+<p><img src="/images/软件安全/image-20240504185406446.png" /></p>
+<p>上面是一些常见的控制流路径</p>
+<p><strong>调用图</strong>。调用图（Call
+Graph，CG）是描述程序中过程之间的调用和被调用关系的有向图，满足如下原则：对程序中的每个过程都有一个节点；对每个调用点都有一个节点；如果调用点c调用了过程p，就存在一条从c的节点到p的节点的边。</p>
+<p>基于数据流的漏洞分析：</p>
+<ol type="1">
+<li>首先，进行<strong>代码建模</strong>，将代码构造为抽象语法树或程序控制流图；</li>
+<li>然后，<strong>追踪获取变量的变化信息</strong>，根据<strong>漏洞分析规则</strong>检测安全缺陷和漏洞。</li>
+</ol>
+<p>对于逻辑复杂的程序代码，数据流复杂，所以准确率较低，误报率较高</p>
+<p>举个例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">contrived</span><span class="params">(<span class="type">int</span> *p, <span class="type">int</span> *w, <span class="type">int</span> x)</span> </span>&#123;</span><br><span class="line">	<span class="type">int</span> *q;</span><br><span class="line">	<span class="keyword">if</span> (x) &#123;</span><br><span class="line">		<span class="built_in">kfree</span>(w); <span class="comment">// w free</span></span><br><span class="line">		q = p;</span><br><span class="line">	&#125;<span class="keyword">else</span></span><br><span class="line">		q=w;</span><br><span class="line">	<span class="keyword">return</span> *q; <span class="comment">// p use after free</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">contrived_caller</span><span class="params">(<span class="type">int</span> *w, <span class="type">int</span> x, <span class="type">int</span> *p)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">kfree</span>(p); <span class="comment">// p free</span></span><br><span class="line">	[...]</span><br><span class="line">	<span class="type">int</span> r = <span class="built_in">contrived</span>(p, w, x);</span><br><span class="line">	[...]</span><br><span class="line">	<span class="keyword">return</span> *w; <span class="comment">// w use after free</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们根据数据流分析来检测指针变量</p>
+<p><img src="/images/软件安全/image-20240504185916614.png" /></p>
+<p>因此我们发现，只有1256这一条路径是安全的，12346这一条存在着指针的漏洞。</p>
+<h2 id="模糊测试">模糊测试</h2>
+<p>是一种自动化或半自动化的安全漏洞检测技术，通过向目标软件输入大量的<strong>畸形数据</strong>并<strong>监测目标系统的异常</strong>来发现潜在的软件漏洞。</p>
+<p>模糊测试属于<strong>黑盒测试</strong>的一种，它是一种有效的动态漏洞分析技术，黑客和安全技术人员使用该项技术已经发现了大量的未公开漏洞。</p>
+<p>它的<strong>缺点是畸形数据的生成具有随机性</strong>，而随机性造成代码覆盖不充分导致了<strong>测试数据覆盖率不高</strong>。</p>
+<p>分类：</p>
+<blockquote>
+<ul>
+<li>基于生成的模糊测试：它是指<strong>依据特定的文件格式或者协议规范组合生成测试用例</strong>，该方法的关键点在于既要遵守被测程序的输入数据的规范要求，又要能变异出区别于正常的数据</li>
+<li>基于变异的模糊测试：它是指<strong>在原有合法的测试用例基础上，通过变异策略生成新的测试用例</strong>。变异策略可以是随机变异策略、边界值变异策略、位变异策略等等，但前提条件是给定的初始测试用例是合法的输入。</li>
+</ul>
+</blockquote>
+<p>步骤：</p>
+<blockquote>
+<ol type="1">
+<li>确定测试对象和输入数据：对模糊测试来说<strong>首要的问题是确定可能的输入数据，畸形输入数据的枚举对模糊测试至关重要</strong>。</li>
+<li>生成模糊测试数据：一旦确定了输入数据，接着就可以生成模糊测试用的畸形数据。根据目标程序及输入数据格式的不同，可相应选择不同的测试数据生成算法。</li>
+<li>检测模糊测试数据：检测模糊测试数据的过程首先要<strong>启动目标程序</strong>，然后<strong>把生成的测试数据输入到应用程序中进行处理</strong>。</li>
+<li>监测程序异常：实时监测目标程序的运行，就能追踪到引发目标程序异常的源测试数据。</li>
+<li>确定可利用性：还需要<strong>进一步确定所发现的异常情况是否能被进一步利用</strong>。</li>
+</ol>
+</blockquote>
+<p><img src="/images/软件安全/image-20240504190638058.png" /></p>
+<p>该方法的测试具有一定的随机性，不是所有的错误都能被检测出来</p>
+<p>我们为了解决模糊测试的随机性，我们往里面引入了<strong>基于符号执行、污点传播分析等可进行程序理解的方法，在实现程序理解的基础上，有针对性的设计测试数据的生成</strong>，从而实现了比传统的随机模糊测试更高的效率，这种结合了程序理解和模糊测试的方法，称为智能模糊测试(smart
+Fuzzing)技术。</p>
+<p>智能模糊测试的步骤：</p>
+<blockquote>
+<ol type="1">
+<li>反汇编：智能模糊测试的前提，是对可执行代码进行输入数据、控制流、执行路径之间相关关系的分析。为此，首先对<strong>可执行代码进行反汇编得到汇编代码</strong>，在汇编代码的基础上才能进行上述分析。</li>
+<li>中间语言转换：需要<strong>将汇编代码转换成中间语言</strong>，由于中间语言易于理解，所以为可执行代码的分析提供了一种有效的手段。</li>
+<li>采用智能技术分析输入数据和执行路径的关系：通过符号执行和约束求解技术、污点传播分析、执行路径遍历等技术手段，<strong>检测出可能产生漏洞的程序执行路径集合和输入数据集合</strong>。</li>
+<li>利用分析获得的输入数据集合，对执行路径集合进行测试：采用上述智能技术获得的输入数据集合进行安全检测，使<strong>后续的安全测试检测出安全缺陷和漏洞的机率大大增加。</strong></li>
+</ol>
+</blockquote>
+<h2 id="afl模糊测试框架">AFL模糊测试框架</h2>
+<p>AFL是一款基于覆盖引导（Coverage-guided）的模糊测试工具，它通过记录输入样本的代码覆盖率，从而调整输入样本以提高覆盖率，增加发现漏洞的概率。</p>
+<p>AFL工作流程：</p>
+<ol type="1">
+<li>从源码编译程序时进行插桩，以记录代码覆盖率；</li>
+<li>选择一些输入文件作为初始测试集加入输入队列；</li>
+<li>将队列中的文件按策略进行“突变”；</li>
+<li>如果经过变异文件更新了覆盖范围，则保留在队列中;</li>
+<li>循环进行，期间触发了crash（异常结果）的文件会被记录下来。</li>
+</ol>
+<p><img src="/images/软件安全/image-20240504192155745.png" /></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://luhaozhhhe.github.io/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3402,148 +3709,6 @@ constraint）</p>
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://luhaozhhhe.github.io/2024/11/05/%E9%9F%B3%E9%A2%91%E9%9A%90%E5%86%99/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Welcome To Luhaozhhhe's Blog!">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2024/11/05/%E9%9F%B3%E9%A2%91%E9%9A%90%E5%86%99/" itemprop="url">音频隐写</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2024-11-05T11:04:52+08:00">
-                2024-11-05
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Misc/" itemprop="url" rel="index">
-                    <span itemprop="name">Misc</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -3594,7 +3759,7 @@ constraint）</p>
               
                 <a href="/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
