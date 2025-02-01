@@ -79,12 +79,12 @@
 
 
 
-<meta name="description" content="第二章 堆栈基础内存区域 代码区：通常是指用来存放程序执行代码的一块内存区域。这个区域存储着被装入执行的二进制机器代码，处理器会到这个区域取指并执行。 静态数据区：通常是指用来存放程序运行时的全局变量、静态变量等的内存区域。通常，静态数据区包括初始化数据区（Data Segment）和未初始化数据区（BSS Segment）两部分。未初始化数据区BSS区存放的是未初始化的全局变量和静态变量，特点是">
+<meta name="description" content="第二章 堆栈基础 内存区域  代码区：通常是指用来存放程序执行代码的一块内存区域。这个区域存储着被装入执行的二进制机器代码，处理器会到这个区域取指并执行。 静态数据区：通常是指用来存放程序运行时的全局变量、静态变量等的内存区域。通常，静态数据区包括初始化数据区（Data Segment）和未初始化数据区（BSS Segment）两部分。未初始化数据区BSS区存放的是未初始化的全局变量和">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软件安全笔记Chapter2">
 <meta property="og:url" content="https://luhaozhhhe.github.io/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter2/index.html">
 <meta property="og:site_name" content="Welcome To Luhaozhhhe&#39;s Blog!">
-<meta property="og:description" content="第二章 堆栈基础内存区域 代码区：通常是指用来存放程序执行代码的一块内存区域。这个区域存储着被装入执行的二进制机器代码，处理器会到这个区域取指并执行。 静态数据区：通常是指用来存放程序运行时的全局变量、静态变量等的内存区域。通常，静态数据区包括初始化数据区（Data Segment）和未初始化数据区（BSS Segment）两部分。未初始化数据区BSS区存放的是未初始化的全局变量和静态变量，特点是">
+<meta property="og:description" content="第二章 堆栈基础 内存区域  代码区：通常是指用来存放程序执行代码的一块内存区域。这个区域存储着被装入执行的二进制机器代码，处理器会到这个区域取指并执行。 静态数据区：通常是指用来存放程序运行时的全局变量、静态变量等的内存区域。通常，静态数据区包括初始化数据区（Data Segment）和未初始化数据区（BSS Segment）两部分。未初始化数据区BSS区存放的是未初始化的全局变量和">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://luhaozhhhe.github.io/images/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/%E5%9B%BE%E7%89%871.png">
 <meta property="og:image" content="https://luhaozhhhe.github.io/images/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/%E5%9B%BE%E7%89%872.png">
@@ -381,45 +381,81 @@
       
 
       
-        <h1 id="第二章-堆栈基础"><a href="#第二章-堆栈基础" class="headerlink" title="第二章 堆栈基础"></a>第二章 堆栈基础</h1><h2 id="内存区域"><a href="#内存区域" class="headerlink" title="内存区域"></a>内存区域</h2><ul>
+        <h1 id="第二章-堆栈基础">第二章 堆栈基础</h1>
+<h2 id="内存区域">内存区域</h2>
+<ul>
 <li>代码区：通常是指用来存放程序执行代码的一块内存区域。这个区域存储着被装入执行的二进制机器代码，处理器会到这个区域取指并执行。</li>
-<li>静态数据区：通常是指用来存放程序运行时的全局变量、静态变量等的内存区域。通常，静态数据区包括初始化数据区（Data Segment）和未初始化数据区（BSS Segment）两部分。未初始化数据区BSS区存放的是未初始化的全局变量和静态变量，特点是可读写，在程序执行之前BSS段会自动清0。</li>
+<li>静态数据区：通常是指用来存放程序运行时的全局变量、静态变量等的内存区域。通常，静态数据区包括初始化数据区（Data
+Segment）和未初始化数据区（BSS
+Segment）两部分。未初始化数据区BSS区存放的是未初始化的全局变量和静态变量，特点是可读写，在程序执行之前BSS段会自动清0。</li>
 <li>堆区：用于动态地分配进程内存。进程可以在堆区动态地请求一定大小的内存，并在用完之后归还给堆区。动态分配和回收是堆区的特点。</li>
 <li>栈区：用于支持进程的执行，动态地存储函数之间的调用关系、局部变量等，以保证被调用函数在返回时恢复到母函数中继续执行。</li>
 </ul>
-<p>​    不同的操作系统有不同的内存组织形式</p>
-<p><img src="/images/软件安全/图片1.png" alt=""></p>
-<h2 id="堆区和栈区"><a href="#堆区和栈区" class="headerlink" title="堆区和栈区"></a>堆区和栈区</h2><h3 id="堆区"><a href="#堆区" class="headerlink" title="堆区"></a>堆区</h3><p>​    是一种程序运行时动态分配的内存，不能预先确定，需要在使用的时候用专有的函数进行申请，比如说malloc函数，new函数等。</p>
-<p>​    堆是一种<strong>向高地址扩展</strong>的数据结构，堆的大小<strong>受限于计算机的虚拟内存</strong></p>
-<p>​    堆一般由程序员来分配，速度较慢，容易产生内存碎片，使用比较方便</p>
-<h3 id="栈区"><a href="#栈区" class="headerlink" title="栈区"></a>栈区</h3><p>​    主要存储函数运行时的局部变量、数组等，不需要额外申请，系统会自动为变量预留内存空间，栈的释放也是函数调用结束后回收</p>
-<p>​    栈是一种<strong>向低地址扩展</strong>的数据结构，<strong>先入后出</strong>，默认大小是2M，如果申请空间超过栈的剩余空间，就会发生栈溢出</p>
-<p>​    栈一般分配的速度较快，程序员无法控制</p>
-<h3 id="堆的结构"><a href="#堆的结构" class="headerlink" title="堆的结构"></a>堆的结构</h3><p>​    堆的内存主要分为：<strong>堆块和堆表</strong></p>
-<p>​    堆块是堆的基本组织单位，包括<strong>块首和块身</strong></p>
+<p>​ 不同的操作系统有不同的内存组织形式</p>
+<p><img src="/images/软件安全/图片1.png" /></p>
+<h2 id="堆区和栈区">堆区和栈区</h2>
+<h3 id="堆区">堆区</h3>
+<p>​
+是一种程序运行时动态分配的内存，不能预先确定，需要在使用的时候用专有的函数进行申请，比如说malloc函数，new函数等。</p>
+<p>​
+堆是一种<strong>向高地址扩展</strong>的数据结构，堆的大小<strong>受限于计算机的虚拟内存</strong></p>
+<p>​ 堆一般由程序员来分配，速度较慢，容易产生内存碎片，使用比较方便</p>
+<h3 id="栈区">栈区</h3>
+<p>​
+主要存储函数运行时的局部变量、数组等，不需要额外申请，系统会自动为变量预留内存空间，栈的释放也是函数调用结束后回收</p>
+<p>​
+栈是一种<strong>向低地址扩展</strong>的数据结构，<strong>先入后出</strong>，默认大小是2M，如果申请空间超过栈的剩余空间，就会发生栈溢出</p>
+<p>​ 栈一般分配的速度较快，程序员无法控制</p>
+<h3 id="堆的结构">堆的结构</h3>
+<p>​ 堆的内存主要分为：<strong>堆块和堆表</strong></p>
+<p>​ 堆块是堆的基本组织单位，包括<strong>块首和块身</strong></p>
 <ul>
 <li>块首是用来标识这个堆块自身的信息，例如块大小、空闲还是占用等；</li>
 <li>块身紧随其后，是最终分配给用户使用的数据区</li>
 </ul>
-<p>​    <strong>堆表一般位于整个堆区的开始位置，用于索引堆区中所有堆块的重要信息</strong>，包括堆块的位置、堆块的大小、空闲还是占用等</p>
-<p><img src="/images/软件安全/图片2.png" alt=""></p>
-<h4 id="堆块"><a href="#堆块" class="headerlink" title="堆块"></a>堆块</h4><p>​    堆块有两种状态：<strong>占有态和空闲态</strong></p>
-<p>​    空闲态的堆块会被链入空链表中，由系统管理；而占有态的堆块会返回一个由程序员定义的句柄，通常是一个堆块指针，来完成对堆块内存的读、写和释放操作，由程序员管理</p>
-<p><img src="/images/软件安全/图片3.png" alt=""></p>
-<p>​    对于<strong>空闲态</strong>堆块而言，块首额外存储了两个4字节的指针：<strong>Flink指针和Blink指针</strong>，用于链接系统中的其他<strong>空闲堆块</strong>。其中，<strong>Flink前向指针存储了前一个空闲块的地址，Blink后向指针存储了后一个空闲块的地址</strong></p>
-<p>​    指向堆块的指针，指向的是块身的首地址，就是说，我们的地址指针不会指向块首的堆块信息，而是直接指向块身的数据区</p>
-<p>​    堆块的大小包括块首在内，如果申请32字节，实际会分配<strong>40字节，8字节的块首+32字节的块身</strong>。堆块的<strong>单位是8字节</strong>，不足8字节按8字节分配。</p>
-<h4 id="堆表"><a href="#堆表" class="headerlink" title="堆表"></a>堆表</h4><p>​    占有态的堆块被使用它的程序索引，而<strong>堆表只索引所有空闲态的堆块</strong>。其中，最重要的堆表有两种：空闲双向链表freelist（简称空表）和快速单向链表lookaside（简称快表）</p>
-<p>​    空表包含<strong>空表索引</strong>(Freelist array)和<strong>空闲链块</strong>两个部分。空表索引也叫空表表头，是一个大小为128的指针数组，该数组的每一项包括两个指针，用于标识一条空表</p>
-<p>​    空表索引的<strong>第二项(free[1])标识了堆中所有大小为8字节的空闲堆块</strong>。之后每个索引项指示的空闲堆块递增8字节。把空闲堆块按照大小的不同链入不同的空表，可以方便堆管理系统高效检索指定大小的空闲堆块。空表索引的第一项free[0]所标识的空表相对比较特殊，这条双向链表链入了<strong>所有大于等于1024字节小于512KB的堆块</strong>，升序排列。这个空表通常又称为<strong>零号空表</strong>。</p>
-<p><img src="/images/软件安全/图片4.png" alt=""></p>
-<h3 id="堆块的分配与释放"><a href="#堆块的分配与释放" class="headerlink" title="堆块的分配与释放"></a>堆块的分配与释放</h3><h4 id="堆块分配"><a href="#堆块分配" class="headerlink" title="堆块分配"></a>堆块分配</h4><p>​    依据既定的查找空闲堆块的策略，找到合适的空闲堆块之后，将其状态<strong>修改为占用态</strong>、把它从堆表中“卸下”、返回一个指向堆块块身的指针给程序使用。<br>​    普通空表分配时首先寻找<strong>最优的空闲块</strong>分配，若失败，一个稍大些的块会被用于分配。这种次优分配发生时，会先<strong>从大块中按请求的大小精确地“割”出一块进行分配</strong>，然后给剩下的部分<strong>重新标注块首，链入空表</strong>。也就是说，空表分配存在找零钱的情况。<br>​    零号空表中按照大小升序链着大小不同的空闲块，故在分配时先从free[0]反向查找最后一个块（即最大块），看能否满足要求，如果满足要求，再正向搜索最小能满足要求的空闲堆块进行分配。</p>
-<h4 id="堆块释放"><a href="#堆块释放" class="headerlink" title="堆块释放"></a>堆块释放</h4><p>​    堆块的释放操作包括将堆块状态由占用态改为空闲态、链入相应的堆表。所有释放的堆块都链入<strong>相应的表尾</strong></p>
-<h4 id="堆块合并"><a href="#堆块合并" class="headerlink" title="堆块合并"></a>堆块合并</h4><p>​    堆块的分配和释放操作可能引发堆块合并，即当堆管理系统发现<strong>两个空闲堆块相邻</strong>时，就会进行<strong>堆块合并</strong>操作。</p>
-<p>​    堆块的合并包括几个动作：<strong>将堆块从空表中卸下、合并堆块、修改合并后的块首、链接入新的链表</strong>（合并的时候还有一种操作叫内存紧缩）</p>
-<h2 id="函数调用"><a href="#函数调用" class="headerlink" title="函数调用"></a>函数调用</h2><p>​    借助系统栈来完成函数状态的保存和恢复</p>
-<p>​    调用函数，如何跳转到main函数的位置呢？我们利用系统栈来完成这个调用，当函数被调用时，系统就会给这个函数开辟一个新的栈帧，并将其压入栈中，每一个栈帧都对应了一个没有运行完的函数，在栈中保存了该函数的<strong>返回地址和局部变量</strong>，其实栈帧就是一个函数执行的环境，包括了函数的参数、函数的局部变量、函数执行完之后的返回地址等，当函数返回时，系统栈会弹出该函数所对应的栈帧</p>
-<p><img src="/images/软件安全/1.png" alt=""></p>
+<p>​
+<strong>堆表一般位于整个堆区的开始位置，用于索引堆区中所有堆块的重要信息</strong>，包括堆块的位置、堆块的大小、空闲还是占用等</p>
+<p><img src="/images/软件安全/图片2.png" /></p>
+<h4 id="堆块">堆块</h4>
+<p>​ 堆块有两种状态：<strong>占有态和空闲态</strong></p>
+<p>​
+空闲态的堆块会被链入空链表中，由系统管理；而占有态的堆块会返回一个由程序员定义的句柄，通常是一个堆块指针，来完成对堆块内存的读、写和释放操作，由程序员管理</p>
+<p><img src="/images/软件安全/图片3.png" /></p>
+<p>​
+对于<strong>空闲态</strong>堆块而言，块首额外存储了两个4字节的指针：<strong>Flink指针和Blink指针</strong>，用于链接系统中的其他<strong>空闲堆块</strong>。其中，<strong>Flink前向指针存储了前一个空闲块的地址，Blink后向指针存储了后一个空闲块的地址</strong></p>
+<p>​
+指向堆块的指针，指向的是块身的首地址，就是说，我们的地址指针不会指向块首的堆块信息，而是直接指向块身的数据区</p>
+<p>​
+堆块的大小包括块首在内，如果申请32字节，实际会分配<strong>40字节，8字节的块首+32字节的块身</strong>。堆块的<strong>单位是8字节</strong>，不足8字节按8字节分配。</p>
+<h4 id="堆表">堆表</h4>
+<p>​
+占有态的堆块被使用它的程序索引，而<strong>堆表只索引所有空闲态的堆块</strong>。其中，最重要的堆表有两种：空闲双向链表freelist（简称空表）和快速单向链表lookaside（简称快表）</p>
+<p>​ 空表包含<strong>空表索引</strong>(Freelist
+array)和<strong>空闲链块</strong>两个部分。空表索引也叫空表表头，是一个大小为128的指针数组，该数组的每一项包括两个指针，用于标识一条空表</p>
+<p>​
+空表索引的<strong>第二项(free[1])标识了堆中所有大小为8字节的空闲堆块</strong>。之后每个索引项指示的空闲堆块递增8字节。把空闲堆块按照大小的不同链入不同的空表，可以方便堆管理系统高效检索指定大小的空闲堆块。空表索引的第一项free[0]所标识的空表相对比较特殊，这条双向链表链入了<strong>所有大于等于1024字节小于512KB的堆块</strong>，升序排列。这个空表通常又称为<strong>零号空表</strong>。</p>
+<p><img src="/images/软件安全/图片4.png" /></p>
+<h3 id="堆块的分配与释放">堆块的分配与释放</h3>
+<h4 id="堆块分配">堆块分配</h4>
+<p>​
+依据既定的查找空闲堆块的策略，找到合适的空闲堆块之后，将其状态<strong>修改为占用态</strong>、把它从堆表中“卸下”、返回一个指向堆块块身的指针给程序使用。
+​
+普通空表分配时首先寻找<strong>最优的空闲块</strong>分配，若失败，一个稍大些的块会被用于分配。这种次优分配发生时，会先<strong>从大块中按请求的大小精确地“割”出一块进行分配</strong>，然后给剩下的部分<strong>重新标注块首，链入空表</strong>。也就是说，空表分配存在找零钱的情况。
+​
+零号空表中按照大小升序链着大小不同的空闲块，故在分配时先从free[0]反向查找最后一个块（即最大块），看能否满足要求，如果满足要求，再正向搜索最小能满足要求的空闲堆块进行分配。</p>
+<h4 id="堆块释放">堆块释放</h4>
+<p>​
+堆块的释放操作包括将堆块状态由占用态改为空闲态、链入相应的堆表。所有释放的堆块都链入<strong>相应的表尾</strong></p>
+<h4 id="堆块合并">堆块合并</h4>
+<p>​
+堆块的分配和释放操作可能引发堆块合并，即当堆管理系统发现<strong>两个空闲堆块相邻</strong>时，就会进行<strong>堆块合并</strong>操作。</p>
+<p>​
+堆块的合并包括几个动作：<strong>将堆块从空表中卸下、合并堆块、修改合并后的块首、链接入新的链表</strong>（合并的时候还有一种操作叫内存紧缩）</p>
+<h2 id="函数调用">函数调用</h2>
+<p>​ 借助系统栈来完成函数状态的保存和恢复</p>
+<p>​
+调用函数，如何跳转到main函数的位置呢？我们利用系统栈来完成这个调用，当函数被调用时，系统就会给这个函数开辟一个新的栈帧，并将其压入栈中，每一个栈帧都对应了一个没有运行完的函数，在栈中保存了该函数的<strong>返回地址和局部变量</strong>，其实栈帧就是一个函数执行的环境，包括了函数的参数、函数的局部变量、函数执行完之后的返回地址等，当函数返回时，系统栈会弹出该函数所对应的栈帧</p>
+<p><img src="/images/软件安全/1.png" /></p>
 <p><strong>函数调用步骤：</strong></p>
 <ul>
 <li>参数入栈：将参数从右向左依次压入系统栈中</li>
@@ -427,13 +463,17 @@
 <li>代码区跳转：处理器从当前代码区跳转到被调用函数的入口处</li>
 <li>栈帧调整：保存当前栈帧状态值，已备后面恢复本栈帧时使用；将当前栈帧切换到新栈帧</li>
 </ul>
-<h2 id="常见寄存器"><a href="#常见寄存器" class="headerlink" title="常见寄存器"></a>常见寄存器</h2><p>​    寄存器是有限存贮容量的高速存贮部件，它们可用来暂存指令、数据和地址</p>
-<p>​    每一个函数独占自己的栈帧空间。当前正在运行的函数的栈帧总是在栈顶</p>
+<h2 id="常见寄存器">常见寄存器</h2>
+<p>​
+寄存器是有限存贮容量的高速存贮部件，它们可用来暂存指令、数据和地址</p>
+<p>​ 每一个函数独占自己的栈帧空间。当前正在运行的函数的栈帧总是在栈顶</p>
 <ul>
-<li>ESP：<strong>栈指针寄存器</strong>（extended stack pointer），其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的栈顶</li>
-<li>EBP：<strong>基址指针寄存器</strong>（extended base pointer），其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的底部</li>
+<li>ESP：<strong>栈指针寄存器</strong>（extended stack
+pointer），其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的栈顶</li>
+<li>EBP：<strong>基址指针寄存器</strong>（extended base
+pointer），其内存放着一个指针，该指针永远指向系统栈最上面一个栈帧的底部</li>
 </ul>
-<p><img src="/images/软件安全/图片5.png" alt=""></p>
+<p><img src="/images/软件安全/图片5.png" /></p>
 <p><strong>栈帧中的重要信息：</strong></p>
 <ul>
 <li>局部变量：为函数局部变量开辟内存空间</li>
@@ -441,14 +481,16 @@
 <li>函数返回地址：保存当前函数调用前的“断点”信息，也就是函数调用前的指令位置，以便在函数返回时能够恢复到函数被调用前的代码区中继续执行指令</li>
 </ul>
 <p>另外一个寄存器：EIP</p>
-<p>​    <strong>指令寄存器</strong>（extended instruction pointer），其内存放着一个指针，该指针永远指向下一条等待执行的指令地址。可以说<strong>如果控制了</strong>EIP寄存器的内容，就控制了进程——我们让EIP指向哪里，CPU就会去执行哪里的指令</p>
+<p>​ <strong>指令寄存器</strong>（extended instruction
+pointer），其内存放着一个指针，该指针永远指向下一条等待执行的指令地址。可以说<strong>如果控制了</strong>EIP寄存器的内容，就控制了进程——我们让EIP指向哪里，CPU就会去执行哪里的指令</p>
 <p><strong>栈帧调整：</strong></p>
 <ul>
 <li>保存当前栈帧状态值，已备后面恢复本栈帧时使用（EBP入栈）</li>
 <li>将当前栈帧切换到新栈帧（将ESP值赋值EBP，更新栈帧底部）</li>
 </ul>
-<h2 id="主要寄存器"><a href="#主要寄存器" class="headerlink" title="主要寄存器"></a>主要寄存器</h2><ul>
-<li><p>数据寄存器：<strong>EAX,EBX,ECX,EDX</strong></p>
+<h2 id="主要寄存器">主要寄存器</h2>
+<ul>
+<li>数据寄存器：<strong>EAX,EBX,ECX,EDX</strong>
 <ul>
 <li>上面四个都是32位的，然后还有四个16位的寄存器，AX,BX,CX,DX，都是存储了低16位的数据</li>
 <li>这四个16位寄存器又可分割成8个独立的8位寄存器(AX：AH-AL、BX：BH-BL、CX：CH-CL、DX：DH-DL)，每个寄存器都有自己的名称，可独立存取</li>
@@ -456,49 +498,51 @@
 <li>EBX：基地址寄存器，用于访问存储器</li>
 <li>ECX：计数寄存器，一般在循环中控制循环次数</li>
 <li>EDX：数据寄存器</li>
-</ul>
-</li>
-<li><p>两个变址寄存器ESI和EDI，两个指针寄存器ESP和EBP</p>
+</ul></li>
+<li>两个变址寄存器ESI和EDI，两个指针寄存器ESP和EBP
 <ul>
-<li>变址寄存器<ul>
+<li>变址寄存器
+<ul>
 <li>32位CPU有2个32位通用寄存器ESI和EDI。其低16位对应先前CPU中的SI和DI，对低16位数据的存取，不影响高16位的数据</li>
 <li>ESI通常在内存操作指令中作为“源地址指针”使用，而EDI通常在内存操作指令中作为“目的地址指针”使用</li>
-</ul>
-</li>
-<li>指针寄存器<ul>
+</ul></li>
+<li>指针寄存器
+<ul>
 <li>用于存放堆栈内存储单元的偏移量，用它们可实现多种存储器操作数的寻址方式，不可以分割为8位寄存器</li>
-<li>EBP为基指针(Base Pointer)寄存器，通过它减去一定的偏移值，来访问栈中的元素</li>
+<li>EBP为基指针(Base
+Pointer)寄存器，通过它减去一定的偏移值，来访问栈中的元素</li>
 <li>ESP为堆栈指针(Stack Pointer)寄存器，它始终指向栈顶</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>6个段寄存器：ES、CS、SS、DS、FS和GS<ul>
+</ul></li>
+</ul></li>
+<li>6个段寄存器：ES、CS、SS、DS、FS和GS
+<ul>
 <li>CS:代码段寄存器，其值为代码段的段值</li>
 <li>DS:数据段寄存器，其值为数据段的段值</li>
 <li>ES:附加段寄存器，其值为附加数据段的段值</li>
 <li>SS:堆栈段寄存器，其值为堆栈段的段值</li>
 <li>FS:附加段寄存器，其值为附加数据段的段值</li>
 <li>GS:附加段寄存器，其值为附加数据段的段值</li>
-</ul>
-</li>
-<li>指令指针寄存器EIP，标志寄存器EFlags<ul>
-<li>指令指针寄存器<ul>
+</ul></li>
+<li>指令指针寄存器EIP，标志寄存器EFlags
+<ul>
+<li>指令指针寄存器
+<ul>
 <li>存放下次将要执行的指令在代码段的偏移量。在计算机工作的时候，CPU会从IP中获得关于指令的相关内存地址，然后按照正确的方式取出指令，并将指令放置到原来的指令寄存器中</li>
-</ul>
-</li>
-<li>标志寄存器<ul>
+</ul></li>
+<li>标志寄存器
+<ul>
 <li><strong>Z-Flag</strong>(零标志)：它可以设成0或者1</li>
 <li><strong>O-Flag</strong>(溢出标志)：反映有符号数加减运算是否溢出。如果运算结果超过了有符号数的表示范围，则OF置1，否则置0。例如：EAX的值为7FFFFFFFF，如果你此时再给EAX加1，OF寄存器就会被设置成1，因为此时EAX寄存器的最高有效位改变了</li>
 <li><strong>C-Flag</strong>(进位标志)：用于反映运算是否产生进位或借位。如果运算结果的最高位产生一个进位或借位，则CF置1，否则置0。例，假如某寄存器值为FFFFFFFF，再加上1就会产生进位</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h1 id="第二章-基础知识"><a href="#第二章-基础知识" class="headerlink" title="第二章 基础知识"></a>第二章 基础知识</h1><h2 id="汇编——寻址方式"><a href="#汇编——寻址方式" class="headerlink" title="汇编——寻址方式"></a>汇编——寻址方式</h2><p>两种寻址方式：顺序寻址方式，跳跃寻址方式</p>
-<h3 id="操作数寻址"><a href="#操作数寻址" class="headerlink" title="操作数寻址"></a>操作数寻址</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV 目的操作数, 源操作数</span><br></pre></td></tr></table></figure>
+<hr />
+<h1 id="第二章-基础知识">第二章 基础知识</h1>
+<h2 id="汇编寻址方式">汇编——寻址方式</h2>
+<p>两种寻址方式：顺序寻址方式，跳跃寻址方式</p>
+<h3 id="操作数寻址">操作数寻址</h3>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV 目的操作数, 源操作数</span><br></pre></td></tr></table></figure>
 <p>将源地址传到目标地址</p>
 <p><strong>操作数寻址分类：</strong></p>
 <p>1.<strong>立即寻址</strong>：指令的地址字段给出的不是操作数的地址，而是操作数本身，这种寻址方式称为立即寻址</p>
@@ -513,27 +557,33 @@
 <p>3.<strong>间接寻址</strong>：指令地址字段中的形式地址不是操作数的真正地址，而是操作数地址的指示器，或者说此形式地址单元的内容才是操作数的有效地址</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV [BX], 12H</span><br></pre></td></tr></table></figure>
 <p>这个代码表示，将12H这个数存储到DS:BX寄存器中</p>
-<p>4.<strong>相对寻址</strong>：操作数的有效地址是一个基址寄存器（BX, BP）或变址寄存器（SI, DI）的值加上指令中给定的偏移量之和</p>
+<p>4.<strong>相对寻址</strong>：操作数的有效地址是一个基址寄存器（BX,
+BP）或变址寄存器（SI, DI）的值加上指令中给定的偏移量之和</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV AX, [DI + 1234H]</span><br></pre></td></tr></table></figure>
 <p>相对寻址就是在间接寻址的基础上增加了偏移量</p>
 <p>5.<strong>基址变址寻址</strong>：将基址寄存器的内容，加上变址寄存器的内容而形成操作数的有效地址</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV EAX, [EBX+ESI]</span><br></pre></td></tr></table></figure>
-<p>或者也可以写成<code>MOV EAX, [BX][SI]</code> 或<code>MOV EAX, [SI][BX]</code></p>
+<p>或者也可以写成<code>MOV EAX, [BX][SI]</code>
+或<code>MOV EAX, [SI][BX]</code></p>
 <p>6.<strong>相对基址变址寻址</strong>：在基址变址寻址上加上偏移量即可</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MOV EAX, [EBX+ESI+1000H]</span><br></pre></td></tr></table></figure>
 <p>也可以写成<code>MOV EAX, 1000H [BX][SI]</code></p>
-<h2 id="汇编——主要指令"><a href="#汇编——主要指令" class="headerlink" title="汇编——主要指令"></a>汇编——主要指令</h2><p>​    指令一般有<strong>两个操作符、一个操作符、三个操作符</strong></p>
+<h2 id="汇编主要指令">汇编——主要指令</h2>
+<p>​ 指令一般有<strong>两个操作符、一个操作符、三个操作符</strong></p>
 <p><strong>数据传送指令集：</strong></p>
 <ul>
-<li>MOV：把源操作数送给目的操作数，其语法为: MOV 目的操作数,源操作数</li>
+<li>MOV：把源操作数送给目的操作数，其语法为: MOV
+目的操作数,源操作数</li>
 <li>XCHG: 交换两个操作数的数据</li>
-<li>PUSH,POP: 把操作数压入或取出堆栈 </li>
-<li>PUSHF,POPF,PUSHA,POPA: 堆栈指令群 </li>
-<li>LEA,LDS,LES: 取地址至寄存器 <ul>
+<li>PUSH,POP: 把操作数压入或取出堆栈</li>
+<li>PUSHF,POPF,PUSHA,POPA: 堆栈指令群</li>
+<li>LEA,LDS,LES: 取地址至寄存器
+<ul>
 <li>LEA：将有效地址传送到指定的寄存器</li>
-<li><code>lea eax, dword ptr [4*ecx+ebx]</code> ，源数是地址  <code>[4*ecx+ebx]</code> 里的数值，<code>dword ptr</code>是说，地址中的数值是一个dword型的数据</li>
-</ul>
-</li>
+<li><code>lea eax, dword ptr [4*ecx+ebx]</code> ，源数是地址
+<code>[4*ecx+ebx]</code>
+里的数值，<code>dword ptr</code>是说，地址中的数值是一个dword型的数据</li>
+</ul></li>
 </ul>
 <p><strong>位运算指令集：</strong></p>
 <ul>
@@ -575,30 +625,39 @@
 <li>字符串搜索指令：SCASB,SCASW</li>
 <li>字符串载入或存贮指令：LODSB,LODSW,STOSB,STOSW</li>
 </ul>
-<h2 id="汇编——函数调用示例"><a href="#汇编——函数调用示例" class="headerlink" title="汇编——函数调用示例"></a>汇编——函数调用示例</h2><p>一个简单的函数</p>
+<h2 id="汇编函数调用示例">汇编——函数调用示例</h2>
+<p>一个简单的函数</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> x,<span class="type">int</span> y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> z=<span class="number">0</span>;</span><br><span class="line">	z=x+y;</span><br><span class="line">	<span class="keyword">return</span> z;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="type">int</span> n=<span class="number">0</span>;</span><br><span class="line">	n=<span class="built_in">add</span>(<span class="number">1</span>,<span class="number">3</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,n);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>查看汇编代码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Void main()</span><br><span class="line">&#123; ******************</span><br><span class="line">             int n=0;</span><br><span class="line">004114OE   mov         dword ptr [n],0</span><br><span class="line">             n=add(1,3);</span><br><span class="line">00411415   push         3</span><br><span class="line">00411417   push         1</span><br><span class="line">00411419   call            add(411096h)</span><br><span class="line">0041141E   add           esp,8</span><br><span class="line">00411421   mov          dwod ptr [n],eax</span><br><span class="line">      printf(“%d\n,n”);</span><br><span class="line">******************</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>我们对其进行分析</p>
-<p>​    int n=0这一句没啥好说的，就是赋值，给n赋值0</p>
-<p>​    下面执行函数块add，我们在执行call之前，还需要进行参数的入栈，将3和1都push到栈里面，我们得到栈区状态为：</p>
-<p><img src="/images/软件安全/图片6.png" alt=""></p>
-<p>​    我们在调用函数时需要使用<code>00411419 call add(411096h)</code></p>
-<p>​    主要功能是，向栈中压入当前指令在内存中的位置，保存返回地址；跳转到调用函数的入口地址，就是函数的入口处，此时栈区的状态：</p>
-<p><img src="/images/软件安全/图片7.png" alt=""></p>
+<p>​ int n=0这一句没啥好说的，就是赋值，给n赋值0</p>
+<p>​
+下面执行函数块add，我们在执行call之前，还需要进行参数的入栈，将3和1都push到栈里面，我们得到栈区状态为：</p>
+<p><img src="/images/软件安全/图片6.png" /></p>
+<p>​ 我们在调用函数时需要使用<code>00411419 call add(411096h)</code></p>
+<p>​
+主要功能是，向栈中压入当前指令在内存中的位置，保存返回地址；跳转到调用函数的入口地址，就是函数的入口处，此时栈区的状态：</p>
+<p><img src="/images/软件安全/图片7.png" /></p>
 <p>下面分析add函数的汇编代码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Int  add (int  x,int  y)</span><br><span class="line">&#123;</span><br><span class="line">004113A0    push          ebp</span><br><span class="line">004113A1    mov           ebp,esp</span><br><span class="line">004113A3    sub            esp, 0CCh</span><br><span class="line">004113A9    push          ebx</span><br><span class="line">004113AA    push          esi</span><br><span class="line">004113AB    push          edi</span><br><span class="line">004113AC    lea             edi,[ebp-0CCh]</span><br><span class="line">004113B2    mov           ecx,33h</span><br><span class="line">004113B7    mov           eax,0CCCCCCCCh</span><br><span class="line">004113BC    rep stos    dword ptr  es:[edi]</span><br><span class="line">         int z=0;</span><br><span class="line">004113BE    mov           dword ptr [z],0</span><br><span class="line">         z=x+y;</span><br><span class="line">004113C5    mov           eax,dword ptr [x]</span><br><span class="line">004113C8    add            eax,dword ptr [y]</span><br><span class="line">004113CB    mov          dword ptr [z],eax</span><br><span class="line">        return z;</span><br><span class="line">004113CE    mov          eax,dword ptr[z]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>首先是<strong>栈帧的切换</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">004113A0    push          ebp</span><br><span class="line">004113A1    mov           ebp,esp</span><br><span class="line">004113A3    sub           esp, 0CCh</span><br></pre></td></tr></table></figure>
-<p>​    这三句，首先将EBP的值入栈，将ESP赋值给EBP，然后再将ESP的值抬高0CCh，完成了栈帧的切换，保存了主函数栈帧的EBP的值，也通过改变两个寄存器的位置为add函数分配了栈帧空间</p>
-<p><img src="/images/软件安全/图片8.png" alt=""></p>
+<p>​
+这三句，首先将EBP的值入栈，将ESP赋值给EBP，然后再将ESP的值抬高0CCh，完成了栈帧的切换，保存了主函数栈帧的EBP的值，也通过改变两个寄存器的位置为add函数分配了栈帧空间</p>
+<p><img src="/images/软件安全/图片8.png" /></p>
 <p>然后是<strong>函数状态的保存</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">004113A9    push          ebx</span><br><span class="line">004113AA    push          esi</span><br><span class="line">004113AB    push          edi</span><br><span class="line">004113AC    lea           edi,[ebp-0CCh]</span><br></pre></td></tr></table></figure>
-<p>​    这几句代码，用于保存<code>ebx，esi，edi</code>寄存器的位置，将ebp寄存器抬升0CCh来装入EDI</p>
-<p>​    然后是栈帧的切换，后面的就是将33个4字节的位置都初始化为<code>0CCCCCCCCh</code></p>
-<p>​    然后我们就可以执行函数体了，完成1+3的加法，并将结果存储在eax寄存器中</p>
-<p><img src="/images/软件安全/图片9.png" alt=""></p>
-<p>​    执行完加法后，我们需要恢复栈帧的状态到main函数，后面几句实现了恢复的过程：首先恢复<code>edi，esi，ebx</code>寄存器的值，然后<code>mov esp,ebp</code> 这一句是恢复了esp寄存器的值，后面一句恢复了ebp寄存器的值，最后ret表示根据返回地址来恢复EIP寄存器的值，相当于<code>pop EIP</code></p>
+<p>​
+这几句代码，用于保存<code>ebx，esi，edi</code>寄存器的位置，将ebp寄存器抬升0CCh来装入EDI</p>
+<p>​
+然后是栈帧的切换，后面的就是将33个4字节的位置都初始化为<code>0CCCCCCCCh</code></p>
+<p>​
+然后我们就可以执行函数体了，完成1+3的加法，并将结果存储在eax寄存器中</p>
+<p><img src="/images/软件安全/图片9.png" /></p>
+<p>​
+执行完加法后，我们需要恢复栈帧的状态到main函数，后面几句实现了恢复的过程：首先恢复<code>edi，esi，ebx</code>寄存器的值，然后<code>mov esp,ebp</code>
+这一句是恢复了esp寄存器的值，后面一句恢复了ebp寄存器的值，最后ret表示根据返回地址来恢复EIP寄存器的值，相当于<code>pop EIP</code></p>
 
       
     </div>
@@ -623,8 +682,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter10/" rel="next" title="软件安全笔记Chapter10">
-                <i class="fa fa-chevron-left"></i> 软件安全笔记Chapter10
+              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter11/" rel="next" title="软件安全笔记Chapte11">
+                <i class="fa fa-chevron-left"></i> 软件安全笔记Chapte11
               </a>
             
           </div>
@@ -633,8 +692,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter3/" rel="prev" title="软件安全笔记Chapter3">
-                软件安全笔记Chapter3 <i class="fa fa-chevron-right"></i>
+              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter10/" rel="prev" title="软件安全笔记Chapter10">
+                软件安全笔记Chapter10 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -758,7 +817,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%A0%86%E6%A0%88%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">第二章 堆栈基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F"><span class="nav-number">1.1.</span> <span class="nav-text">内存区域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E5%8C%BA%E5%92%8C%E6%A0%88%E5%8C%BA"><span class="nav-number">1.2.</span> <span class="nav-text">堆区和栈区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E5%8C%BA"><span class="nav-number">1.2.1.</span> <span class="nav-text">堆区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88%E5%8C%BA"><span class="nav-number">1.2.2.</span> <span class="nav-text">栈区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.3.</span> <span class="nav-text">堆的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E5%9D%97"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">堆块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E8%A1%A8"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">堆表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E5%9D%97%E7%9A%84%E5%88%86%E9%85%8D%E4%B8%8E%E9%87%8A%E6%94%BE"><span class="nav-number">1.2.4.</span> <span class="nav-text">堆块的分配与释放</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E5%9D%97%E5%88%86%E9%85%8D"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">堆块分配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E5%9D%97%E9%87%8A%E6%94%BE"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">堆块释放</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E5%9D%97%E5%90%88%E5%B9%B6"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">堆块合并</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="nav-number">1.3.</span> <span class="nav-text">函数调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.4.</span> <span class="nav-text">常见寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.5.</span> <span class="nav-text">主要寄存器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">第二章 基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E2%80%94%E2%80%94%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">汇编——寻址方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E5%AF%BB%E5%9D%80"><span class="nav-number">2.1.1.</span> <span class="nav-text">操作数寻址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E2%80%94%E2%80%94%E4%B8%BB%E8%A6%81%E6%8C%87%E4%BB%A4"><span class="nav-number">2.2.</span> <span class="nav-text">汇编——主要指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E2%80%94%E2%80%94%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.3.</span> <span class="nav-text">汇编——函数调用示例</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%A0%86%E6%A0%88%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">第二章 堆栈基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F"><span class="nav-number">1.1.</span> <span class="nav-text">内存区域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A0%86%E5%8C%BA%E5%92%8C%E6%A0%88%E5%8C%BA"><span class="nav-number">1.2.</span> <span class="nav-text">堆区和栈区</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E5%8C%BA"><span class="nav-number">1.2.1.</span> <span class="nav-text">堆区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%88%E5%8C%BA"><span class="nav-number">1.2.2.</span> <span class="nav-text">栈区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E7%9A%84%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.3.</span> <span class="nav-text">堆的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E5%9D%97"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">堆块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E8%A1%A8"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">堆表</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E5%9D%97%E7%9A%84%E5%88%86%E9%85%8D%E4%B8%8E%E9%87%8A%E6%94%BE"><span class="nav-number">1.2.4.</span> <span class="nav-text">堆块的分配与释放</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E5%9D%97%E5%88%86%E9%85%8D"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">堆块分配</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E5%9D%97%E9%87%8A%E6%94%BE"><span class="nav-number">1.2.4.2.</span> <span class="nav-text">堆块释放</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A0%86%E5%9D%97%E5%90%88%E5%B9%B6"><span class="nav-number">1.2.4.3.</span> <span class="nav-text">堆块合并</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8"><span class="nav-number">1.3.</span> <span class="nav-text">函数调用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.4.</span> <span class="nav-text">常见寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E8%A6%81%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">1.5.</span> <span class="nav-text">主要寄存器</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-number">2.</span> <span class="nav-text">第二章 基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">汇编——寻址方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E6%95%B0%E5%AF%BB%E5%9D%80"><span class="nav-number">2.1.1.</span> <span class="nav-text">操作数寻址</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E4%B8%BB%E8%A6%81%E6%8C%87%E4%BB%A4"><span class="nav-number">2.2.</span> <span class="nav-text">汇编——主要指令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%A4%BA%E4%BE%8B"><span class="nav-number">2.3.</span> <span class="nav-text">汇编——函数调用示例</span></a></li></ol></li></ol></div>
             
 
           </div>

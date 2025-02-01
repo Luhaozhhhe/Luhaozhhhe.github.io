@@ -79,19 +79,17 @@
 
 
 
-<meta name="description" content="第十章 WEB安全基础WEB基础HTTP协议：超文本传输协议 统一资源标示符：URL HTTP协议采用了请求&#x2F;响应模型。 HTML：超文本标记语言  Head：头 关于网页的信息 body：主体 关于网页的具体内容  标记一般都是成对的出现的，\为我们的开头，然后\就是我们的结尾 （部分标记除外例如：\） 1&lt;head&gt;&lt;&#x2F;head&gt; 这2个标记符分别表示头部信息的开始和结">
+<meta name="description" content="第十章 WEB安全基础 WEB基础 HTTP协议：超文本传输协议 统一资源标示符：URL HTTP协议采用了请求&#x2F;响应模型。 HTML：超文本标记语言  Head：头 关于网页的信息 body：主体 关于网页的具体内容  标记一般都是成对的出现的，&lt;html&gt;为我们的开头，然后&lt;&#x2F;html&gt;就是我们的结尾 （部分标记除外例如：&lt;br&#x2F;&gt;）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="软件安全笔记Chapter10">
 <meta property="og:url" content="https://luhaozhhhe.github.io/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter10/index.html">
 <meta property="og:site_name" content="Welcome To Luhaozhhhe&#39;s Blog!">
-<meta property="og:description" content="第十章 WEB安全基础WEB基础HTTP协议：超文本传输协议 统一资源标示符：URL HTTP协议采用了请求&#x2F;响应模型。 HTML：超文本标记语言  Head：头 关于网页的信息 body：主体 关于网页的具体内容  标记一般都是成对的出现的，\为我们的开头，然后\就是我们的结尾 （部分标记除外例如：\） 1&lt;head&gt;&lt;&#x2F;head&gt; 这2个标记符分别表示头部信息的开始和结">
+<meta property="og:description" content="第十章 WEB安全基础 WEB基础 HTTP协议：超文本传输协议 统一资源标示符：URL HTTP协议采用了请求&#x2F;响应模型。 HTML：超文本标记语言  Head：头 关于网页的信息 body：主体 关于网页的具体内容  标记一般都是成对的出现的，&lt;html&gt;为我们的开头，然后&lt;&#x2F;html&gt;就是我们的结尾 （部分标记除外例如：&lt;br&#x2F;&gt;）">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://luhaozhhhe.github.io/images/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/image-20240528163300208-1718849461066-1.png">
 <meta property="article:published_time" content="2024-11-05T03:07:23.000Z">
 <meta property="article:modified_time" content="2025-01-31T13:34:33.080Z">
 <meta property="article:author" content="Luhaozhhhe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://luhaozhhhe.github.io/images/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8/image-20240528163300208-1718849461066-1.png">
 
 
 
@@ -372,7 +370,9 @@
       
 
       
-        <h1 id="第十章-WEB安全基础"><a href="#第十章-WEB安全基础" class="headerlink" title="第十章 WEB安全基础"></a>第十章 WEB安全基础</h1><h2 id="WEB基础"><a href="#WEB基础" class="headerlink" title="WEB基础"></a>WEB基础</h2><p>HTTP协议：超文本传输协议</p>
+        <h1 id="第十章-web安全基础">第十章 WEB安全基础</h1>
+<h2 id="web基础">WEB基础</h2>
+<p>HTTP协议：超文本传输协议</p>
 <p>统一资源标示符：URL</p>
 <p>HTTP协议采用了<strong>请求/响应</strong>模型。</p>
 <p>HTML：超文本标记语言</p>
@@ -380,26 +380,30 @@
 <li>Head：头 关于网页的信息</li>
 <li>body：主体 关于网页的具体内容</li>
 </ul>
-<p><strong>标记一般都是成对的出现的，\<html>为我们的开头，然后\</html>就是我们的结尾</strong></p>
-<p>（部分标记除外例如：\<br/>）</p>
+<p><strong>标记一般都是成对的出现的，&lt;html&gt;为我们的开头，然后&lt;/html&gt;就是我们的结尾</strong></p>
+<p>（部分标记除外例如：&lt;br/&gt;）</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这2个标记符分别表示头部信息的开始和结尾。<strong>头部中包含的标记是页面的标题、序言、说明等内容，它本身不作为内容来显示，但影响网页显示的效果</strong>。头部中最常用的标记符是标题标记符和meta标记符，其中<strong>标题标记符用于定义网页的标题，它的内容显示在网页窗口的标题栏中</strong>，网页标题可被浏览器用作书签和收藏清单。</p>
 <p>JavaScript：是一种嵌入在我们的html语言中的脚本语言，可以提供动态功能</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span>  </span><br><span class="line">         <span class="tag">&lt;<span class="name">head</span>&gt;</span>  </span><br><span class="line">                <span class="tag">&lt;<span class="name">title</span>&gt;</span>Javascript简单示例<span class="tag">&lt;/<span class="name">title</span>&gt;</span>  </span><br><span class="line">         <span class="tag">&lt;/<span class="name">head</span>&gt;</span>  </span><br><span class="line">         <span class="tag">&lt;<span class="name">body</span>&gt;</span>  </span><br><span class="line">                <span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;javascript&quot;</span>&gt;</span><span class="language-javascript">    </span></span><br><span class="line"><span class="language-javascript">                     <span class="title function_">alert</span>(<span class="string">&quot;第一个javascript&quot;</span>); </span></span><br><span class="line"><span class="language-javascript">               </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>   </span><br><span class="line">         <span class="tag">&lt;/<span class="name">body</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>有它自身的<strong>基本数据类型，表达式和算术运算符及程序的基本程序框架</strong></p>
-<h2 id="WEB编程环境"><a href="#WEB编程环境" class="headerlink" title="WEB编程环境"></a>WEB编程环境</h2><p>WEB静态语言和WEB动态语言</p>
+<h2 id="web编程环境">WEB编程环境</h2>
+<p>WEB静态语言和WEB动态语言</p>
 <ul>
 <li>WEB静态语言就是通常所见到的超文本标记语言（标准通用标记语言下的一个应用）</li>
 <li>WEB动态语言主要是ASP、PHP、JAVASCRIPT、JAVA、CGI等计算机脚本语言编写出来的执行灵活的互联网网页程序。</li>
 </ul>
-<h2 id="PHP语言"><a href="#PHP语言" class="headerlink" title="PHP语言"></a>PHP语言</h2><p>PHP:</p>
+<h2 id="php语言">PHP语言</h2>
+<p>PHP:</p>
 <ul>
 <li>是一种<strong>解释性语言</strong>。PHP的语法和C/C++，Java，Perl，ASP，JSP有相通之处并且加上了自己的语法。</li>
 <li>由于PHP是一种<strong>面向HTML的解析语言</strong>，所以，PHP语句被包含在PHP标记里面，PHP标记外的语句都被直接输出。包括在PHP标记中的语句被解析，在其外的语句原样输出并且接受PHP语句的控制</li>
 </ul>
-<p><img src="/images/软件安全/image-20240528163300208-1718849461066-1.png" alt=""></p>
-<p>变量解析当遇到符号（$）时产生，<strong>解析器会尽可能多地取得后面的字符以组成一个合法的变量名，然后将变量值替换他们</strong>，如果$后面没有有效的变量名，则输出”$”<strong>。如果想明确的变量名可以用花括号把变量名括起来</strong>。</p>
-<h2 id="HTTP会话管理"><a href="#HTTP会话管理" class="headerlink" title="HTTP会话管理"></a>HTTP会话管理</h2><p>HTTP协议属于<strong>无状态的通信协议</strong></p>
+<p><img
+src="/images/软件安全/image-20240528163300208-1718849461066-1.png" /></p>
+<p>变量解析当遇到符号（$）时产生，<strong>解析器会尽可能多地取得后面的字符以组成一个合法的变量名，然后将变量值替换他们</strong>，如果$后面没有有效的变量名，则输出"$"<strong>。如果想明确的变量名可以用花括号把变量名括起来</strong>。</p>
+<h2 id="http会话管理">HTTP会话管理</h2>
+<p>HTTP协议属于<strong>无状态的通信协议</strong></p>
 <p>当浏览器发送请求给服务器的时候，服务器响应，但是当同一个浏览器再发送请求给服务器的时候，他不知道你就是刚才那个浏览器。简单地说，就是服务器不会去记得你</p>
 <p><strong>HTTP是短连接的</strong></p>
 <p>为了识别不同的请求是否来自同一客户，需要引用HTTP会话机制：</p>
@@ -417,8 +421,10 @@
 <li>若设置了过期时间，浏览器就会把cookie保存到硬盘上</li>
 <li>存储在硬盘上的cookie可以在不同的浏览器进程间共享，比如两个IE窗口</li>
 </ul>
-<p><strong>session id的值应该是一个既不会重复，又不容易被找到规律以仿造的字符串</strong></p>
-<h2 id="HTTP请求"><a href="#HTTP请求" class="headerlink" title="HTTP请求"></a>HTTP请求</h2><p>method属性指定了与服务器进行信息交互的方法为POST。</p>
+<p><strong>session
+id的值应该是一个既不会重复，又不容易被找到规律以仿造的字符串</strong></p>
+<h2 id="http请求">HTTP请求</h2>
+<p>method属性指定了与服务器进行信息交互的方法为POST。</p>
 <p>交互的四种方法：</p>
 <ul>
 <li>GET：GET一般用于获取/查询资源信息</li>
@@ -435,9 +441,10 @@
 <ul>
 <li>GET模式下，通过URL就可以作数据修改</li>
 <li>GET模式下，用户名和密码将明文出现在URL上，因为登录页面有可能被浏览器缓存、其他人查看浏览器的历史纪录，那么别人就可以拿到你的账号和密码了</li>
-<li>GET模式下，提交数据还可能会造成跨站请求伪造攻击 </li>
+<li>GET模式下，提交数据还可能会造成跨站请求伪造攻击</li>
 </ul>
-<h2 id="PHP连接数据库"><a href="#PHP连接数据库" class="headerlink" title="PHP连接数据库"></a>PHP连接数据库</h2><p>表userinfo：有两个字段</p>
+<h2 id="php连接数据库">PHP连接数据库</h2>
+<p>表userinfo：有两个字段</p>
 <ul>
 <li>username</li>
 <li>pwd</li>
@@ -445,23 +452,23 @@
 <p>数据库应用开发三步骤：</p>
 <ul>
 <li><p>连接数据库</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$conn<span class="operator">=</span>mysql_connect(&quot;localhost&quot;, &quot;root&quot;, &quot;123456&quot;);</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$conn<span class="operator">=</span>mysql_connect(&quot;localhost&quot;, &quot;root&quot;, &quot;123456&quot;);</span><br></pre></td></tr></table></figure></li>
 <li><p>执行SQL操作</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$<span class="keyword">result</span><span class="operator">=</span>mysql_db_query(&quot;MyDB&quot;, $SQLStr, $conn);</span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$<span class="keyword">result</span><span class="operator">=</span>mysql_db_query(&quot;MyDB&quot;, $SQLStr, $conn);</span><br></pre></td></tr></table></figure></li>
 <li><p>关闭连接</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_free_result($<span class="keyword">result</span>); mysql_close($conn); </span><br></pre></td></tr></table></figure>
-</li>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql_free_result($<span class="keyword">result</span>); mysql_close($conn); </span><br></pre></td></tr></table></figure></li>
 </ul>
-<h2 id="Cookie实战"><a href="#Cookie实战" class="headerlink" title="Cookie实战"></a>Cookie实战</h2><p>cookie和session的关系：</p>
+<h2 id="cookie实战">Cookie实战</h2>
+<p>cookie和session的关系：</p>
 <ul>
 <li>共性：都可以暂时保存在多个页面中使用的变量。</li>
-<li>区别：cookie存放在客户端浏览器，session保存在服务器。它们之间的联系是session ID一般保存在cookie中，来实现HTTP会话管理</li>
+<li>区别：cookie存放在客户端浏览器，session保存在服务器。它们之间的联系是session
+ID一般保存在cookie中，来实现HTTP会话管理</li>
 </ul>
 <p>工作原理：</p>
 <ul>
-<li>生成Cookie：当客户访问某网站时，PHP可以使用setcookie函数告诉浏览器生成一个cookie，并把这个cookie保存在c:\Documents and Settings\用户名\Cookies目录下。</li>
+<li>生成Cookie：当客户访问某网站时，PHP可以使用setcookie函数告诉浏览器生成一个cookie，并把这个cookie保存在c:and
+Settings。</li>
 <li>使用Cookie：Cookie是HTTP标头的一部分，当客户再次访问该网站时，浏览器会自动把与该站点对应的cookie发送到服务器，服务器则把从客户端传来的cookie将自动地转化成一个PHP变量。</li>
 </ul>
 <p><strong>setcookie格式</strong></p>
@@ -471,35 +478,37 @@
 <li>value 必需。规定 cookie 的值。</li>
 <li>expire 可选。规定 cookie 的有效期。</li>
 </ul>
-<h2 id="十大WEB安全威胁"><a href="#十大WEB安全威胁" class="headerlink" title="十大WEB安全威胁"></a>十大WEB安全威胁</h2><ul>
+<h2 id="十大web安全威胁">十大WEB安全威胁</h2>
+<ul>
 <li>注入</li>
 <li>跨站脚本</li>
-<li>遭破坏的身份认证和会话管理<ul>
+<li>遭破坏的身份认证和会话管理
+<ul>
 <li>攻击者窃听了用户访问HTTP时的用户名和密码，或者是用户的会话，从而得到sessionID或用户身份信息，进而冒充用户进行HTTP访问的过程</li>
 <li>检测是否使用HTTPS的最简单方法就是使用网络嗅探工具</li>
-<li><strong>会话劫持就是一种窃取用户SessionID后，使用该SessionID登录进入目标账户的攻击方法，此时攻击者实际上是利用了目标账户的有效Session。如果SessionID是被保存在Cookie中，则这种攻击被称为Cookie劫持。</strong> </li>
+<li><strong>会话劫持就是一种窃取用户SessionID后，使用该SessionID登录进入目标账户的攻击方法，此时攻击者实际上是利用了目标账户的有效Session。如果SessionID是被保存在Cookie中，则这种攻击被称为Cookie劫持。</strong></li>
 <li>如果攻击者窃取了用户的Session，并一直保持一个有效的Session，攻击者就能通过此有效Session一直使用用户的账户，即成为一个永久的“后门”，<strong>这就是会话保持攻击</strong></li>
-</ul>
-</li>
-<li>不安全的直接对象引用<ul>
+</ul></li>
+<li>不安全的直接对象引用
+<ul>
 <li><strong>直接对象引用：是指WEB应用程序的开发人员将一些不应公开的对象引用直接暴露给用户，使得用户可以通过更改URL等操作直接引用对象。</strong></li>
 <li><strong>不安全的直接对象引用：是指一个用户通过更改URL等操作可以成功访问到未被授权的内容。比如一个网站上的用户通过更改URL可以访问到其他用户的私密信息和数据等。</strong></li>
-</ul>
-</li>
+</ul></li>
 <li>伪造跨站请求</li>
-<li>安全配置错误<ul>
+<li>安全配置错误
+<ul>
 <li><strong>默认的用户名密码没有及时修改</strong></li>
-</ul>
-</li>
-<li>不安全的加密存储<ul>
+</ul></li>
+<li>不安全的加密存储
+<ul>
 <li>Web应用系统<strong>没有对敏感性资料进行加密</strong></li>
-</ul>
-</li>
+</ul></li>
 <li>没有限制的URL访问</li>
-<li>传输层保护不足和未验证的重定向和转发<ul>
-<li><strong>中间人攻击</strong>(Man-in-the-middle attack)，即MITM。HTTP连接的目标是Web服务器，如果传输层保护不足，攻击者可以担任中间人的角色，在<strong>用户和Web服务器之间截获数据并在两者之间进行转发</strong>，使用户和服务器之间的整个通信过程暴露在攻击者面前。</li>
-</ul>
-</li>
+<li>传输层保护不足和未验证的重定向和转发
+<ul>
+<li><strong>中间人攻击</strong>(Man-in-the-middle
+attack)，即MITM。HTTP连接的目标是Web服务器，如果传输层保护不足，攻击者可以担任中间人的角色，在<strong>用户和Web服务器之间截获数据并在两者之间进行转发</strong>，使用户和服务器之间的整个通信过程暴露在攻击者面前。</li>
+</ul></li>
 </ul>
 
       
@@ -525,8 +534,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter4/" rel="next" title="软件安全笔记Chapter4">
-                <i class="fa fa-chevron-left"></i> 软件安全笔记Chapter4
+              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter2/" rel="next" title="软件安全笔记Chapter2">
+                <i class="fa fa-chevron-left"></i> 软件安全笔记Chapter2
               </a>
             
           </div>
@@ -535,8 +544,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter2/" rel="prev" title="软件安全笔记Chapter2">
-                软件安全笔记Chapter2 <i class="fa fa-chevron-right"></i>
+              <a href="/2024/11/05/%E8%BD%AF%E4%BB%B6%E5%AE%89%E5%85%A8%E7%AC%94%E8%AE%B0Chapter1/" rel="prev" title="软件安全笔记Chapter1">
+                软件安全笔记Chapter1 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -660,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-WEB%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">第十章 WEB安全基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB%E5%9F%BA%E7%A1%80"><span class="nav-number">1.1.</span> <span class="nav-text">WEB基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WEB%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83"><span class="nav-number">1.2.</span> <span class="nav-text">WEB编程环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP%E8%AF%AD%E8%A8%80"><span class="nav-number">1.3.</span> <span class="nav-text">PHP语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">HTTP会话管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP%E8%AF%B7%E6%B1%82"><span class="nav-number">1.5.</span> <span class="nav-text">HTTP请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PHP%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.6.</span> <span class="nav-text">PHP连接数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie%E5%AE%9E%E6%88%98"><span class="nav-number">1.7.</span> <span class="nav-text">Cookie实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E5%A4%A7WEB%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81"><span class="nav-number">1.8.</span> <span class="nav-text">十大WEB安全威胁</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E5%8D%81%E7%AB%A0-web%E5%AE%89%E5%85%A8%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">第十章 WEB安全基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#web%E5%9F%BA%E7%A1%80"><span class="nav-number">1.1.</span> <span class="nav-text">WEB基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#web%E7%BC%96%E7%A8%8B%E7%8E%AF%E5%A2%83"><span class="nav-number">1.2.</span> <span class="nav-text">WEB编程环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php%E8%AF%AD%E8%A8%80"><span class="nav-number">1.3.</span> <span class="nav-text">PHP语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86"><span class="nav-number">1.4.</span> <span class="nav-text">HTTP会话管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http%E8%AF%B7%E6%B1%82"><span class="nav-number">1.5.</span> <span class="nav-text">HTTP请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#php%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-number">1.6.</span> <span class="nav-text">PHP连接数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cookie%E5%AE%9E%E6%88%98"><span class="nav-number">1.7.</span> <span class="nav-text">Cookie实战</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%81%E5%A4%A7web%E5%AE%89%E5%85%A8%E5%A8%81%E8%83%81"><span class="nav-number">1.8.</span> <span class="nav-text">十大WEB安全威胁</span></a></li></ol></li></ol></div>
             
 
           </div>
