@@ -1823,7 +1823,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #657eff;
+  background: #2198d4;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -1942,6 +1942,9 @@ pre .javascript .function {
 }
 .post-toc .nav .active-current > a:hover {
   color: #fc6423;
+}
+.post-toc * {
+  text-align: left !important;
 }
 .footer {
   font-size: 14px;
@@ -3028,4 +3031,8 @@ body {
 }
 .post-toc .nav .nav-child {
   display: block;
+}
+.sidebar {
+  display: block !important;
+  opacity: 1 !important;
 }
